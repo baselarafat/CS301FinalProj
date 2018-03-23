@@ -1,6 +1,7 @@
 #ifndef __PROGRAM_COUNTER_H__
 #define __PROGRAM_COUNTER_H__
 
+#include <string>
 //This h creates the guidlines for the program counter
 
 
@@ -11,7 +12,7 @@ class ProgramCounter
 {
    private:
       int            currentAddress;
-      std::string[]  addressArray;
+      std::string    addressArray[32];
 
    public:
       ProgramCounter();
@@ -19,17 +20,17 @@ class ProgramCounter
 
       // getCurrentAddress will return the current address of the program 
       // counter as a string
-      string    getCurrentAddress();
+      std::string    getCurrentAddress();
     
       // returns the pointer in the array for the current address
       int       getAddressPointer();
     
       //moveAddressTo will move the address in the PC to a given point, will
       //will be used for j type and branch instructions
-      string    moveAddressTo(string newAddress);
+      std::string    moveAddressTo(std::string newAddress);
 
       //Increments the current address by one
-      string    incrementAddress();
+      std::string    incrementAddress();
      
      // Note: string is returned for the two methods above for testing purposes
 };
