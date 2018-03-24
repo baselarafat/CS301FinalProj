@@ -11,25 +11,23 @@
 class ProgramCounter
 {
    private:
-      int            currentAddress;
-      std::string    addressArray[32];
+      std::string            currentAddress;
 
    public:
       ProgramCounter();
+      ProgramCounter(std::string address);
       ~ProgramCounter();
 
       // getCurrentAddress will return the current address of the program 
       // counter as a string
       std::string    getCurrentAddress();
     
-      // returns the pointer in the array for the current address
-      int       getAddressPointer();
-    
       //moveAddressTo will move the address in the PC to a given point, will
-      //will be used for j type and branch instructions
+      //will be used for j type and branch instructions.  This method will
+      //be called by control??
       std::string    moveAddressTo(std::string newAddress);
 
-      //Increments the current address by one
+      //Increments the current address by 1 (4 bits)
       std::string    incrementAddress();
      
      // Note: string is returned for the two methods above for testing purposes
