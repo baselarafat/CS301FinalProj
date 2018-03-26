@@ -184,15 +184,15 @@ int main ()
       //gets location of the =
       for(int k = 0; k < input.length(); k++)
         {
-            if(input.at(k) = '=')
+            if(input.at(k) == '=')
             {
               equalsPtr = k;
               break;
             }
         }
-      arrayOfRegisters[numOfRegisters][0] = input.substr(0,);
+      arrayOfRegisters[numOfRegisters][0] = input.substr(0,equalsPtr);
       //puts instruction in
-      arrayOfRegisters[numOfRegisters][1] = input.substr(9,8);
+      arrayOfRegisters[numOfRegisters][1] = input.substr(equalsPtr + 1,8);
       //increments number of instructions
       numOfRegisters++;
 
