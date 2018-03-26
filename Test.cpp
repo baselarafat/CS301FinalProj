@@ -179,8 +179,18 @@ int main ()
       string input;
       infile3 >> input;
       
-      //puts address in
-      arrayOfRegisters[numOfRegisters][0] = input.substr(0,8);
+      int equalsPtr = 0;
+      
+      //gets location of the =
+      for(int k = 0; k < input.length(); k++)
+        {
+            if(input.at(k) = '=')
+            {
+              equalsPtr = k;
+              break;
+            }
+        }
+      arrayOfRegisters[numOfRegisters][0] = input.substr(0,);
       //puts instruction in
       arrayOfRegisters[numOfRegisters][1] = input.substr(9,8);
       //increments number of instructions
