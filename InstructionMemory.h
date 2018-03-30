@@ -5,10 +5,6 @@
 #include <string>
 class InstructionMemory{
 
-
-
-
-
 private :
  std::string           thearray[100][2];
 
@@ -17,7 +13,7 @@ public :
  InstructionMemory(std::string  array[100][2]);
  ~InstructionMemory();
 
- std::string getInstruction(std::string address);
+std::string getInstruction(std::string address);
 
 };
 

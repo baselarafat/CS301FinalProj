@@ -3,21 +3,25 @@
 
 
 #include "InstructionMemory.h"
-
 #include <string>
+
 InstructionMemory::InstructionMemory()  {}
 InstructionMemory::InstructionMemory(std::string arrayofinstructions[100][2])  {
-	this->thearray[100][2] = arrayofinstructions[100][2];
+	for(int i=0;i<100;i++){
+		thearray[i][2] = arrayofinstructions[i][2];
+}
+	
 }
 InstructionMemory::~InstructionMemory() {}
 
 std::string InstructionMemory::getInstruction(std::string   theAddress){
-	std::string Instruction ="";
-	for(int i=0;i<100;i++){
-		if(thearray[i][0]==theAddress)
-			Instruction=thearray[i][1];
-	}
-	return Instruction;
+	std::string Instruction = thearray[10][1];
+	// for(int i=0;i<100;i++){
+	// 	Instruction = thearray[i][1];
+	// 	if(thearray[i][0]==theAddress)
+	// 		Instruction = thearray[i][1];
+	// }
+	return thearray [5][1];
 }
 
 

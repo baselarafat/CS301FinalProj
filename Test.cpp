@@ -148,11 +148,11 @@ int main ()
       //creates string and saves each line to input
       string input;
       infile2 >> input;
-      
+      int delimiter =input.find(":");
       //puts address in
-      arrayOfInstructions[numOfInstructions][0] = input.substr(0,8);
+      arrayOfInstructions[numOfInstructions][0] = input.substr(0,delimiter);
       //puts instruction in
-      arrayOfInstructions[numOfInstructions][1] = input.substr(9,8);
+      arrayOfInstructions[numOfInstructions][1] = input.substr(delimiter+1,input.length()-1);
       //increments number of instructions
       numOfInstructions++;
 
@@ -203,16 +203,17 @@ int main ()
 
 
   //Loop to test file reading from above.  No problems as of current implementation.
-  for(int i = 0; i < numOfInstructions; i++)
-  {
+  // for(int i = 0; i < numOfInstructions; i++)
+  // {
 
-    cout << arrayOfInstructions[i][0] << endl;
-    cout << arrayOfInstructions[i][1] << endl;
+  //   cout << arrayOfInstructions[i][0] << endl;
+  //   cout << arrayOfInstructions[i][1] << endl;
 
-  }
+  // }
 
    InstructionMemory* Inst = new InstructionMemory (arrayOfInstructions);
-    string s = Inst->getInstruction("10000034");
+    string s = Inst->getInstruction("1000006c");
     cout <<"-------"<<s<<endl;
+    cout<<s<<endl;
   return 0;
 }
