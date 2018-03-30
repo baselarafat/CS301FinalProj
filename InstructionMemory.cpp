@@ -14,7 +14,7 @@ InstructionMemory::~InstructionMemory() {}
 std::string InstructionMemory::getInstruction(std::string   theAddress){
 	std::string Instruction ="";
 	for(int i=0;i<100;i++){
-		if(theAddress==thearray[i][0])
+		if(thearray[i][0]==theAddress)
 			Instruction=thearray[i][1];
 	}
 	return Instruction;

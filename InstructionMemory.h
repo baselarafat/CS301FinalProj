@@ -14,7 +14,7 @@ private :
 
 public : 
  InstructionMemory();
- InstructionMemory(std::string  thearray[100][2]);
+ InstructionMemory(std::string  array[100][2]);
  ~InstructionMemory();
 
  std::string getInstruction(std::string address);
