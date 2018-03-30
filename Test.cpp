@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
-
+#include "InstructionMemory.h"
+#include "InstructionMemory.cpp"
 
 using namespace std;
 
@@ -210,5 +211,8 @@ int main ()
 
   }
 
+   InstructionMemory* Inst = new InstructionMemory (arrayOfInstructions);
+    string s = Inst->getInstruction("10000034");
+    cout <<"-------"<<s<<endl;
   return 0;
 }
