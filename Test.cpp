@@ -2,7 +2,7 @@
 #include <cstring>
 #include <fstream>
 #include "InstructionMemory.h"
-#include "InstructionMemory.cpp"
+
 
 using namespace std;
 
@@ -132,7 +132,7 @@ int main ()
   int numOfInstructions = 0;
 
   //builds array to store instructions
-  string arrayOfInstructions[100][2];
+  hex** arrayOfInstructions [100][2];
 
   //
   ifstream infile2;
@@ -211,7 +211,7 @@ int main ()
 
   // }
 
-   InstructionMemory* Inst = new InstructionMemory (arrayOfInstructions);
+   InstructionMemory* Inst = new InstructionMemory (const& arrayOfInstructions);
     string s = Inst->getInstruction("1000006c");
     cout <<"-------"<<s<<endl;
     cout<<s<<endl;
