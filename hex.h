@@ -3,13 +3,15 @@
 
 #include<string>
 class hex{
-private: char* array;
+ private: char* array;
 
 
 public: 
-
+hex();
 hex(std::string s);
 ~hex();
+void print();
+
 
 
 };
