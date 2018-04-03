@@ -200,7 +200,6 @@ int main ()
 
   infile3.close();
 
-
   //Loop to test file reading from above.  No problems as of current implementation.
   for(int i = 0; i < numOfInstructions; i++)
   {

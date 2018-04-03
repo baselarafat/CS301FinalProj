@@ -28,7 +28,7 @@ class ProgramCounter
       std::string    moveAddressTo(std::string newAddress);
 
       //Increments the current address by 1 (4 bits)
-      std::string    incrementAddress();
+      //std::string    incrementAddress();
      
      // Note: string is returned for the two methods above for testing purposes
 };

@@ -43,13 +43,13 @@ std::string    ProgramCounter::moveAddressTo(std::string newAddress)
         //Increments the current address by one.  Not implementated because
         //ALU is supposed to achieve that.  Should be able to use 
         //moveAddressTo() func to send incremented address.
-std::string ProgramCounter::incrementAddress()
+/*std::string ProgramCounter::incrementAddress()
         {
             
             return currentAddress;
         }
-    
-        // Note: string is returned for the two methods above for testing purposes
+    */
+        
 
 
 #endif
