@@ -49,8 +49,6 @@ std::string    ProgramCounter::moveAddressTo(std::string newAddress)
             return currentAddress;
         }
     */
-        
-
 
 #endif
 #include <stdio.h>
