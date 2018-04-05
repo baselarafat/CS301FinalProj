@@ -8,8 +8,6 @@ Multiplexor::Multiplexor(int num)
 {
 	numMux = num;
 	
-    
-    
 }
 
 
