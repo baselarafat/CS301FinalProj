@@ -34,7 +34,7 @@ private:
 
 	void getTokens(string line, string &opcode, string *opcode, int &num_operands);
 
-	bool getOperands(INstruction &i, Opcode o, string *operand, int operand_count);
+	bool getOperands(Instruction &i, Opcode o, string *operand, int operand_count);
 
 	//Helper functions
 	bool isWhitespace(char c)	{ return (c == ' '|| c == '\t'); };
