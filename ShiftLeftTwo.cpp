@@ -17,6 +17,7 @@ ShiftLeftTwo::~ShiftLeftTwo(){}
 std::string	Shift(std::bitset offsetField)
 {
 	bitset<16> shiftedOffSet = offsetField << 2;
+	return shiftedOffSet;
 }
 
 #endif
