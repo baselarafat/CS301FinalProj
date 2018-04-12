@@ -10,6 +10,7 @@
 
 using namespace std;
 
+// Listing of all supported MIPS instructions
 // Used to store information regarding desired registers by the user
 
 typedef int Register;
@@ -18,6 +19,7 @@ const int NumRegisters = 32;
 struct RegisterEntry{
 	std::string 	name;
 	std::Register 	number;
+	std::string		value;
 };
 
 class RegisterFile{
