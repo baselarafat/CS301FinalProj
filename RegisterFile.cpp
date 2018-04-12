@@ -2,6 +2,7 @@
 
 RegisterFile::RegisterFile()
 {
+  this->number = currentRegister;
   int i = 0;
 
   myRegisters[i].name = "$0";  myRegisters[i].number = i; i++;
@@ -97,17 +98,27 @@ Register RegisterTable::getNum(string reg)
   return NumRegisters;
 }
 
+
  /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */
 RegisterFile::readReg(string reg)
 {
-  return 
+  for(int i = 0; i < 2*NumRegisters; i++){
+    if(myRegisters[i].name == reg){
+      return myRegisters[i].value;
+    }
+  }
 }
 /*Given a string representing a MIPS register operand and a specified value, stores the value within
 said register.
 */
-RegisterFile::writeReg(string reg, string value)
+RegisterFile::writeReg(string reg, string val)
 {
-return
+  for(int i = 0; i < 2*NumRegisters; i++){
+    if(myRegisters[i].name == reg){
+      myRegisters[i].value = val;
+    return myRegister[i].value;
+    }
+  }
 }
