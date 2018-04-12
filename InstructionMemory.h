@@ -3,18 +3,18 @@
 //Get an address then release out data from memory that corresponds to that instruction
 
 #include <string>
-using namespace std;
+#include<vector>
 class InstructionMemory{
 
 private :
- unsigned           thearray[100][2];
+ std::vector<std::vector<std::string> > vec;
 
 public : 
  InstructionMemory();
- InstructionMemory(unsigned  array[100][2]);
+ InstructionMemory(std::vector<std::vector<std::string> > myvec );
  ~InstructionMemory();
 
-std::string getInstruction(string address);
+std::string getInstruction(std::string address);
 
 };
 
