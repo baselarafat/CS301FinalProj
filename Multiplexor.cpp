@@ -4,26 +4,25 @@
 #include <iostream>
 #include "Multiplexor.h"
 
-Multiplexor::Multiplexor(int num)
+Multiplexor::Multiplexor()
 {
-	numMux = num;
+	//numMux = num;
 	
 }
-
 
 Multiplexor::~Multiplexor(){}
 
 //will be used by the Control Unit, which sends true or false based 
 //on whether or not the mux is needed.
-void Multiplexor::setSignal(bool boolean)
+void Multiplexor::setFlow(int flow)
 {
-    this->sig = boolean;
+    this->flow = flow;
     
 }
 //Returns signal
-bool Multiplexor::getSignal()
+bool Multiplexor::getFlow()
 {
-    return sig;
+    return flow;
 }
 
 //Set's input at point that coincides with 0 on the picture
@@ -40,18 +39,6 @@ std::string Multiplexor::setSecondInput(std::string secondInput)
 	return this->secondInput;
 }
 
-void Multiplexor::setFlow(int flow)
-{
-	if(flow == 0 || flow == 1)
-	{
-		this->flow = flow;
-	}
-}
-
-int Multiplexor::getFlow()
-{
-	return this->flow;
-}
 
 //calls mux
 std::string Multiplexor::mux()

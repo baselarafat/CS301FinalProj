@@ -4,6 +4,7 @@
 #include <cstring>
 #include <fstream>
 #include "InstructionMemory.h"
+#include "ProgramCounter.h"
 
 
 
@@ -250,7 +251,10 @@ int main ()
     ASMParser *parser;
 
     parser = new ASMParser(programInputFile);
-
+    */
+    string instructionArray[100][2];
+    
+    /*
     if(parser->isFormatCorrect() == false){
         cerr << "Format of program input file is incorrect " << endl;
         exit(1);
@@ -259,21 +263,76 @@ int main ()
     Instruction i;
 
     i = parser->getNextInstruction();
-
-    while( i.getOpcode() != UNDEFINED){
-        // cout << i.getString() << endl;
-        cout << i.getEncoding() << endl;
+    
+    int instructionCounter = 0;
+    while( i.getOpcode() != UNDEFINED || instructionCounter <= 100){
+        //Puts values into array, prints them for testing purposes.
+        cout << i.getString() << endl;
+        instructionArray[instructionCounter][1];
+        
+        //cout << i.getEncoding() << endl;
         i = parser->getNextInstruction();
+        instructionCounter++;
     }
     
     delete parser;
     */
+    
+    //Sets null value into instructionArray.
+    if(instructionCounter < 100)
+    {
+        instructionArray[instructionCounter][1] = null;
+    }
 
-    //Code below will begin utilizizing the given input to run the processor based on
-    //the given input.  (A new class could be created such that once this runs, it sends 
-    //the info to that class needed to run the processor).
 
-    //FETCH
+    //Code below will begin using imput to simulate a processor.  First all objects needed 
+    // for the execution will be created.
+    
+    //Sets first address at the start and creates Program Counter Object
+    string firstAddress = "00000000";
+    ProgramCounter pc(firstAddress);
+    
+    //Creates IM using the array built above.
+    InstructionMemory im(instructionArray);
+    
+    //Creates controlunit object.
+    ControlUnit control();
+
+    //build 5 Multiplexors
+    Multiplexor mux1();
+    Multiplexor mux2();
+    Multiplexor mux3();
+    Multiplexor mux4();
+    Multiplexor mux5();
+    
+    //while() // Loop to run until all instructions are executed.
+
+    //FETCH 
+    //Retrives address from the instruction memory as a string of ints.
+    string addr = pc.getCurrentAddress();
+    string instruction = im.(addr); 
+    
+    //Sends address to ALU next?
+
+    string opcode = instruction.substr(0, 6);
+
+    //sets values to false to reset control unit, then calls method
+    //to set control values with opcode.
+    control.setToFalse();
+    control.setValues(opcode);
+
+    mux1.setFlow(control.getRegDest());
+    mux2.setFlow(control.getAluSrc());
+    mux3.setFlow(control.getMemToReg());
+    mux4.setFlow(control.getJump());
+    // mux 5 is set by a combination of branch and the result of ALU
+    
+
+
+
+
+    
+    
 
     
 }

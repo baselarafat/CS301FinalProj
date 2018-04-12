@@ -63,50 +63,113 @@ void ControlUnit::setValues(std::string opcode)
 	}
 }
 
-bool ControlUnit::getRegDest()
+int ControlUnit::getRegDest()
 {
-	return this->regDest;
+	if(regDest)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
-bool ControlUnit::getJump()
+int ControlUnit::getJump()
 {
-	return this->jump;
+	if(jump)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
-bool ControlUnit::getBranch()
+int ControlUnit::getBranch()
 {
-	return this->branch;
+	if(branch)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
-bool ControlUnit::getMemRead()
+int ControlUnit::getMemRead()
 {
-	return this->memRead;
+	if(memRead)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
-bool ControlUnit::getMemToReg()
+int ControlUnit::getMemToReg()
 {
-	return this->memToReg;
+	if(memToReg)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
 
-bool ControlUnit::getAluOp()
+int ControlUnit::getAluOp()
 {
-	return this->aluOp;
+	if(aluOp)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	};
 }
 
-bool ControlUnit::getMemWrite()
+int ControlUnit::getMemWrite()
 {
-	return this->memWrite;
+	if(memWrite)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	};
 }
 
-bool ControlUnit::getAluSrc()
+int ControlUnit::getAluSrc()
 {
-	return this->aluSrc;
+	if(aluSrc)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
-bool ControlUnit::getRegWrite()
+int ControlUnit::getRegWrite()
 {
-	return this->regWrite;
+	if(regWrite)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
 void ControlUnit::setToFalse()

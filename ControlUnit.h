@@ -27,5 +27,24 @@ class ControlUnit
         void setValues(std::string opcode, std::string func);
 
         void sendSignals();
+
+        int getRegDest();
+
+        int getJump();
+
+        int getBranch();
+
+        int getMemRead();
+
+        int getmemToReg();
+
+        int getAluOp();
+
+        int getMemWrite();
+
+        int getAluSrc();
+
+        int getRegWrite();
+
         
 };
