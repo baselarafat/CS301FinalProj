@@ -1,14 +1,15 @@
 #include <iostream>
-#include "hex.h"
-#include <string>
 #include <cstring>
 #include <fstream>
 #include "InstructionMemory.h"
+#include <string>
+#include <vector>
 
 
 
 
 
+using namespace std;
 int main ()
 {
   
@@ -133,9 +134,7 @@ int main ()
   int numOfInstructions = 0;
 
   //builds array to store instructions
- hex::hex** arrayOfInstructions;
-  // hex::hex a ("0x2678886c");
-  // arrayOfInstructions[2]=  &a;
+  vector<vector<string> > vec(100); 
 
 
   //
@@ -145,33 +144,21 @@ int main ()
         cerr << "An error has occured when opening the file";
         exit(1); 
     }
-  arrayOfInstructions = new hex::hex*[100];
   // Loop should run until eof().
   while(infile2.good())
   {
     
-    arrayOfInstructions[numOfInstructions]= new hex::hex [2];
+     vec[numOfInstructions] = vector<string>(2);
       //creates string and saves each line to input
-      string input;
+     string input;
       infile2 >> input;
       int delimiter =input.find(":");
       //puts address in
-      hex::hex a (input.substr(0,delimiter));
-      arrayOfInstructions[0][0] = a;
-      hex::hex* ap = &a;
-      ap->hex::~hex();
-     
+      vec[numOfInstructions][0] = input.substr(0,delimiter);
       //puts instruction in
-      hex::hex b (input.substr(delimiter+1,input.length()-1)); 
-      arrayOfInstructions[0][1]= b;
-      hex::hex* bp = &b;
-      bp->hex::~hex();
-      
-
+     vec[numOfInstructions][1] = input.substr(delimiter+1,input.length()-1);
       //increments number of instructions
       numOfInstructions++;
-
-
    }
 
   infile2.close();
@@ -217,27 +204,19 @@ int main ()
 
   infile3.close();
 
+ // Loop to test file reading from above. 
+ //  for(int i=0;i<100;i++){
+ //   std::cout<<vec[i][0];
+ //   std::cout<<"---";
+ //   std::cout<<vec[i][1];
+ //   std::cout<<std::endl;
+ // }
 
-  //Loop to test file reading from above.  No problems as of current implementation.
-  for(int i = 0; i < numOfInstructions; i++)
-  {
+   InstructionMemory* Inst = new InstructionMemory (vec);
+    string s = Inst->getInstruction("1000006c");
+    cout <<"-------"<<s<<endl;
+    cout<<s<<endl;
 
-
-  // Loop to test file reading from above. 
-
-   arrayOfInstructions[5][0].print();
-    // cout << arrayOfInstructions[i][1].array[j];
-
-
-   // InstructionMemory* Inst = new InstructionMemory (const& arrayOfInstructions);
-   //  string s = Inst->getInstruction("1000006c");
-   //  cout <<"-------"<<s<<endl;
-   //  cout<<s<<endl;
-
-  // std::cout<<"Hi"<<std::endl;
-  // for(int i=0;i<10;i++){
-  //   std::cout<<a.array[i];
-  // }
   std::cout<<std::endl;
 
 
