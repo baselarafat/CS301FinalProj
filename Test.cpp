@@ -1,10 +1,10 @@
 #include <iostream>
 #include "hex.h"
- #include "hex.cpp"
 #include <string>
 #include <cstring>
 #include <fstream>
 #include "InstructionMemory.h"
+
 
 
 
@@ -39,7 +39,6 @@ int main ()
         cerr << "An error has occured when opening the file";
         exit(1); 
     }
-
     //loop to run once for each config
     for(int i = 0; i < 8; i++)
     {
@@ -121,7 +120,6 @@ int main ()
             }
             break;
       }     
-
     
     }
 
@@ -241,5 +239,44 @@ int main ()
   //   std::cout<<a.array[i];
   // }
   std::cout<<std::endl;
+
+
+    /*
+    Iterates through instructions, and sends them to the Instruction memory.
+    The below code is from the lab4 parser class, and will find the encodings 
+    for a given programInputFile found above.  Once the other files are added to the 
+    folder it should run and collect instructions in binary to be used in the program.
+
+    ASMParser *parser;
+
+    parser = new ASMParser(programInputFile);
+
+    if(parser->isFormatCorrect() == false){
+        cerr << "Format of program input file is incorrect " << endl;
+        exit(1);
+    }
+
+    Instruction i;
+
+    i = parser->getNextInstruction();
+
+    while( i.getOpcode() != UNDEFINED){
+        // cout << i.getString() << endl;
+        cout << i.getEncoding() << endl;
+        i = parser->getNextInstruction();
+    }
+    
+    delete parser;
+    */
+
+    //Code below will begin utilizizing the given input to run the processor based on
+    //the given input.  (A new class could be created such that once this runs, it sends 
+    //the info to that class needed to run the processor).
+
+    //FETCH
+
+    
+}
+  
   return 0;
 }
