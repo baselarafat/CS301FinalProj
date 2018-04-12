@@ -278,6 +278,7 @@ int main ()
     delete parser;
     */
     
+    /*
     //Sets null value into instructionArray.
     if(instructionCounter < 100)
     {
@@ -306,6 +307,19 @@ int main ()
     Multiplexor mux5();
     
     //while() // Loop to run until all instructions are executed.
+    //Code that asked user to enter y after each instruction is executed.
+    if(outputMode = "single_step")
+        int singleStepInput = 0;
+       while(singleStepInput == 0)
+       {
+          string x;
+          cout << "Please enter y to continue execution!" << endl;
+          cin >> x;
+          if(x == "y")
+          { 
+            singleStepInput = 1;
+          }
+      }
 
     //FETCH 
     //Retrives address from the instruction memory as a string of ints.
@@ -326,16 +340,11 @@ int main ()
     mux3.setFlow(control.getMemToReg());
     mux4.setFlow(control.getJump());
     // mux 5 is set by a combination of branch and the result of ALU
-    
+
+    */
 
 
 
-
-    
-    
-
-    
-}
   
   return 0;
 }
