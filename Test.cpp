@@ -2,12 +2,10 @@
 #include <cstring>
 #include <fstream>
 #include "InstructionMemory.h"
-<<<<<<< HEAD
 #include "ProgramCounter.h"
-=======
 #include <string>
 #include <vector>
->>>>>>> d13273c204a00e7ae85d54355b0d411dfb42fe69
+
 
 
 
@@ -203,10 +201,18 @@ int main ()
       arrayOfRegisters[numOfRegisters][1] = input.substr(equalsPtr + 1,8);
       //increments number of instructions
       numOfRegisters++;
-
   }
 
   infile3.close();
+
+  RegisterFile registerFile();
+
+  //For loops runs so the values in arrayOfRegisters get 
+  //stored into the Register file
+  for(int i = 0; i < numOfRegisters; i++)
+  {
+      registerFile.writeReg(arrayOfRegisters[i][0], arrayOfRegisters[i][1])
+  }
 
  // Loop to test file reading from above. 
  //  for(int i=0;i<100;i++){
@@ -234,7 +240,7 @@ int main ()
 
     parser = new ASMParser(programInputFile);
     */
-    string instructionArray[100][2];
+   // string instructionArray[100][2];
     
     /*
     if(parser->isFormatCorrect() == false){
@@ -254,25 +260,22 @@ int main ()
         
         //cout << i.getEncoding() << endl;
         i = parser->getNextInstruction();
-        instructionCounter++;
     }
     
     delete parser;
     */
     
-    /*
+    
     //Sets null value into instructionArray.
-    if(instructionCounter < 100)
-    {
-        instructionArray[instructionCounter][1] = null;
-    }
+  
 
 
     //Code below will begin using imput to simulate a processor.  First all objects needed 
     // for the execution will be created.
     
     //Sets first address at the start and creates Program Counter Object
-    string firstAddress = "00000000";
+    /*
+    string firstAddress = "1000000";
     ProgramCounter pc(firstAddress);
     
     //Creates IM using the array built above.
@@ -288,18 +291,19 @@ int main ()
     Multiplexor mux4();
     Multiplexor mux5();
     
+    RegisterFile registerFile();
     //while() // Loop to run until all instructions are executed.
     //Code that asked user to enter y after each instruction is executed.
     if(outputMode = "single_step")
-        int singleStepInput = 0;
-       while(singleStepInput == 0)
+       
+       while(true)
        {
           string x;
           cout << "Please enter y to continue execution!" << endl;
           cin >> x;
           if(x == "y")
           { 
-            singleStepInput = 1;
+            break;
           }
       }
 
@@ -322,8 +326,37 @@ int main ()
     mux3.setFlow(control.getMemToReg());
     mux4.setFlow(control.getJump());
     // mux 5 is set by a combination of branch and the result of ALU
+    
+    //always goes to read regester1
+    string reg1 = instruction.substr(6,5);
+    
+    //goes to read register 2 and mux1
+    string reg2 = instruction.substr(11, 5);
+    
+    //goes to mux1
+    string reg3 = instruction.substr(16, 5);
 
-    */
+    //gets last15 didgets of instruction
+    string last15Digits = instruction.substr(16, 16); 
+
+    // string extended15 = SIGN EXTEND 15 once Sign Extend is added
+
+    string functCode = instruction.substr(27, 5);
+
+    // SEND FUNCTCODE to the ALU CONTROL!
+
+    //gets values from reg1 and reg 2
+    string valAtReg1 = readReg(reg1);
+    string valAtReg2 = readReg(reg2);
+
+    //Sends reg2 and reg3 to mux, based on control 
+    mux1.setFirstInput(reg2);
+    mux1.setSecondInput(reg3);
+
+    string writeRegister = mux1.mux();
+  
+  */
+
 
 
 
