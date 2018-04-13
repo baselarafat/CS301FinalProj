@@ -1,0 +1,18 @@
+#ifndef __DATAMEM_H__
+#define __DATAMEM_H__
+
+#include <bitset>
+
+using namespace std;
+
+class DataMem
+{
+public:
+		bitset<32> readdata;	
+		DataMem();
+		DataMem(bitset<>[] dataMemArr);
+		~DataMem();
+
+		std::string readMem(address);
+		writeMem(address);
+}
