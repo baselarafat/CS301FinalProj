@@ -12,7 +12,8 @@ class ControlUnit
 		bool branch;
 		bool memRead;
 		bool memToReg;
-		bool aluOp;
+		bool aluOp0;
+        bool aluOp1;
 		bool memWrite;
 		bool aluSrc;
 		bool regWrite;
@@ -45,6 +46,10 @@ class ControlUnit
         int getAluSrc();
 
         int getRegWrite();
+
+        int getAluOp0();
+
+        int getAluOp1();
 
         
 };

@@ -19,9 +19,11 @@ void ControlUnit::setValues(std::string opcode)
 	//R-Type
 	if(opcode == "000000")
 	{
-		this->regDest = true;
-		this->regWrite = true;
-		this->aluOp1 = true;
+		regDest = true;
+		regWrite = true;
+		/// 10 so true, false
+		aluOp0 = false;
+		aluOp1 = true;
 
 		break;
 	}
@@ -30,35 +32,43 @@ void ControlUnit::setValues(std::string opcode)
 	//Addi
 	if(opcode == "001000")
 	{
-		this->aluSrc = true;
+		aluSrc = true;
+		// I think? this means add
+		aluOp0 = false;
+		aluOp1 = false;
+
 		break;
 	}
-
-
 
 	//LW
 	if(opcode == "100011")
 	{
-		this->aluSrc = true;
-		this->memToReg = true;
-		this->regWrite = true;
-		this->memRead = true;
+		aluSrc = true;
+		memToReg = true;
+		regWrite = true;
+		memRead = true;
+		aluOp0 = false;
+		aluOp1 = false;
 		break;
 	}
 
 	//SW
 	if(opcode == "101011")
 	{
-		this->aluSrc = true;
-		this->memWrite = true;
+		aluSrc = true;
+		memWrite = true;
+		aluOp0 = false;
+		aluOp1 = false;
 		break;
 	}
 
 	//BEQ
 	if(opcode == "000100")
 	{
-		this->branch = true;
-		this->aluOp0 = true;
+		branch = true;
+		//Represents 01
+		aluOp0 = true;
+		aluOp1 = false;
 		break;
 	}
 }
@@ -124,16 +134,11 @@ int ControlUnit::getMemToReg()
 }
 
 
-int ControlUnit::getAluOp()
+std::string ControlUnit::getAluOp()
 {
-	if(aluOp)
 	{
-		return 1;
+		return aluOp;
 	}
-	else 
-	{
-		return 0;
-	};
 }
 
 int ControlUnit::getMemWrite()
@@ -145,7 +150,7 @@ int ControlUnit::getMemWrite()
 	else 
 	{
 		return 0;
-	};
+	}
 }
 
 int ControlUnit::getAluSrc()
@@ -163,6 +168,30 @@ int ControlUnit::getAluSrc()
 int ControlUnit::getRegWrite()
 {
 	if(regWrite)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
+}
+
+int ControlUnit::getAluOp0()
+{
+	if(aluOp0)
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
+}
+
+int ControlUnit::getAluOp1()
+{
+	if(aluOp1)
 	{
 		return 1;
 	}

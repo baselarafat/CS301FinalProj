@@ -9,8 +9,6 @@
 
 
 
-
-
 using namespace std;
 int main ()
 {
@@ -274,6 +272,7 @@ int main ()
     // for the execution will be created.
     
     //Sets first address at the start and creates Program Counter Object
+    
     /*
     string firstAddress = "1000000";
     ProgramCounter pc(firstAddress);
@@ -291,7 +290,10 @@ int main ()
     Multiplexor mux4();
     Multiplexor mux5();
     
-    RegisterFile registerFile();
+    ALU ALU1(); // only ADD
+    ALU ALU2(); // ADD and ALU Result
+    ALU ALU3(); // ALU and ALU Result
+    
     //while() // Loop to run until all instructions are executed.
     //Code that asked user to enter y after each instruction is executed.
     if(outputMode = "single_step")
@@ -312,7 +314,10 @@ int main ()
     string addr = pc.getCurrentAddress();
     string instruction = im.(addr); 
     
-    //Sends address to ALU next?
+    //Adds 4 to current address and stores the result.
+    ALU1.add(addr, "0100")
+    ALU1.preformOperation();
+    string add4ToAddress = ALU1.getResult(); 
 
     string opcode = instruction.substr(0, 6);
 
@@ -354,9 +359,40 @@ int main ()
     mux1.setSecondInput(reg3);
 
     string writeRegister = mux1.mux();
-  
-  */
+    
+    //The following code acts as the ALU control for ALU3
+  if(control.getAluOp1() == 1 || control.getAluOp0() == 1)
+  {
+        if(control.getAluOp1() == 1)
+        {
+            //SLT, ADD, SUB, SLT
+           if(functCode == "100000") 
+           {
+             //add
+           }
+           if(functCode == "100010")
+           {
+              //sub
+           }
+           if(functCode == "101010")
+           {
+            //slt
+           }
 
+           if(control.getAluOp0() == 1)
+           {
+              //sub for beq
+
+           }
+        }
+
+    }
+    else 
+    {
+       //add for L/S and Addi
+
+    }
+ */
 
 
 
