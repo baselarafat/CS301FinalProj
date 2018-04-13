@@ -2,6 +2,7 @@
 #define __SHIFTLEFTTWO_H__
 
 #include <bitset>
+#include <string>
 
 using namespace std;
 
@@ -11,9 +12,11 @@ class ShiftLeftTwo
 {
 public:
 	ShiftLeftTwo();
-	ShiftLeftTwo(std::bitset offsetField);
+	ShiftLeftTwo(std::string offset);
 	~ShiftLeftTwo();
 
 	// shifts the offset field to the left by two bits, making it a word offset
-	std::string	Shift(std::bitset offsetField);
-}
+	Shift(std::string offsetField);
+};
+
+#endif
