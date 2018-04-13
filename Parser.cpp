@@ -8,6 +8,7 @@ Parser::Parser(string filename)
 	Instruction i;
 	myFormatCorrect = true;
 
+	//Edits must be made to properly handle j and branch scenarios
 	//myLabelAddress = 0x400000;
 
 	ifstream in;
