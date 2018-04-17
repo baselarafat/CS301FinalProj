@@ -201,7 +201,7 @@ int ControlUnit::getAluOp1()
 	}
 }
 
-void ControlUnit::setToFalse()
+void ControlUnit::setToZero()
 {
 	this->regDest = false;
 	this->jump = false;

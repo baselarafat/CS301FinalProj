@@ -27,7 +27,7 @@ class ControlUnit
 
         void setValues(std::string opcode, std::string func);
 
-        void sendSignals();
+        void setToZero();
 
         int getRegDest();
 

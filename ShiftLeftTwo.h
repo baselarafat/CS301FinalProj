@@ -16,7 +16,7 @@ public:
 	~ShiftLeftTwo();
 
 	// shifts the offset field to the left by two bits, making it a word offset
-	Shift(std::string offsetField);
+	std::string Shift(std::string offsetField);
 };
 
 #endif

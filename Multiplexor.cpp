@@ -4,11 +4,7 @@
 #include <iostream>
 #include "Multiplexor.h"
 
-Multiplexor::Multiplexor()
-{
-	//numMux = num;
-	
-}
+Multiplexor::Multiplexor(){}
 
 Multiplexor::~Multiplexor(){}
 
@@ -19,8 +15,8 @@ void Multiplexor::setFlow(int flow)
     this->flow = flow;
     
 }
-//Returns signal
-bool Multiplexor::getFlow()
+//Returns signal for testing 
+int Multiplexor::getFlow()
 {
     return flow;
 }
@@ -29,7 +25,7 @@ bool Multiplexor::getFlow()
 std::string Multiplexor::setFirstInput(std::string firstInput)
 {
 	this->firstInput = firstInput;
-	return this->secondInput;
+	return this->firstInput;
 }
 
 //Sets input at 1 that coincides with 1 on picture
