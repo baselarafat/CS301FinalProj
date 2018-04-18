@@ -63,7 +63,6 @@ int main ()
       //gets the part of the input after the equals sign
       configResult = configInput.substr(pointerToEquals);
 
-
       //this block of code adds the values from the config file to 
       //the appropriate variable.
       switch(i) 
@@ -305,7 +304,7 @@ int main ()
     
   
   // Loop should run until end of program
-  while(false)
+   while(false)
   {
 
     //If the user chose to use single step mode, this code asks the user to
@@ -453,7 +452,6 @@ int main ()
               alu3Result = ALU3.getResult();
           }
            
-    
     } else {
         //runs for lw and sw 
         ALU3.add(reg1, aluInput)
@@ -478,10 +476,10 @@ int main ()
     mux3.setFirstInput(alu3Result);
     if(control.getMemRead() == 1)
     {
-       bitset<32> resultInBits (alu3Result);
-       bitset<32> dataFromMem;
-       dataFromMem = dataMemory.readMem();
-       mux3.setSecondInput(dataFromMem.to_string());
+       
+       //currently readMem reads a bitset, var below is a string 
+       string dataFromMem = dataMemory.readMem(alu3Result);
+       mux3.setSecondInput(dataFromMem);
       
       if(debugMode)
       {

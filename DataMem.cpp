@@ -27,11 +27,11 @@
 
     DataMem::~DataMem(){}
 
-    readMem(bitset<32> address)
+    std::string readMem(bitset<32> address)
     {
         unsigned long count = Address.to_ulong();
         int index = (int) count;
-            string data;
+            std::string data;
             for (int i = 0; i < 4; i++) {
 
                 data += dataMemArr[index].to_string();
@@ -39,7 +39,8 @@
             }
             bitset<32> Data(data);
             readdata = Data;
-            return readdata;
+            data = Data.to_string();
+            return data;
         }
 
       writeMem(bitset<32> address, bitset<32> data_to_write) 

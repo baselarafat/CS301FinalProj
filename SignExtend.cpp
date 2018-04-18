@@ -15,5 +15,5 @@ SignExtend::~SignExtend(){}
 
 std::string Extend(std::bitset sign_extend_val)
 {
-	
+	return "";
 }
