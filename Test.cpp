@@ -5,6 +5,7 @@
 #include "ProgramCounter.h"
 #include <string>
 #include <vector>
+#include <sstream>
 
 
 
@@ -126,15 +127,15 @@ int main ()
 
     infile1.close();
 
-  // writting code to read the data memory file.
-  // will read data and build a 2d array that can be used
-  // to construct the instruction memory.
+  /// Writting code to read the Data memory file.
+  // will read data and build a 2d vector that can be used
+  // to construct memory contents.
 
   //int used to store # of instructions, must be <= 100
-  int numOfInstructions = 0;
+  int numOfMemcells = 0;
 
-  //builds array to store instructions
-  vector<vector<string> > vec(100); 
+  //builds array to store MIPS instructions
+  vector<vector<string> > mem(100); 
 
 
   //
@@ -148,17 +149,17 @@ int main ()
   while(infile2.good())
   {
     
-     vec[numOfInstructions] = vector<string>(2);
+     mem[numOfMemcells] = vector<string>(2);
       //creates string and saves each line to input
      string input;
       infile2 >> input;
       int delimiter =input.find(":");
       //puts address in
-      vec[numOfInstructions][0] = input.substr(0,delimiter);
+      mem[numOfMemcells][0] = input.substr(0,delimiter);
       //puts instruction in
-     vec[numOfInstructions][1] = input.substr(delimiter+1,input.length()-1);
+     mem[numOfMemcells][1] = input.substr(delimiter+1,input.length()-1);
       //increments number of instructions
-      numOfInstructions++;
+      numOfMemcells++;
    }
 
   infile2.close();
@@ -219,9 +220,66 @@ int main ()
  //   std::cout<<vec[i][1];
  //   std::cout<<std::endl;
  // }
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
 
-   InstructionMemory* Inst = new InstructionMemory (vec);
-    string s = Inst->getInstruction("1000006c");
+//Here's the code to do InstructionMemory from the input File.
+  //The first step in our excution is taking the instructions from the input file,constructing the instruction memory starting with a virtual starting address
+  //which will be then used by PC and followed by the parser to divide it into pieces, where each piece (opcode,rd,rs,rt,imm,address )would be used afterwards appropriately 
+
+  //First start by reading the input file 
+  //int used to store # of instructions, must be <= 100
+  int numOfInstrucs = 0;
+
+  //builds array to store MIPS instructions
+  vector<vector<string> > instructions(100); 
+
+  ifstream infile2;
+  infile2.open(programInputFile);
+    if (!infile2.is_open()) {
+        cerr << "An error has occured when opening the file";
+        exit(1); 
+    }
+  // Loop should run until eof().
+  while(infile2.good())
+  {
+    //TODO :MAKE THE ADDRESS IN HEX 
+     instructions[numOfInstrucs] = vector<string>(2);
+      //creates string and saves each line to input
+     string input;
+     string s= "4000000";
+     stringstream virtualaddress (s);
+     string address ="";
+     address = s.str();
+
+
+      infile2 >> input;
+      //puts address in
+      instructions[numOfInstrucs][0] = address;
+      //puts instruction in
+     instructions[numOfInstrucs][1] = input;
+      //increments number of instructions
+      numOfInstrucs++;
+      int x=0;
+      virtualaddress >>x;
+      x=x+4;
+      virtualaddress<<x;
+
+   }
+
+  infile2.close();
+
+
+
+
+//This is an example of how to get Instructions from the Instruction from the InstructionMemory 
+  //In this example I'm getting the in
+
+   InstructionMemory* im = new InstructionMemory (instructions);
+    string s = IM->getInstruction("4000000");
     cout <<"-------"<<s<<endl;
     cout<<s<<endl;
 
@@ -229,6 +287,11 @@ int main ()
 
 
     /*
+    Parser should take the instructions from the instruction memory, not the other way around 
+    Thus I'm edditing the Parser file now so that it will take the instructions from instructionmemory as
+    strings and understand them instead of read them directly from the file.This is necessary for security reasons 
+    and for good implementation of the Mips datapath @Basel
+
     Iterates through instructions, and sends them to the Instruction memory.
     The below code is from the lab4 parser class, and will find the encodings 
     for a given programInputFile found above.  Once the other files are added to the 
@@ -264,8 +327,14 @@ int main ()
     */
     
     
-    //Sets null value into instructionArray.
   
+
+  
+
+
+
+
+
 
 
     //Code below will begin using imput to simulate a processor.  First all objects needed 
@@ -278,7 +347,8 @@ int main ()
     ProgramCounter pc(firstAddress);
     
     //Creates IM using the array built above.
-    InstructionMemory im(instructionArray);
+    // InstructionMemory im(instructionArray);
+    //We don't create another InstructionMemory, I created it above and renamed it to be im to work with the rest of your code 
     
     //Creates controlunit object.
     ControlUnit control();
@@ -299,8 +369,7 @@ int main ()
     ShiftLeftTwo SL1();
     ShiftLeftTwo SL2();
 
-    //Confused as to how the data memory can set from the file or 
-    //the array
+    //Data Memory takes input from the file only !
     DataMem dataMemory();
     
   
