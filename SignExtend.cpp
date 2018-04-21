@@ -21,6 +21,7 @@ std::string s ;
 	return s;
 }
 #endif
+//This for testing purposes. 
 // int main () {
 // 	std::bitset<16> num;
 // 	num.set(15,1);

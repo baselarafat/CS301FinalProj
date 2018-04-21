@@ -43,12 +43,7 @@ ifstream infile;
 DataMemory::~DataMemory() {}
 
 std::string DataMemory::getdata(std::string   theAddress){
-	// std::string Instruction = thearray[10][1];
-	// for(int i=0;i<100;i++){
-	// 	Instruction = thearray[i][1];
-	// 	if(thearray[i][0]==theAddress)
-	// 		Instruction = thearray[i][1];
-	// }
+	
  		return mem[theAddress];
 }
  
