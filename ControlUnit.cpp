@@ -13,7 +13,6 @@ void ControlUnit::setValues(std::string opcode)
 	if(opcode == "000010")
 	{
 		this->jump = true;
-		break;
 	}
 
 	//R-Type
@@ -24,8 +23,6 @@ void ControlUnit::setValues(std::string opcode)
 		/// 10 so true, false
 		aluOp0 = false;
 		aluOp1 = true;
-
-		break;
 	}
 
 	//I-Type
@@ -36,8 +33,6 @@ void ControlUnit::setValues(std::string opcode)
 		// I think? this means add
 		aluOp0 = false;
 		aluOp1 = false;
-
-		break;
 	}
 
 	//LW
@@ -49,7 +44,6 @@ void ControlUnit::setValues(std::string opcode)
 		memRead = true;
 		aluOp0 = false;
 		aluOp1 = false;
-		break;
 	}
 
 	//SW
@@ -59,7 +53,6 @@ void ControlUnit::setValues(std::string opcode)
 		memWrite = true;
 		aluOp0 = false;
 		aluOp1 = false;
-		break;
 	}
 
 	//BEQ
@@ -69,7 +62,6 @@ void ControlUnit::setValues(std::string opcode)
 		//Represents 01
 		aluOp0 = true;
 		aluOp1 = false;
-		break;
 	}
 }
 
@@ -121,7 +113,7 @@ int ControlUnit::getMemRead()
 	}
 }
 
-int ControlUnit::getMemToReg()
+int ControlUnit::getmemToReg()
 {
 	if(memToReg)
 	{
@@ -134,12 +126,11 @@ int ControlUnit::getMemToReg()
 }
 
 
-std::string ControlUnit::getAluOp()
-{
-	{
-		return aluOp;
-	}
-}
+// std::string ControlUnit::getAluOp()
+// {
+
+// 		return aluOp;
+// }
 
 int ControlUnit::getMemWrite()
 {
@@ -208,7 +199,7 @@ void ControlUnit::setToZero()
 	this->branch = false;
 	this->memRead = false;
 	this->memToReg = false;
-	this->aluOp = false;
+	this->aluOp0 = false;
 	this->aluOp1 = false;
 	this->memWrite = false;
 	this->aluSrc = false;
