@@ -4,16 +4,15 @@
 #include <bitset>
 #include <string>
 
-using namespace std;
+
 
 //Used to shift the offset field to the left by two, making it a word offset
 
 class ShiftLeftTwo
 {
 public:
-	ShiftLeftTwo();
-	ShiftLeftTwo(std::string offset);
-	~ShiftLeftTwo();
+	ShiftLeftTwo(){}
+	~ShiftLeftTwo(){}
 
 	// shifts the offset field to the left by two bits, making it a word offset
 	std::string Shift(std::string offsetField);
