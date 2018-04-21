@@ -7,6 +7,7 @@
 #include <vector>
 #include <sstream>
 #include <map>
+#include "DataMemory.h"
 // #include "Instruction.h"
 
 
@@ -20,18 +21,7 @@ class Tester{
 
   }
 
-int hextoint(string s ){
-  stringstream ss (s);
-  int x;
-   ss>>hex>>x;
-   return x;
-}
-string inttohex(int x){
-  stringstream ss ;
-  ss<<hex<<x;
-  string s = ss.str();
-  return s;
-}
+
 
 
 };
@@ -157,43 +147,14 @@ int main ()
 
   //int used to store # of instructions, must be <= 100
   int numOfMemcells = 0;
-
-  //builds array to store MIPS instructions
-  // vector<vector<string> > mem(100);
-  std::map<string,string> mem;
-
+  DataMemory* dm = new DataMemory (dataMemoryFile);
+  string memdata = dm->getdata("10000000");
+  std::cout<<memdata<<std::endl;
+ 
 
 
   //
-  ifstream infile2;
-  infile2.open(dataMemoryFile);
-  	if (!infile2.is_open()) {
-        cerr << "An error has occured when opening the file";
-        exit(1); 
-    }
-  // Loop should run until eof().
-  while(infile2.good())
-  {
-    
-     // mem[numOfMemcells] = vector<string>(2);
-      //creates string and saves each line to input
-     string input;
-      infile2 >> input;
-      int delimiter =input.find(":");
-      //puts address in
-      // mem[numOfMemcells][0] = input.substr(0,delimiter);
-      string s1 =input.substr(0,delimiter);
-       
-       string s2 = input.substr(delimiter+1,input.length()-1);
-       mem[s1]=s2;
-      //puts instruction in
-     // mem[numOfMemcells][1] = input.substr(delimiter+1,input.length()-1);
-      //increments number of instructions
-      numOfMemcells++;
-   }
-
-  infile2.close();
-
+  
    //builds array to store registers
   string arrayOfRegisters[32][2];
 
