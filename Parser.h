@@ -1,71 +1,80 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
-using namespace std;
+
 
 #include <iostream>
 #include <fstream>
+#include "Instruction.h"
 #include "RegisterFile.h"
-#include "ShiftLeftTwo.h"
-#include "ProgramCounter.h"
-#include "DataMemory.h"
-#include "InstructionMemory.h"
+#include "Opcode.h"
 #include <vector>
 #include <sstream>
 #include <stdlib.h>
+using namespace std;
 
 /* This class reads in a MIPS assembly file and checks its syntax.  If
  * the file is syntactically correct, this class will retain a list 
  * of Instructions (one for each instruction from the file).  This
  * list of Instructions can be iterated through.
  */
+   
 
 class Parser{
-public:
+ public:
+  // Specify a text file containing MIPS assembly instructions. Function
+  // checks syntactic correctness of file and creates a list of Instructions.
+  Parser(string filename);
+  ~Parser(){}
 
-	// Specify a file containing MIPS assemply instructions. Function
-	// will then check for syntactic correctness of file and create a list of instructions
-	Parser(string filename);
+  // Returns true if the file specified was syntactically correct.  Otherwise,
+  // returns false.
+  bool isFormatCorrect() { return myFormatCorrect; };
 
-	//Returns true if specified file is syntactically correct. If not, will return false.
-	bool isFormatCorrect() {return myFormatCorrect; };
+  // Iterator that returns the next Instruction in the list of Instructions.
+  Instruction getNextInstruction();
 
-	//Iterator that returns the next instruction in the list of instructions.
-	Instruction getNextInstruction();
+ private:
+  vector<Instruction> myInstructions;      // list of Instructions
+  int myIndex;                             // iterator index
+  bool myFormatCorrect;
 
-private:
-	vector<Instruction> myInstructions;  	//list of instructions
-	int myIndex;							//Iterator index
-	bool myFormatCorrect;
+  RegisterFile registers;                 // encodings for registers
+  OpcodeTable opcodes;                     // encodings of opcodes
+  int myLabelAddress;   // Used to assign labels addresses
 
-	RegisterFile registers;					//encodings for registers
-	Opcode opcodes;							//encodings of opcodes
-	int myLabelAddress;						//Used to assign labels addresses
+  // Decomposes a line of assembly code into strings for the opcode field and operands, 
+  // checking for syntax errors and counting the number of operands.
+  void getTokens(string line, string &opcode, string *operand, int &num_operands);
 
-	// Decompose a line of assembly code into strings for the opcode field and operands
-	// while checking for syntax errors and counting the number of operands
-	void getTokens(string line, string &opcode, string *opcode, int &num_operands);
-
-	//Given an Opcode, a string representing the operands, and the number of operands,
-	// breaks apart operands and stores fields into instruction
-	bool getOperands(Instruction &i, Opcode o, string *operand, int operand_count);
-
-	//Helper functions
-	bool isWhitespace(char c)	{ return (c == ' '|| c == '\t'); };
-	bool isDigit(char c)		{ return (c >= '0' && c <= '9'); };
-	bool isAlphaUpper(char c)	{ return (c >= 'A' && c <= 'Z'); };
-	bool isAlphaLower(char c)	{ return (c >= 'a' && c <= 'z'); };
-	bool isSign(char c)			{ return (c == '-' && c == '+'); };
-	bool isAlpha(char c)		{ return (isAlphaUpper(c) || isAlphaLower(C)); };
+  // Given an Opcode, a string representing the operands, and the number of operands, 
+  // breaks operands apart and stores fields into Instruction.
+  bool getOperands(Instruction &i, Opcode o, string *operand, int operand_count);
 
 
-	// Returns true if s represents a valid decimal integer
-	bool isNumberString(string s);
+  // Helper functions
+  bool isWhitespace(char c)    { return (c == ' '|| c == '\t'); };
+  bool isDigit(char c)         { return (c >= '0' && c <= '9'); };
+  bool isAlphaUpper(char c)    { return (c >= 'A' && c <= 'Z'); };
+  bool isAlphaLower(char c)    { return (c >= 'a' && c <= 'z'); };
+  bool isSign(char c)          { return (c == '-' || c == '+'); };
+  bool isAlpha(char c)         {return (isAlphaUpper(c) || isAlphaLower(c)); };
+  
+  // Returns true if s represents a valid decimal integer
+  bool isNumberString(string s);
 
-	// Converts a string to an integer
-	int cvtNumString2Number(string s);
+  // Converts a string to an integer.  Assumes s is something like "-231" and produces -231
+  int  cvtNumString2Number(string s);
 
-	// Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
-  	// of that instruction.
-	string encode(Instruction i);
-}
+
+  // Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
+  // of that instruction.
+  string encode(Instruction i);
+  
+  string cvtInt2Bin(int number, size_t length);
+  string handleRtype(Instruction i);
+  string handleItype(Instruction i);
+  string handleJtype(Instruction i);
+};
+
+#endif

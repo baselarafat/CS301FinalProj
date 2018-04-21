@@ -3,18 +3,27 @@
 //Get an address then release out data from memory that corresponds to that instruction
 
 #include <string>
-#include<vector>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <fstream>
+#include "Instruction.h"
+#include "Parser.h"
+using namespace std;
 class InstructionMemory{
 
 private :
- std::vector<std::vector<std::string> > vec;
+ std::map<string,Instruction> instructions;
 
 public : 
  InstructionMemory();
- InstructionMemory(std::vector<std::vector<std::string> > myvec );
+ InstructionMemory(std::string filename);
  ~InstructionMemory();
 
-std::string getInstruction(std::string address);
+Instruction getInstruction(std::string address);
+int hextoint(std::string s );
+std::string inttohex(int x);
+
 
 };
 

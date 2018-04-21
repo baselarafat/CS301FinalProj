@@ -15,4 +15,5 @@ public:
 
 		std::string readMem(address);
 		writeMem(address);
-}
+};
+#endif
