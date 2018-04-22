@@ -28,12 +28,12 @@ InstructionMemory::InstructionMemory(string filename) {
         //Puts values into array, prints them for testing purposes.
         cout << i.getString() << endl;
         instructions[address]=i;
-         int x = hextoint(address);
-     
-     	 x=x+4;
+        int x = hextoint(address);
+     	  x=x+4;
       	address=inttohex(x);
         //cout << i.getEncoding() << endl;
         i = parser->getNextInstruction();
+        instructionCounter++;
     }
     
     delete parser;

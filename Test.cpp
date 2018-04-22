@@ -4,26 +4,19 @@
 #include "InstructionMemory.h"
 #include "ProgramCounter.h"
 #include <string>
-#include <vector>
 #include <sstream>
 #include <map>
 #include "DataMemory.h"
+#include "ControlUnit.h"
+#include "ALU.h"
+#include "Multiplexor.h"
 // #include "Instruction.h"
-
-
-
-
 
 using namespace std;
 class Tester{
   public:
    Tester(){
-
   }
-
-
-
-
 };
 int main ()
 {
@@ -227,7 +220,7 @@ int main ()
 
     /*
   
-
+    @Won't be needing this 
     Iterates through instructions, and sends them to the Instruction memory.
     The below code is from the lab4 parser class, and will find the encodings 
     for a given programInputFile found above.  Once the other files are added to the 
@@ -259,132 +252,130 @@ int main ()
     // delete parser;
     
     
+
+
+
+    //Code below will begin using imput to simulate a processor.  First all objects needed 
+    // for the execution will be created.
+    
+    //Sets first address at the start and creates Program Counter Object
+    
+    
+    string firstAddress = "4000000";
+    ProgramCounter pc(firstAddress);
+    
+    //Creates IM using the array built above.
+    // InstructionMemory im(instructionArray);
+    //We don't create another InstructionMemory, I created it above and renamed it to be im to work with the rest of your code 
+    
+    //Creates controlunit object.
+    ControlUnit* control = new ControlUnit ();
+ 
+
+    //build 5 Multiplexors
+    Multiplexor* mux1 = new Multiplexor ();
+    Multiplexor* mux2 = new Multiplexor ();
+    Multiplexor* mux3 = new Multiplexor ();
+    Multiplexor* mux4 = new Multiplexor ();
+    Multiplexor* mux5 = new Multiplexor ();
+    
+
+    ALU* ALU1 = new ALU();// only ADD
+    ALU* ALU2 = new ALU();// ADD and ALU Result
+    ALU* ALU3 = new ALU();// ALU and ALU Result
+
+   OpcodeTable opt = OpcodeTable();
+
+    // SignExtend signExtend();
+
+    // ShiftLeftTwo SL1();
+    // ShiftLeftTwo SL2();
+
+    // DataMem dataMemory();
     
   
+  // Loop should run until end of program
+  while(false)
+  {
 
-  
-
-
-
-
-
-
-
-  //   //Code below will begin using imput to simulate a processor.  First all objects needed 
-  //   // for the execution will be created.
-    
-  //   //Sets first address at the start and creates Program Counter Object
-    
-    
-  //   string firstAddress = "1000000";
-  //   ProgramCounter pc(firstAddress);
-    
-  //   //Creates IM using the array built above.
-  //   // InstructionMemory im(instructionArray);
-  //   //We don't create another InstructionMemory, I created it above and renamed it to be im to work with the rest of your code 
-    
-  //   //Creates controlunit object.
-  //   ControlUnit control();
-
-  //   //build 5 Multiplexors
-  //   Multiplexor mux1();
-  //   Multiplexor mux2();
-  //   Multiplexor mux3();
-  //   Multiplexor mux4();
-  //   Multiplexor mux5();
-    
-  //   ALU ALU1(); // only ADD
-  //   ALU ALU2(); // ADD and ALU Result
-  //   ALU ALU3(); // ALU and ALU Result
-
-  //   SignExtend signExtend();
-
-  //   ShiftLeftTwo SL1();
-  //   ShiftLeftTwo SL2();
-
-  //   //Data Memory takes input from the file only !
-  //   DataMem dataMemory();
-    
-  
-  // // Loop should run until end of program
-  // while(false)
-  // {
-
-  //   //If the user chose to use single step mode, this code asks the user to
-  //   //press y to continue, will continuously run until user enters y
-  //   if(outputMode = "single_step")
+    //If the user chose to use single step mode, this code asks the user to
+    //press y to continue, will continuously run until user enters y
+    if(outputMode == "single_step"){
        
-  //      while(true)
-  //      {
-  //         string x;
-  //         cout << "Please enter y to move to the next step in the Program!" << endl;
-  //         cin >> x;
-  //         if(x == "y")
-  //         { 
-  //           break;
-  //         }
-  //   }
-  //   //FETCH 
-  //   //Retrives address from the instruction memory as a string of 1s/0s.
-  //   string addr = pc.getCurrentAddress();
-  //   string instruction = im.getInstruction(addr); 
-  //   if(debugMode)
-  //   {
-  //      cout << "The address being run in this iteration: " << addr << endl;
-  //      cout << "The instruction referenced by the above address: " 
-  //      << instruction << endl;
-  //   }
+       while(true)
+       {
+          string x;
+          cout << "Please enter y to move to the next step in the Program!" << endl;
+          cin >> x;
+          if(x == "y")
+          { 
+            break;
+          }
+    }
+    //FETCH 
+    //Retrives address from the instruction memory as a string of 1s/0s.
+    string addr = pc.getCurrentAddress();
+    Instruction inst = im->getInstruction(addr); 
+    if(debugMode)
+    {
+       cout << "The address being run in this iteration: " << addr << endl;
+       cout << "The instruction referenced by the above address: " << inst.getString() << endl;
+    }
 
-  //   //Adds 4 to current address and stores the result.
-  //   ALU1.add(addr, "0100");
-  //   ALU1.preformOperation();
-  //   string add4ToAddress = ALU1.getResult(); 
-  //   if(debugMode)
-  //   {
-  //      cout << "Result of adding 4 to the address: " << add4ToAddress << endl;
-  //   }
+    //Adds 4 to current address and stores the result.
+    ALU1->setInput_1(addr);
+    ALU2->setInput_2("4");
+    ALU1->setOperation("0100");
+    ALU1->performOperation();
+    string add4ToAddress = ALU1->getResult(); 
+    if(debugMode)
+    {
+       cout << "Result of adding 4 to the address: " << add4ToAddress << endl;
+    }
 
-  //   //retrives opcode from instruction
-  //   string opcode = instruction.substr(0, 6);
+    //retrives opcode from instruction
+   
+    Opcode op=  opt.getOpcode(inst.getString());
 
-  //   //sets values to false to reset control unit, then calls method
-  //   //to set control values with opcode.
-  //   control.setToZero();
+    //sets values to false to reset control unit, then calls method
+    //to set control values with opcode.
+    control->setToZero();
     
-  //   //resets values in control unit
-  //   control.setValues(opcode);
+    //resets values in control unit
+    control->setValues(opt.getOpcodeField(op));
 
-  //   mux1.setFlow(control.getRegDest());
-  //   mux2.setFlow(control.getAluSrc());
-  //   mux3.setFlow(control.getMemToReg());
-  //   mux4.setFlow(control.getJump());
-  //   // mux 5 is set by a combination of branch and the result of ALU
+    mux1->setFlow(control->getRegDest());
+    mux2->setFlow(control->getAluSrc());
+    mux3->setFlow(control->getmemToReg());
+    mux4->setFlow(control->getJump());
+    // mux 5 is set by a combination of branch and the result of ALU
     
-  //   //always goes to read regester1
-  //   string reg1 = instruction.substr(6,5);
+    //always goes to read regester1
+    Register reg1 = inst.getRS();
     
-  //   //goes to read register 2 and mux1
-  //   string reg2 = instruction.substr(11, 5);
+    //goes to read register 2 and mux1
+    Register reg2 = inst.getRT();
     
-  //   //goes to mux1
-  //   string reg3 = instruction.substr(16, 5);
+    //goes to mux1
+    Register reg3 = inst.getRD();
 
-  //   //gets last15 didgets of instruction
-  //   string last15Digits = instruction.substr(16, 16); 
+    //gets last15 didgets of instruction
+    int immediate = inst.getImmediate(); 
 
-  //   //goes to ALU control
-  //   string functCode = instruction.substr(27, 5);
+    //goes to ALU control
+    // string functCode = instruction.substr(27, 5);
 
-  //   //gets what would be instruction for j types
-  //   string jInstruction = instruction.substr(6, 26);
+    // //gets what would be instruction for j types
+    // string jInstruction = instruction.substr(6, 26);
     
-  //   if(debugMode)
-  //   {
-  //      cout << "Printing: reg1, reg2, reg3, immediate, functCode, j addr" << endl;
-  //      cout << reg1 << " " << reg2 << " " << reg3 << " " << last15Digits
-  //      << " " << functCode << " " << jInstruction << endl;
-  //   }
-
+    if(debugMode)
+    {
+       cout << "Printing: reg1, reg2, reg3, immediate, functCode, j addr" << endl;
+       cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate<<endl;
+       // << " " << functCode << " " << jInstruction << endl;
+    }
+}
+}
   //   //Shifts the instruction to the left
   //   string jInstSl2 = SL1.Shift(jInstruction); 
   //   mux4.setFirstInput(jInstSl2); // must wait for result of Mux5
