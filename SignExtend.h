@@ -2,15 +2,18 @@
 #define __SIGNEXTEND_H__
 
 #include <bitset>
+#include <string>
+#include <iostream>
 
-using namespace std;
 
 class SignExtend
 {
 	public:
-		SignExtend();
-		SignExtend(std::bitset sign_extend_val);
-		~SignExtend();
+		SignExtend(){}
+		~SignExtend(){}
 
-		std:: string Extend(std::bitset sign_extend_val);
-}
+	static std::string Extend(std::bitset<16> sign_extend_val);
+	
+	
+};
+#endif

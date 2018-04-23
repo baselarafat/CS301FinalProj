@@ -4,12 +4,20 @@
 #include "InstructionMemory.h"
 #include "ProgramCounter.h"
 #include <string>
-#include <vector>
-
-
-
+#include <sstream>
+#include <map>
+#include "DataMemory.h"
+#include "ControlUnit.h"
+#include "ALU.h"
+#include "Multiplexor.h"
+// #include "Instruction.h"
 
 using namespace std;
+class Tester{
+  public:
+   Tester(){
+  }
+};
 int main ()
 {
   
@@ -125,43 +133,20 @@ int main ()
 
     infile1.close();
 
-  // writting code to read the data memory file.
-  // will read data and build a 2d array that can be used
-  // to construct the instruction memory.
+  /// Writting code to read the Data memory file.
+  // will read data and build a 2d vector that can be used
+  // to construct memory contents.
 
   //int used to store # of instructions, must be <= 100
-  int numOfInstructions = 0;
-
-  //builds array to store instructions
-  vector<vector<string> > vec(100); 
+  int numOfMemcells = 0;
+  DataMemory* dm = new DataMemory (dataMemoryFile);
+  string memdata = dm->getdata("10000000");
+  std::cout<<memdata<<std::endl;
+ 
 
 
   //
-  ifstream infile2;
-  infile2.open(dataMemoryFile);
-  	if (!infile2.is_open()) {
-        cerr << "An error has occured when opening the file";
-        exit(1); 
-    }
-  // Loop should run until eof().
-  while(infile2.good())
-  {
-    
-     vec[numOfInstructions] = vector<string>(2);
-      //creates string and saves each line to input
-     string input;
-      infile2 >> input;
-      int delimiter =input.find(":");
-      //puts address in
-      vec[numOfInstructions][0] = input.substr(0,delimiter);
-      //puts instruction in
-     vec[numOfInstructions][1] = input.substr(delimiter+1,input.length()-1);
-      //increments number of instructions
-      numOfInstructions++;
-   }
-
-  infile2.close();
-
+  
    //builds array to store registers
   string arrayOfRegisters[32][2];
 
@@ -202,69 +187,71 @@ int main ()
 
   infile3.close();
 
-  RegisterFile registerFile();
+  // RegisterFile registerFile();
 
-  //For loops runs so the values in arrayOfRegisters get 
-  //stored into the Register file
-  for(int i = 0; i < numOfRegisters; i++)
-  {
-      registerFile.writeReg(arrayOfRegisters[i][0], arrayOfRegisters[i][1])
-  }
+  // //For loops runs so the values in arrayOfRegisters get 
+  // //stored into the Register file
+  // for(int i = 0; i < numOfRegisters; i++)
+  // {
+  //     registerFile.writeReg(arrayOfRegisters[i][0], arrayOfRegisters[i][1])
+  // }
 
- // Loop to test file reading from above. 
- //  for(int i=0;i<100;i++){
- //   std::cout<<vec[i][0];
- //   std::cout<<"---";
- //   std::cout<<vec[i][1];
- //   std::cout<<std::endl;
+ 
  // }
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
 
-   InstructionMemory* Inst = new InstructionMemory (vec);
-    string s = Inst->getInstruction("1000006c");
-    cout <<"-------"<<s<<endl;
+
+
+
+//This is an example of how to get Instructions from the Instruction from the InstructionMemory 
+  //In this example I'm getting the in
+
+   InstructionMemory* im = new InstructionMemory (programInputFile);
+    Instruction i = im->getInstruction("4000008");
+    string s = i.getString();
     cout<<s<<endl;
 
-  std::cout<<std::endl;
-
+  // std::cout<<std::endl;
 
     /*
+  
+    @Won't be needing this 
     Iterates through instructions, and sends them to the Instruction memory.
     The below code is from the lab4 parser class, and will find the encodings 
     for a given programInputFile found above.  Once the other files are added to the 
     folder it should run and collect instructions in binary to be used in the program.
+  */
+    // ASMParser *parser;
 
-    ASMParser *parser;
-
-    parser = new ASMParser(programInputFile);
-    */
-   // string instructionArray[100][2];
-    
-    /*
-    if(parser->isFormatCorrect() == false){
-        cerr << "Format of program input file is incorrect " << endl;
-        exit(1);
-    }
-
-    Instruction i;
-
-    i = parser->getNextInstruction();
-    
-    int instructionCounter = 0;
-    while( i.getOpcode() != UNDEFINED || instructionCounter <= 100){
-        //Puts values into array, prints them for testing purposes.
-        cout << i.getString() << endl;
-        instructionArray[instructionCounter][1];
-        
-        //cout << i.getEncoding() << endl;
-        i = parser->getNextInstruction();
-    }
-    
-    delete parser;
-    */
-    
-    
-    //Sets null value into instructionArray.
+    // parser = new ASMParser(programInputFile);
   
+    // if(parser->isFormatCorrect() == false){
+    //     cerr << "Format of program input file is incorrect " << endl;
+    //     exit(1);
+    // }
+
+    // Instruction i;
+
+    // i = parser->getNextInstruction();
+    
+    // int instructionCounter = 0;
+    // while( i.getOpcode() != UNDEFINED || instructionCounter <= 100){
+    //     //Puts values into array, prints them for testing purposes.
+    //     cout << i.getString() << endl;
+    //     instructionArray[instructionCounter][1];
+        
+    //     //cout << i.getEncoding() << endl;
+    //     i = parser->getNextInstruction();
+    // }
+    
+    // delete parser;
+    
+    
+
 
 
     //Code below will begin using imput to simulate a processor.  First all objects needed 
@@ -273,34 +260,37 @@ int main ()
     //Sets first address at the start and creates Program Counter Object
     
     
-    string firstAddress = "1000000";
+    string firstAddress = "4000000";
     ProgramCounter pc(firstAddress);
     
     //Creates IM using the array built above.
-    InstructionMemory im(instructionArray);
+    // InstructionMemory im(instructionArray);
+    //We don't create another InstructionMemory, I created it above and renamed it to be im to work with the rest of your code 
     
     //Creates controlunit object.
-    ControlUnit control();
+    ControlUnit* control = new ControlUnit ();
+ 
 
     //build 5 Multiplexors
-    Multiplexor mux1();
-    Multiplexor mux2();
-    Multiplexor mux3();
-    Multiplexor mux4();
-    Multiplexor mux5();
+    Multiplexor* mux1 = new Multiplexor ();
+    Multiplexor* mux2 = new Multiplexor ();
+    Multiplexor* mux3 = new Multiplexor ();
+    Multiplexor* mux4 = new Multiplexor ();
+    Multiplexor* mux5 = new Multiplexor ();
     
-    ALU ALU1(); // only ADD
-    ALU ALU2(); // ADD and ALU Result
-    ALU ALU3(); // ALU and ALU Result
 
-    SignExtend signExtend();
+    ALU* ALU1 = new ALU();// only ADD
+    ALU* ALU2 = new ALU();// ADD and ALU Result
+    ALU* ALU3 = new ALU();// ALU and ALU Result
 
-    ShiftLeftTwo SL1();
-    ShiftLeftTwo SL2();
+   OpcodeTable opt = OpcodeTable();
 
-    //Confused as to how the data memory can set from the file or 
-    //the array
-    DataMem dataMemory();
+    // SignExtend signExtend();
+
+    // ShiftLeftTwo SL1();
+    // ShiftLeftTwo SL2();
+
+    // DataMem dataMemory();
     
   
   // Loop should run until end of program
@@ -309,7 +299,7 @@ int main ()
 
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
-    if(outputMode = "single_step")
+    if(outputMode == "single_step"){
        
        while(true)
        {
@@ -324,134 +314,138 @@ int main ()
     //FETCH 
     //Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
-    string instruction = im.getInstruction(addr); 
+    Instruction inst = im->getInstruction(addr); 
     if(debugMode)
     {
        cout << "The address being run in this iteration: " << addr << endl;
-       cout << "The instruction referenced by the above address: " 
-       << instruction << endl;
+       cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
     //Adds 4 to current address and stores the result.
-    ALU1.add(addr, "0100");
-    ALU1.preformOperation();
-    string add4ToAddress = ALU1.getResult(); 
+    ALU1->setInput_1(addr);
+    ALU2->setInput_2("4");
+    ALU1->setOperation("0100");
+    ALU1->performOperation();
+    string add4ToAddress = ALU1->getResult(); 
     if(debugMode)
     {
        cout << "Result of adding 4 to the address: " << add4ToAddress << endl;
     }
 
     //retrives opcode from instruction
-    string opcode = instruction.substr(0, 6);
+   
+    Opcode op=  opt.getOpcode(inst.getString());
 
     //sets values to false to reset control unit, then calls method
     //to set control values with opcode.
-    control.setToZero();
+    control->setToZero();
     
     //resets values in control unit
-    control.setValues(opcode);
+    control->setValues(opt.getOpcodeField(op));
 
-    mux1.setFlow(control.getRegDest());
-    mux2.setFlow(control.getAluSrc());
-    mux3.setFlow(control.getMemToReg());
-    mux4.setFlow(control.getJump());
+    mux1->setFlow(control->getRegDest());
+    mux2->setFlow(control->getAluSrc());
+    mux3->setFlow(control->getmemToReg());
+    mux4->setFlow(control->getJump());
     // mux 5 is set by a combination of branch and the result of ALU
     
     //always goes to read regester1
-    string reg1 = instruction.substr(6,5);
+    Register reg1 = inst.getRS();
     
     //goes to read register 2 and mux1
-    string reg2 = instruction.substr(11, 5);
+    Register reg2 = inst.getRT();
     
     //goes to mux1
-    string reg3 = instruction.substr(16, 5);
+    Register reg3 = inst.getRD();
 
     //gets last15 didgets of instruction
-    string last15Digits = instruction.substr(16, 16); 
+    int immediate = inst.getImmediate(); 
 
     //goes to ALU control
-    string functCode = instruction.substr(27, 5);
+    // string functCode = instruction.substr(27, 5);
 
-    //gets what would be instruction for j types
-    string jInstruction = instruction.substr(6, 26);
+    // //gets what would be instruction for j types
+    // string jInstruction = instruction.substr(6, 26);
     
     if(debugMode)
     {
        cout << "Printing: reg1, reg2, reg3, immediate, functCode, j addr" << endl;
-       cout << reg1 << " " << reg2 << " " << reg3 << " " << last15Digits
-       << " " << functCode << " " << jInstruction << endl;
+       cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate<<endl;
+       // << " " << functCode << " " << jInstruction << endl;
     }
+}
+}
+  //   //Shifts the instruction to the left
+  //   string jInstSl2 = SL1.Shift(jInstruction); 
+  //   mux4.setFirstInput(jInstSl2); // must wait for result of Mux5
 
-    //Shifts the instruction to the left
-    string jInstSl2 = SL1.Shift(jInstruction); 
-    mux4.setFirstInput(jInstSl2); // must wait for result of Mux5
+  //   //gets values from reg1 and reg 2
+  //   string valAtReg1 = readReg(reg1);
+  //   string valAtReg2 = readReg(reg2);
 
-    //gets values from reg1 and reg 2
-    string valAtReg1 = readReg(reg1);
-    string valAtReg2 = readReg(reg2);
+  //   //Sends reg2 and reg3 to mux, based on control 
+  //   mux1.setFirstInput(reg2);
+  //   mux1.setSecondInput(reg3);
 
-    //Sends reg2 and reg3 to mux, based on control 
-    mux1.setFirstInput(reg2);
-    mux1.setSecondInput(reg3);
-
-    //write register gets value from  mux1
-    string writeRegister = mux1.mux();
+  //   //write register gets value from  mux1
+  //   string writeRegister = mux1.mux();
     
-    //test for mux1
-    if(debugMode)
-    {
-      cout <<  "Value in write register: " << writeRegister << endl;
-    }
+  //   //test for mux1
+  //   if(debugMode)
+  //   {
+  //     cout <<  "Value in write register: " << writeRegister << endl;
+  //   }
     
-    string extended = signExtend.Extend(last15Digits);
+  //   string extended = signExtend.Extend(last15Digits);
 
-    mux2.setFirstInput(reg2);
-    mux2.setSecondInput(extended);
+  //   mux2.setFirstInput(reg2);
+  //   mux2.setSecondInput(extended);
 
-    //calls second mux to determine second input for alu
-    string aluInput = mux2.mux();
-    if(debugMode)
-    {
-      cout << "Second input for ALU3: " << aluInput << endl;
-    }
+  //   //calls second mux to determine second input for alu
+  //   string aluInput = mux2.mux();
+  //   if(debugMode)
+  //   {
+  //     cout << "Second input for ALU3: " << aluInput << endl;
+  //   }
 
-    //The following code acts as the ALU control for ALU3
-    string alu3Result;
-    if(control.getAluOp1() == 1 || control.getAluOp0() == 1)
-    { 
-        if(control.getAluOp1() == 1)
-        {
-            //SLT, ADD, SUB, SLT
-           if(functCode == "100000") 
-           {
-              //Add
-              ALU3.add(reg1, aluInput)
-              ALU3.preformOperation();
-              alu3Result = ALU3.getResult();
-              break;
-           }
-           if(functCode == "100010")
-           {
-              //Subtract
-              ALU3.sub(reg1, aluInput)
-              ALU3.preformOperation();
-              alu3Result = ALU3.getResult();
-              break;
-           }
-           if(functCode == "101010")
-           {
-              //SLT instruction, not yet implemented in ALU
+  //   //The following code acts as the ALU control for ALU3
+  //   string alu3Result;
+  //   if(control.getAluOp1() == 1 || control.getAluOp0() == 1)
+  //   { 
+  //       if(control.getAluOp1() == 1)
+  //       {
+  //           //SLT, ADD, SUB, SLT
+  //          if(functCode == "100000") 
+  //          {
+  //             //Add
+  //             ALU3.add(reg1, aluInput)
+  //             ALU3.preformOperation();
+  //             alu3Result = ALU3.getResult();
+  //             break;
+  //          }
+  //          if(functCode == "100010")
+  //          {
+  //             //Subtract
+  //             ALU3.sub(reg1, aluInput)
+  //             ALU3.preformOperation();
+  //             alu3Result = ALU3.getResult();
+  //             break;
+  //          }
+  //          if(functCode == "101010")
+  //          {
+  //             //SLT instruction, not yet implemented in ALU
               
-           }
+  //          }
 
-           //Result gets "equal" or "not equal"
-           if(control.getAluOp0() == 1)
-           {
-              ALU3.compare(reg1, aluInput);
-              ALU3.preformOperation();
-              alu3Result = ALU3.getResult();
-          }
+  //          //Result gets "equal" or "not equal"
+  //          if(control.getAluOp0() == 1)
+  //          {
+  //             ALU3.compare(reg1, aluInput);
+  //             ALU3.preformOperation();
+  //             alu3Result = ALU3.getResult();
+  //         }
            
+
     } else {
         //runs for lw and sw 
         ALU3.add(reg1, aluInput)
@@ -480,64 +474,123 @@ int main ()
        //currently readMem reads a bitset, var below is a string 
        string dataFromMem = dataMemory.readMem(alu3Result);
        mux3.setSecondInput(dataFromMem);
-      
-      if(debugMode)
-      {
-          cout << "Value read from memory: " << dataFromMem.to_string() << endl;
-      }
 
-
-    }
-
-    //checks to see if it is writting to a register from mux3.
-    if(control.getRegWrite())
-    {
-       string writeData = mux3.mux();
-       // remeber string writeRegister holds in the reg
-       // code below should write the given value to the register
-       if(debugMode)
-      {
-          cout << "Value being written to mem " << writeData << endl;
-      }
-       registerFile.writeReg(writeReg, writeData);
-
-    }
-
-    //Shifts the previously exstended address by 2 bits(needed for b and j)
-    string instructionShiftedLeft = sl2.Shift(extended);
-
-    //Add this value to current PC value(This doesnt make sense to me...)
-    ALU2.add(instructionShiftedLeft, add4ToAddress);
-    ALU2.preformOperation();
-    resultOfAlu2 = ALU2.getResult();
     
-    if(debugMode)
-      {
-          cout << "Result of ALU2: " << resultOfAlu2 << endl;
-      }
+  //   } else {
+  //       //runs for lw and sw 
+  //       ALU3.add(reg1, aluInput)
+  //       ALU3.preformOperation();
+  //       alu3Result = ALU3.getResult();
+  //       break;
 
-    mux5.setFirstInput(add4ToAddress);
-    mux5.setSecondInput(resultOfAlu2);
+  //   }
 
-    string resultOfMux5 = mux5.mux();
+  //   if(debugMode)
+  //   {
+  //     cout << "Result from ALU3: " << alu3Result << endl;
+  //   }
 
-    if(debugMode)
-      {
-          cout << "Result of Mux5: " << resultOfMux5 << endl;
-      }
+  //   if(controlunit.getBranch() == 1 && alu3Result == "equal")
+  //   {
+  //     // if this runs it is a branch instruction AND the branch
+  //     // condition passed.  Basically the AND in the data path.
+  //     mux5.setFlow(control.getBranch());
+  //   }
 
-    mux4.setSecondInput(resultOfMux5);
-    string resultOfMux4 = mux4.mux();
+  //   mux3.setFirstInput(alu3Result);
+  //   if(control.getMemRead() == 1)
+  //   {
+  //      bitset<32> resultInBits (alu3Result);
+  //      bitset<32> dataFromMem;
+  //      dataFromMem = dataMemory.readMem();
+  //      mux3.setSecondInput(dataFromMem.to_string());
 
-    if(debugMode)
-      {
-          cout << "Address being sentt to PC: " << resultOfMux4 << endl;
-      }
+      
+  //     if(debugMode)
+  //     {
+  //         cout << "Value read from memory: " << dataFromMem.to_string() << endl;
+  //     }
 
 
-    //Updates program counter with correct address
-    programCounter.moveAddress(resultOfMux5);
-  }
+  //   }
+
+  //   //checks to see if it is writting to a register from mux3.
+  //   if(control.getRegWrite())
+  //   {
+  //      string writeData = mux3.mux();
+  //      // remeber string writeRegister holds in the reg
+  //      // code below should write the given value to the register
+  //      if(debugMode)
+  //     {
+  //         cout << "Value being written to mem " << writeData << endl;
+  //     }
+  //      registerFile.writeReg(writeReg, writeData);
+
+  //   }
+
+  //   //Shifts the previously exstended address by 2 bits(needed for b and j)
+  //   string instructionShiftedLeft = sl2.Shift(extended);
+
+  //   //Add this value to current PC value(This doesnt make sense to me...)
+  //   ALU2.add(instructionShiftedLeft, add4ToAddress);
+  //   ALU2.preformOperation();
+  //   resultOfAlu2 = ALU2.getResult();
+    
+  //   if(debugMode)
+  //     {
+  //         cout << "Result of ALU2: " << resultOfAlu2 << endl;
+  //     }
+
+  //   mux5.setFirstInput(add4ToAddress);
+  //   mux5.setSecondInput(resultOfAlu2);
+
+  //   string resultOfMux5 = mux5.mux();
+
+  //   if(debugMode)
+  //     {
+  //         cout << "Result of Mux5: " << resultOfMux5 << endl;
+  //     }
+
+  //   mux4.setSecondInput(resultOfMux5);
+  //   string resultOfMux4 = mux4.mux();
+
+  //   if(debugMode)
+  //     {
+  //         cout << "Address being sentt to PC: " << resultOfMux4 << endl;
+  //     }
+
+
+  //   //Updates program counter with correct address
+  //   programCounter.moveAddress(resultOfMux5);
+  // }
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+
+
+  //Testing stuff 
+
+//   stringstream ss (s4);
   
+//   for(int i=0;i<10;i++){
+//      int x;
+//     ss>>hex>>x;
+//   ss<<hex<<x;
+//   x=x+4;
+
+  
+//   string s5 =ss.str();
+//   std::cout<<hex<<x<<std::endl;
+
+//   std::cout<<mem.at(s5)<<std::endl;
+// }
+// string s4 ="4000000";
+// Tester t ;
+// for(int i=0;i<9;i++){
+// int x = t.hextoint(s4);
+// x=x+4;
+// s4 =t.inttohex(x);
+// std::cout<<instructions.at(s4)<<endl;
+// }
+
   return 0;
 }

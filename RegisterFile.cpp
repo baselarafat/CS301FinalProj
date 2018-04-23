@@ -2,7 +2,7 @@
 
 RegisterFile::RegisterFile()
 {
-  this->number = currentRegister;
+ 
   int i = 0;
 
   myRegisters[i].name = "$0";  myRegisters[i].number = i; i++;
@@ -85,7 +85,7 @@ RegisterFile::RegisterFile()
 
 }
 
-Register RegisterTable::getNum(string reg)
+Register RegisterFile::getNum(string reg)
   // Given a string representing a MIPS register operand, returns the number associated
   // with that register.  If string is not a valid register, returns NumRegisters.
 {
@@ -102,23 +102,30 @@ Register RegisterTable::getNum(string reg)
  /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */
-RegisterFile::readReg(string reg)
+std::string RegisterFile::readReg(string reg)
 {
   for(int i = 0; i < 2*NumRegisters; i++){
     if(myRegisters[i].name == reg){
       return myRegisters[i].value;
     }
+   
   }
+  return "";
+  
 }
 /*Given a string representing a MIPS register operand and a specified value, stores the value within
 said register.
+
+//This should be modified so that it will not modify the values of the registers,but it needs to copy them 
+then the values could be changed 
 */
-RegisterFile::writeReg(string reg, string val)
+std::string RegisterFile::writeReg(string reg, string val)
 {
   for(int i = 0; i < 2*NumRegisters; i++){
     if(myRegisters[i].name == reg){
       myRegisters[i].value = val;
-    return myRegister[i].value;
+    return myRegisters[i].value;
     }
   }
+  return "";
 }

@@ -2,22 +2,17 @@
 #define __SHIFTLEFTTWO_CPP__
 
 #include "ShiftLeftTwo.h"
-#include <bitset>
 
-ShiftLeftTwo::ShiftLeftTwo() {}
 
-ShiftLeftTwo::ShiftLeftTwo(std::string offset)
-{
-	std::bitset<32> offsetField(offset);
-}
 
 // shifts the offset field to the left by two bits, making it a word offset
-ShiftLeftTwo::~ShiftLeftTwo(){}
 
- Shift(std::string offsetField)
+ static std::string Shift(std::string offsetField)
 {
 	std::bitset<32> shiftedOffSet(offsetField);
-	return shiftedOffSet  <<= 2;
+	shiftedOffSet  <<= 2;
+	std::string s =shiftedOffSet.to_string();
+	return s;
 };
 
 #endif

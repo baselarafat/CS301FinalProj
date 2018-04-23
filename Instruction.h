@@ -2,7 +2,7 @@
 #define __INSTRUCTION_H__
 
 #include "Opcode.h"
-#include "RegisterTable.h"
+#include "RegisterFile.h"
 #include <sstream>
 
 /* This class provides an internal representation for a MIPS assembly instruction.

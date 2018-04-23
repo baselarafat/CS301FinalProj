@@ -18,16 +18,17 @@ const int NumRegisters = 32;
 
 struct RegisterEntry{
 	std::string 	name;
-	std::Register 	number;
+	Register 	   number;
 	std::string		value;
 };
 
 class RegisterFile{
 public:
-	RegsiterFile();
-	~RegisterFile();
+	RegisterFile();
+	~RegisterFile(){}
 
 
+ Register getNum(string reg);
 /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */

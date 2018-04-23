@@ -25,7 +25,7 @@ class ControlUnit
 
         ~ControlUnit();
 
-        void setValues(std::string opcode, std::string func);
+        void setValues(std::string opcode);
 
         void setToZero();
 
@@ -39,7 +39,7 @@ class ControlUnit
 
         int getmemToReg();
 
-        int getAluOp();
+        // std::string getAluOp();
 
         int getMemWrite();
 
@@ -53,3 +53,4 @@ class ControlUnit
 
         
 };
+#endif
