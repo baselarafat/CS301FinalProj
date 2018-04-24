@@ -180,7 +180,7 @@ int main ()
   //In this example I'm getting the in
   
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    Instruction i = im->getInstruction("4000008");
+    Instruction i = im->getInstruction("0x4000008");
     string s = i.getString();
     cout<<s<<endl;
 
@@ -285,10 +285,10 @@ int main ()
     //Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
     string hexaddr= Converter::hexify(addr);
-    Instruction inst = im->getInstruction(addr); 
+    Instruction inst = im->getInstruction(hexaddr); 
     if(debugMode)
     {
-       cout << "The address being run in this iteration: " << addr << endl;
+       cout << "The address being run in this iteration: " << hexaddr << endl;
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
