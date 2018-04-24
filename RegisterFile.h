@@ -28,16 +28,18 @@ public:
 	~RegisterFile(){}
 
 
- Register getNum(string reg);
+ Register 		getNum(string reg);
 /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */
-	std::string 	readReg(string reg);
+std::string 	readReg(string reg);
 
 /*Given a string representing a MIPS register operand and a specified value, stores the value within
 said register.
 */
-	std::string		writeReg(string reg, string value);
+std::string		writeReg(string reg, string value);
+
+void 			printContents();
 
 
 private:
