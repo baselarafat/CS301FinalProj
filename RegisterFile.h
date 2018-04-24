@@ -30,6 +30,7 @@ struct RegisterEntry{
 class RegisterFile{
 private: 
 	map<string, string> myRegister;
+	map<string, string> temp;
 	int myIndex;
 public:
 	RegisterFile();
