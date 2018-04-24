@@ -158,34 +158,34 @@ int main ()
         exit(1); 
     }
   
-  //@NOT NEEDED ANYMORE, implemented in the register file class
-  // Loop should run until eof().
-  /* while(infile3.good())
-  {
-      //creates string and saves each line to input
-      string input;
-      infile3 >> input;
+ //  //@NOT NEEDED ANYMORE, implemented in the register file class
+ //  // Loop should run until eof().
+ //   while(infile3.good())
+ //  {
+ //      //creates string and saves each line to input
+ //      string input;
+ //      infile3 >> input;
       
-      int equalsPtr = 0;
+ //      int equalsPtr = 0;
       
-      //gets location of the =
-      for(int k = 0; k < input.length(); k++)
-        {
-            if(input.at(k) == '=')
-            {
-              equalsPtr = k;
-              break;
-            }
-        }
-      arrayOfRegisters[numOfRegisters][0] = input.substr(0,equalsPtr);
-      //puts instruction in
-      arrayOfRegisters[numOfRegisters][1] = input.substr(equalsPtr + 1,8);
-      //increments number of instructions
-      numOfRegisters++;
-  }
+ //      //gets location of the =
+ //      for(int k = 0; k < input.length(); k++)
+ //        {
+ //            if(input.at(k) == '=')
+ //            {
+ //              equalsPtr = k;
+ //              break;
+ //            }
+ //        }
+ //      arrayOfRegisters[numOfRegisters][0] = input.substr(0,equalsPtr);
+ //      //puts instruction in
+ //      arrayOfRegisters[numOfRegisters][1] = input.substr(equalsPtr + 1,8);
+ //      //increments number of instructions
+ //      numOfRegisters++;
+ //  }
 
-  infile3.close();
- *\
+ //  infile3.close();
+ // *\
 
   // //For loops runs so the values in arrayOfRegisters get 
   // //stored into the Register file
@@ -214,7 +214,7 @@ int main ()
     cout<<s<<endl;
 
 
-  // std::cout<<std::endl
+    std::cout<<std::endl;
 
     /*
   
@@ -223,7 +223,7 @@ int main ()
     The below code is from the lab4 parser class, and will find the encodings 
     for a given programInputFile found above.  Once the other files are added to the 
     folder it should run and collect instructions in binary to be used in the program.
-  */
+  
     // ASMParser *parser;
 
     // parser = new ASMParser(programInputFile);
@@ -251,7 +251,7 @@ int main ()
     
     
 
-
+  */
 
     //Code below will begin using imput to simulate a processor.  First all objects needed 
     // for the execution will be created.
@@ -326,12 +326,10 @@ int main ()
     std::cout<<addr<<std::endl;
    
     //Adds 4 to current address and stores the result.
-<<<<<<< HEAD
-    ALU1->setInput_1(addr);
-=======
+
+
     ALU1->setInput_1(binaddre);
->>>>>>> 6dd88c2cb9162fc4f519d237e2bfe9fb1299b70d
-    ALU1->setInput_2("10");
+    ALU1->setInput_2("100");
     ALU1->setOperation("add");
     ALU1->performOperation();
     string add4ToAddress = ALU1->getResult(); 
@@ -389,16 +387,11 @@ int main ()
     
     if(debugMode)
     {
-<<<<<<< HEAD
-       cout << "Printing: reg1, reg2, reg3, immediate, functCode, j addr" << endl;
-       cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate<<endl;
-       //inst = parser->getNextInstruction();
-       // << " " << functCode << " " << jInstruction << endl;
-=======
+
+
        cout << "Printing: reg1, reg2, reg3, immediate, functCode" << endl;
        cout << reg1 << " " << reg2String << " " << reg3 << " " << immediate 
        << " " << functCode <<  endl;
->>>>>>> 6dd88c2cb9162fc4f519d237e2bfe9fb1299b70d
     }
 
 //}

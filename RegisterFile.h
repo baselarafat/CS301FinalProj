@@ -36,12 +36,9 @@ public:
 	~RegisterFile();
 	RegisterFile(string regsiterFile);
 
-<<<<<<< HEAD
-Register 		getNum(string reg);
-=======
 
- Register 		getNum(string reg);
->>>>>>> 6dd88c2cb9162fc4f519d237e2bfe9fb1299b70d
+Register 		getNum(string reg);
+
 /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */
