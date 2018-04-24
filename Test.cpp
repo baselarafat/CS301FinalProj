@@ -324,7 +324,7 @@ int main ()
     }
 
     //Adds 4 to current address and stores the result.
-    ALU1->setInput_1("10");
+    ALU1->setInput_1(addr);
     ALU1->setInput_2("10");
     ALU1->setOperation("add");
     ALU1->performOperation();
@@ -373,6 +373,7 @@ int main ()
     {
        cout << "Printing: reg1, reg2, reg3, immediate, functCode, j addr" << endl;
        cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate<<endl;
+       //inst = parser->getNextInstruction();
        // << " " << functCode << " " << jInstruction << endl;
     }
 
