@@ -294,13 +294,9 @@ int main ()
     
   
   // Loop should run until end of program
-<<<<<<< HEAD
-   while(false)
-  {
-=======
-  //while(false)
-  //{
->>>>>>> 3fb93c7cdbfaa24770cf38371a9bff08d90d1240
+
+ //  while(false)
+ // {
 
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
@@ -364,20 +360,25 @@ int main ()
     //goes to mux1
     Register reg3 = inst.getRD();
 
+
+    string reg2String = to_string(reg2);
+    string reg3String = to_string(reg3);
+
+
     //gets last15 didgets of instruction
     int immediate = inst.getImmediate(); 
 
-    //goes to ALU control
-    // string functCode = instruction.substr(27, 5);
 
-    // //gets what would be instruction for j types
-    // string jInstruction = instruction.substr(6, 26);
+    //goes to ALU control
+    string functCode = inst.getEncoding().substr(26, 6);
+
+   
     
     if(debugMode)
     {
-       cout << "Printing: reg1, reg2, reg3, immediate, functCode, j addr" << endl;
-       cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate<<endl;
-       // << " " << functCode << " " << jInstruction << endl;
+       cout << "Printing: reg1, reg2, reg3, immediate, functCode" << endl;
+       cout << reg1 << " " << reg2String << " " << reg3 << " " << immediate 
+       << " " << functCode <<  endl;
     }
 
 //}
@@ -385,22 +386,25 @@ int main ()
   //   string jInstSl2 = SL1.Shift(jInstruction); 
   //   mux4.setFirstInput(jInstSl2); // must wait for result of Mux5
 
-  //   //gets values from reg1 and reg 2
-  //   string valAtReg1 = readReg(reg1);
-  //   string valAtReg2 = readReg(reg2);
+     //Sends reg2 and reg3 to mux, based on control 
+    mux1->setFirstInput(reg2String);
+    mux1->setSecondInput(reg3String);
 
-  //   //Sends reg2 and reg3 to mux, based on control 
-  //   mux1.setFirstInput(reg2);
-  //   mux1.setSecondInput(reg3);
 
-  //   //write register gets value from  mux1
-  //   string writeRegister = mux1.mux();
+     //write register gets value from  mux1
+    string writeRegister = mux1->mux();
+
+     //gets values from reg1 and reg 2
+     //string valAtReg1 = readReg(reg1);
+     //string valAtReg2 = readReg(reg2);
     
-  //   //test for mux1
-  //   if(debugMode)
-  //   {
-  //     cout <<  "Value in write register: " << writeRegister << endl;
-  //   }
+    //test for mux1
+     if(debugMode)
+     {
+        cout <<  "Value in read reg1: " << valAtReg1 << endl;
+        cout <<  "Value in read reg2: " << valAtReg2 << endl;
+        cout <<  "Value in write register: " << writeRegister << endl;
+     }
     
   //   string extended = signExtend.Extend(last15Digits);
 
@@ -568,6 +572,16 @@ int main ()
 
   //   //Updates program counter with correct address
   //   programCounter.moveAddress(resultOfMux5);
+
+      //this will print the memory contents in the data memory and register file and the end
+      // of each instruction pass.
+      if(printMemoryContents)
+      {
+          cout << "Printing contents of the registers:" << endl;
+
+
+          cout << "Printing contents of data memory:" << endl;
+      }   
   //   
   // }
 
