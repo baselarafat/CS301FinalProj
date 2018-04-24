@@ -195,21 +195,18 @@ static string binaryToHex(string binary)
 }
 
 static std::string hexify(std::string s){
-		char* array= new char [10];
 		std::string mystring;
 	//Checking if it already has "0x" in the begging of the string 
-		if((s.at(0)=='0')&& (s.at(1)=='x'))
-			for(int i=0;i<s.length();i++)
-				array[i]=s.at(i);
+		if(s.length()<1)
+            return s;
+        else if((s.at(0)=='0')&& (s.at(1)=='x'))
+			return s;
 		else {
-			array[0]='0';
-			array[1]='x';
-			for(int i=0;i<s.length();i++)
-				array[i+2]=s.at(i);
-			}
-			mystring = array;
+			mystring="0x";
+			mystring.append(s);
 		return mystring; 
 		}
+    }
 	static std::string inttobinarry(int a){
 		std::string hex =inttohex(a);
 		std::string bin = hexToBinary(hex);
