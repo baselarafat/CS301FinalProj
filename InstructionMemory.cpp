@@ -22,9 +22,10 @@ InstructionMemory::InstructionMemory(string filename) {
     
     int instructionCounter = 0;
 
+
 	string input;
     string address= "4000000"; //virtual address
-    while( i.getOpcode() != UNDEFINED || instructionCounter <= 100){
+    while( i.getOpcode() != UNDEFINED && instructionCounter <= 100){
         //Puts values into array, prints them for testing purposes.
         cout << i.getString() << endl;
         instructions[address]=i;
@@ -34,6 +35,7 @@ InstructionMemory::InstructionMemory(string filename) {
         //cout << i.getEncoding() << endl;
         i = parser->getNextInstruction();
         instructionCounter++;
+       
     }
     
     delete parser;

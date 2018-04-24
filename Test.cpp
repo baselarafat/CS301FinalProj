@@ -215,7 +215,7 @@ int main ()
     string s = i.getString();
     cout<<s<<endl;
 
-  // std::cout<<std::endl;
+  // std::cout<<std::endl
 
     /*
   
@@ -562,7 +562,10 @@ int main ()
 
   //   //Updates program counter with correct address
   //   programCounter.moveAddress(resultOfMux5);
+  //   
   // }
+
+
 
 
 
