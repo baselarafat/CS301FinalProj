@@ -144,15 +144,12 @@ int main ()
   std::cout<<memdata<<std::endl;
  
 
-
-  //
   
    //builds array to store registers
   string arrayOfRegisters[32][2];
 
   int numOfRegisters = 0;
 
-  //
   ifstream infile3;
   infile3.open(registerFile);
     if (!infile3.is_open()) {
@@ -160,8 +157,9 @@ int main ()
         exit(1); 
     }
   
+  //@NOT NEEDED ANYMORE, implemented in the register file class
   // Loop should run until eof().
-  while(infile3.good())
+  /* while(infile3.good())
   {
       //creates string and saves each line to input
       string input;
@@ -186,8 +184,7 @@ int main ()
   }
 
   infile3.close();
-
-  // RegisterFile registerFile();
+ *\
 
   // //For loops runs so the values in arrayOfRegisters get 
   // //stored into the Register file
@@ -279,9 +276,9 @@ int main ()
     Multiplexor* mux5 = new Multiplexor ();
     
 
-    ALU* ALU1 = new ALU();// only ADD
-    ALU* ALU2 = new ALU();// ADD and ALU Result
-    ALU* ALU3 = new ALU();// ALU and ALU Result
+    ALU* ALU1 = new ALU(); // only ADD
+    ALU* ALU2 = new ALU(); // ADD and ALU Result
+    ALU* ALU3 = new ALU(); // ALU and ALU Result
 
    OpcodeTable opt = OpcodeTable();
 
@@ -579,6 +576,7 @@ int main ()
       {
           cout << "Printing contents of the registers:" << endl;
 
+          // register.printContents()
 
           cout << "Printing contents of data memory:" << endl;
       }   
