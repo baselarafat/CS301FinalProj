@@ -185,7 +185,7 @@ int main ()
   }
 
   infile3.close();
- *\
+ */
 
   // //For loops runs so the values in arrayOfRegisters get 
   // //stored into the Register file
@@ -261,10 +261,7 @@ int main ()
     string firstAddress = "4000000";
     ProgramCounter pc(firstAddress);
     
-    //Creates IM using the array built above.
-    // InstructionMemory im(instructionArray);
-    //We don't create another InstructionMemory, I created it above and renamed it to be im to work with the rest of your code 
-    
+
     //Creates controlunit object.
     ControlUnit* control = new ControlUnit ();
  
@@ -281,7 +278,7 @@ int main ()
     ALU* ALU2 = new ALU(); // ADD and ALU Result
     ALU* ALU3 = new ALU(); // ALU and ALU Result
 
-   OpcodeTable opt = OpcodeTable();
+    OpcodeTable opt = OpcodeTable();
 
 
     // SignExtend signExtend();
@@ -323,10 +320,10 @@ int main ()
     }
 
     std::string binaddre = Converter::cvthex2Bin(addr);
-    std::cout<<addr<<std::endl; 
+    cout << binaddre << endl;
     //Adds 4 to current address and stores the result.
-    ALU1->setInput_1("10");
-    ALU1->setInput_2("10");
+    ALU1->setInput_1(binaddre);
+    ALU1->setInput_2("100");
     ALU1->setOperation("add");
     ALU1->performOperation();
     string add4ToAddress = ALU1->getResult(); 
@@ -407,13 +404,13 @@ int main ()
      //string valAtReg2 = readReg(reg2);
     
     //test for mux1
-     if(debugMode)
+    /* if(debugMode)
      {
         cout <<  "Value in read reg1: " << valAtReg1 << endl;
         cout <<  "Value in read reg2: " << valAtReg2 << endl;
         cout <<  "Value in write register: " << writeRegister << endl;
      }
-    
+    */
   //   string extended = signExtend.Extend(last15Digits);
 
   //   mux2.setFirstInput(reg2);

@@ -130,13 +130,14 @@ std::string RegisterFile::writeReg(string reg, string val)
   return "";
 }
 
-void      printContents()
+/* void      printContents()
 {
     typename std::map<int,std::string>::const_iterator itr = myRegisters.begin();
     for(int i = 0; i < 31; i++)
     {
-        std::cout << i << " " << *itr;
+        std::cout << i << ":" << *itr;
         itr++;
     }
       
 }
+*/
