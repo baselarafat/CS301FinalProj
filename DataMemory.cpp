@@ -26,11 +26,11 @@ ifstream infile;
       //puts address in
       // mem[numOfMemcells][0] = input.substr(0,delimiter);
       string s1 =input.substr(0,delimiter);
-      string hexs1= Converter::hexify(s1);
+      //string hexs1= Converter::hexify(s1);
        
        string s2 = input.substr(delimiter+1,input.length()-1);
-       string hexs2= Converter::hexify(s2);
-       mem[hexs1]=hexs2;
+       //string hexs2= Converter::hexify(s2);
+       mem[s1]=s2;
       //puts instruction in
      // mem[numOfMemcells][1] = input.substr(delimiter+1,input.length()-1);
       //increments number of instructions

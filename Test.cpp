@@ -139,12 +139,12 @@ int main ()
  
 
   //int used to store # of instructions, must be <= 100
-  /* int numOfMemcells = 0;
+  int numOfMemcells = 0;
   DataMemory* dm = new DataMemory (dataMemoryFile);
   string memdata = dm->getdata("10000000");
-  std::cout<<memdata<<std::endl;
+  //std::cout<<memdata<<std::endl;
 
-  dm->dmemPrint();
+  //dm->dmemPrint();
   //map<string,string>::iterator it = dm->mem.begin();
   //it++;
   //while(it != dm->mem.end())
@@ -152,10 +152,7 @@ int main ()
    // std::cout<< it->first << ":" << it->second <<endl;
     //it++;
   //}
-  dm->dmemPrintFinal("output.mem");
-
- 
- */
+  //dm->dmemPrintFinal("output.mem");
 
   // RegisterFile registerFile();
 
@@ -188,52 +185,8 @@ int main ()
 
 
     std::cout<<std::endl;
-
-  // std::cout<<std::endl;
-
-
-    /*
-  
-    @Won't be needing this 
-    Iterates through instructions, and sends them to the Instruction memory.
-    The below code is from the lab4 parser class, and will find the encodings 
-    for a given programInputFile found above.  Once the other files are added to the 
-    folder it should run and collect instructions in binary to be used in the program.
-  
-    // ASMParser *parser;
-
-    // parser = new ASMParser(programInputFile);
-  
-    // if(parser->isFormatCorrect() == false){
-    //     cerr << "Format of program input file is incorrect " << endl;
-    //     exit(1);
-    // }
-
-    // Instruction i;
-
-    // i = parser->getNextInstruction();
-    
-    // int instructionCounter = 0;
-    // while( i.getOpcode() != UNDEFINED || instructionCounter <= 100){
-    //     //Puts values into array, prints them for testing purposes.
-    //     cout << i.getString() << endl;
-    //     instructionArray[instructionCounter][1];
-        
-    //     //cout << i.getEncoding() << endl;
-    //     i = parser->getNextInstruction();
-    // }
-    
-    // delete parser;
-    
-    
-
-  */
-
-    //Code below will begin using imput to simulate a processor.  First all objects needed 
-    // for the execution will be created.
-    
+ 
     //Sets first address at the start and creates Program Counter Object
-    
     
     string firstAddress = "4000000";
     ProgramCounter pc(firstAddress);
@@ -259,13 +212,6 @@ int main ()
 
     RegisterFile* regFile = new RegisterFile(registerFile);
 
-
-
-    // SignExtend signExtend();
-
-    //ShiftLeftTwo SL1() = new ShiftLeftTwo ();
-    // ShiftLeftTwo SL2();
-
     
   
   // Loop should run until end of program
@@ -285,8 +231,8 @@ int main ()
           { 
             break;
           }
+      }
     }
-  }
     //FETCH 
     //Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
@@ -338,10 +284,9 @@ int main ()
     string reg3 = inst.getEncoding().substr(16, 5);
 
     //gets last15 didgets of instruction
-    int immediate = inst.getImmediate(); 
+    string immediate = inst.getEncoding().substr(17, 15); 
 
-    string immediateBin = Converter::inttobinarry(immediate);
-    cout << immediateBin << endl;
+    cout << immediate << endl;
 
 
     //get j type address
@@ -352,8 +297,7 @@ int main ()
     //function code 
     string functCode = inst.getEncoding().substr(26, 6);
 
-    // //gets what would be instruction for j types
-    // string jInstruction = instruction.substr(6, 26);
+
 
     
     if(debugMode)
@@ -377,112 +321,147 @@ int main ()
       mux4->setFirstInput(jInstSl2); // must wait for result of Mux5
 
        //Sends reg2 and reg3 to mux, based on control 
+
        mux1->setFirstInput(reg2);
        mux1->setSecondInput(reg3);
 
        //write register gets value from  mux1
        string writeRegister = mux1->mux();
 
-       //string valAtReg1 = regFile->readReg(to_string(reg1));
-       //string valAtReg2 = regFile->readReg(to_string(reg2));
-    
+       bitset<5> reg1bit (reg1);
+       bitset<5> reg2bit (reg2);
+
+       int reg1int = reg1bit.to_ulong();
+       int reg2int = reg2bit.to_ulong();
+
+
+       string valAtReg1 = regFile->readReg(to_string(reg1int));
+       string valAtReg2 = regFile->readReg(to_string(reg2int));
+       
+       string valAtReg1Bin = Converter::hexToBinary(valAtReg1);
+       string valAtReg2Bin = Converter::hexToBinary(valAtReg2);
 
      //test for mux1
      if(debugMode)
      {
-        //cout <<  "Value in read reg1: " << valAtReg1 << endl;
-        //cout <<  "Value in read reg2: " << valAtReg2 << endl;
+        cout <<  "Testing values in read registers and the write register after mux" << endl;
+        cout <<  "Value in read reg1: " << valAtReg1 << endl;
+        cout <<  "Value in read reg2: " << valAtReg2 << endl;
         cout <<  "Value in write register: " << writeRegister << endl;
      }
 
     
+       bitset<16> immbit (immediate);
+       string extended = SignExtend::Extend(immbit);
+       if(debugMode)
+       {
+          cout << "Testing sign extend: " << extended << endl;
+          cout << extended.length() << endl;
+       }
 
-     // string extended = SignExtend::Extend(immediateBin);
+       //second mux decided if imm or register 2 should go to the ALU
+       //extended in bin, val at reg2 is in hex rn
+       mux2->setFirstInput(valAtReg2Bin);
+       mux2->setSecondInput(extended);
 
-  //   mux2.setFirstInput(reg2);
-  //   mux2.setSecondInput(extended);
+       //calls second mux to determine second input for alu
+       string aluInput = mux2->mux();
 
-  //   //calls second mux to determine second input for alu
-  //   string aluInput = mux2.mux();
-  //   if(debugMode)
-  //   {
-  //     cout << "Second input for ALU3: " << aluInput << endl;
-  //   }
+       ALU3->setInput_1(valAtReg1Bin);
+       ALU3->setInput_2(valAtReg2Bin);
 
-  //   //The following code acts as the ALU control for ALU3
-  //   string alu3Result;
-  //   if(control.getAluOp1() == 1 || control.getAluOp0() == 1)
-  //   { 
-  //       if(control.getAluOp1() == 1)
-  //       {
-  //           //SLT, ADD, SUB, SLT
-  //          if(functCode == "100000") 
-  //          {
-  //             //Add
-  //             ALU3.add(reg1, aluInput)
-  //             ALU3.preformOperation();
-  //             alu3Result = ALU3.getResult();
-  //             break;
-  //          }
-  //          if(functCode == "100010")
-  //          {
-  //             //Subtract
-  //             ALU3.sub(reg1, aluInput)
-  //             ALU3.preformOperation();
-  //             alu3Result = ALU3.getResult();
-  //             break;
-  //          }
-  //          if(functCode == "101010")
-  //          {
-  //             //SLT instruction, not yet implemented in ALU
+
+      if(debugMode)
+      {
+        cout << "Second input for ALU3: " << aluInput << endl;
+      }
+
+    //The following code acts as the ALU control for ALU3
+    
+    string alu3Result;
+    if(control->getAluOp1() == 1 || control->getAluOp0() == 1)
+    { 
+        if(control->getAluOp1() == 1)
+        {
+            //SLT, ADD, SUB, SLT
+           if(functCode == "100000") 
+           {
+              //Add
+              ALU3->setOperation("add");
+              ALU3->performOperation();
+              alu3Result = ALU3->getResult();
               
-  //          }
-
-  //          //Result gets "equal" or "not equal"
-  //          if(control.getAluOp0() == 1)
-  //          {
-  //             ALU3.compare(reg1, aluInput);
-  //             ALU3.preformOperation();
-  //             alu3Result = ALU3.getResult();
-  //         }
+              if(debugMode)
+              {
+                cout << "Add runs" << endl;
+              }
+           }
+           if(functCode == "100010")
+           {
+              //Subtract
+              ALU3->setOperation("sub");
+              ALU3->performOperation();
+              alu3Result = ALU3->getResult();
+              if(debugMode)
+              {
+                cout << "subtract runs" << endl;
+              }
+             
+           }
+           if(functCode == "101010")
+           {
+              //SLT instruction, not yet implemented in ALU
+              
+           }
+        }
+           //Result gets "equal" or "not equal"
+           else if(control->getAluOp0() == 1)
+           {
+              ALU3->setOperation("compare");
+              ALU3->performOperation();
+              alu3Result = ALU3->getResult();
+          }
            
     
-  //   } else {
-  //       //runs for lw and sw 
-  //       ALU3.add(reg1, aluInput)
-  //       ALU3.preformOperation();
-  //       alu3Result = ALU3.getResult();
-  //       break;
+    } else {
+        //runs for lw and sw 
+        ALU3->setOperation("add");
+        ALU3->performOperation();
+        alu3Result = ALU3->getResult();
+        
 
-  //   }
+    }
 
-  //   if(debugMode)
-  //   {
-  //     cout << "Result from ALU3: " << alu3Result << endl;
-  //   }
+    if(debugMode)
+    {
+      cout << "Result from ALU3: " << alu3Result << endl;
+    }
 
-  //   if(controlunit.getBranch() == 1 && alu3Result == "equal")
-  //   {
-  //     // if this runs it is a branch instruction AND the branch
-  //     // condition passed.  Basically the AND in the data path.
-  //     mux5.setFlow(control.getBranch());
-  //   }
+    if(control->getBranch() == 1 && alu3Result == "equal")
+    {
+      // if this runs it is a branch instruction AND the branch
+      // condition passed.  Basically the AND in the data path.
+        mux5->setFlow(control->getBranch());
 
-  //   mux3.setFirstInput(alu3Result);
-  //   if(control.getMemRead() == 1)
-  //   {
-  //      bitset<32> resultInBits (alu3Result);
-  //      bitset<32> dataFromMem;
-  //      dataFromMem = dataMemory.readMem();
-  //      mux3.setSecondInput(dataFromMem.to_string());
+    } else {
+      //Not needed but avoids an unused warning for mux5 if no branches
+      mux5->setFlow(0);
+    }
+
+    //sends result of the alu to the 3rd multiplexor
+    mux3->setFirstInput(alu3Result);
+    if(control->getMemRead() == 1)
+    {
+       //runs if op uses a memory read, and sends value to the 3rd multiplexor
+       string dataFromMem = dm->getdata(alu3Result);
+       mux3->setSecondInput(dataFromMem);
       
-  //     if(debugMode)
-  //     {
-  //         cout << "Value read from memory: " << dataFromMem.to_string() << endl;
-  //     }
+      if(debugMode)
+      {
+          cout << "Value read from memory: " << dataFromMem << endl;
+      }
 
-
-  //   }
+    }
 
   //   //checks to see if it is writting to a register from mux3.
   //   if(control.getRegWrite())
@@ -561,4 +540,5 @@ int main ()
 // }
 
   return 0;
+
 }
