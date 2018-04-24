@@ -4,7 +4,7 @@
 #include <iostream>
 
 std::string Extend(std::bitset<16> sign_extend_val){
-std::string s ;
+std::string s;
 
 	if(sign_extend_val[15]==0){
 		std::bitset<16> extended ;
@@ -21,14 +21,6 @@ std::string s ;
 	return s;
 }
 
-
-SignExtend::~SignExtend(){}
-
-std::string Extend(std::bitset sign_extend_val)
-{
-	return "";
-}
-=======
 #endif
 //This for testing purposes. 
 // int main () {

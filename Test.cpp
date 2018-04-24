@@ -210,7 +210,7 @@ int main ()
 //This is an example of how to get Instructions from the Instruction from the InstructionMemory 
   //In this example I'm getting the in
 
-   InstructionMemory* im = new InstructionMemory (programInputFile);
+    InstructionMemory* im = new InstructionMemory (programInputFile);
     Instruction i = im->getInstruction("4000008");
     string s = i.getString();
     cout<<s<<endl;
@@ -446,7 +446,7 @@ int main ()
   //         }
            
 
-    } else {
+  /* } else {
         //runs for lw and sw 
         ALU3.add(reg1, aluInput)
         ALU3.preformOperation();
@@ -474,7 +474,7 @@ int main ()
        //currently readMem reads a bitset, var below is a string 
        string dataFromMem = dataMemory.readMem(alu3Result);
        mux3.setSecondInput(dataFromMem);
-
+*/
     
   //   } else {
   //       //runs for lw and sw 
@@ -563,8 +563,7 @@ int main ()
   //   //Updates program counter with correct address
   //   programCounter.moveAddress(resultOfMux5);
   // }
-  ////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////
+
 
 
   //Testing stuff 
