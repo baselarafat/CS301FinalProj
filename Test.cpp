@@ -216,6 +216,7 @@ int main ()
     string s = i.getString();
     cout<<s<<endl;
 
+
   // std::cout<<std::endl
 
     /*
@@ -324,11 +325,11 @@ int main ()
        cout << "The address being run in this iteration: " << addr << endl;
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
-
-    std::string binaddre = Converter::cvthex2Bin(addr);
-    std::cout<<addr<<std::endl; 
+    std::string binaddre = Converter::hexToBinary(addr);
+    std::cout<<addr<<std::endl;
+   
     //Adds 4 to current address and stores the result.
-    ALU1->setInput_1("10");
+    ALU1->setInput_1(binaddre);
     ALU1->setInput_2("10");
     ALU1->setOperation("add");
     ALU1->performOperation();
@@ -410,12 +411,12 @@ int main ()
      //string valAtReg2 = readReg(reg2);
     
     //test for mux1
-     if(debugMode)
-     {
-        cout <<  "Value in read reg1: " << valAtReg1 << endl;
-        cout <<  "Value in read reg2: " << valAtReg2 << endl;
-        cout <<  "Value in write register: " << writeRegister << endl;
-     }
+     // if(debugMode)
+     // {
+     //    cout <<  "Value in read reg1: " << valAtReg1 << endl;
+     //    cout <<  "Value in read reg2: " << valAtReg2 << endl;
+     //    cout <<  "Value in write register: " << writeRegister << endl;
+     // }
     
   //   string extended = signExtend.Extend(last15Digits);
 
