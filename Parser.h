@@ -33,6 +33,7 @@ class Parser{
 
   // Iterator that returns the next Instruction in the list of Instructions.
   Instruction getNextInstruction();
+  static string cvtInt2Bin(int number, size_t length);
 
  private:
   vector<Instruction> myInstructions;      // list of Instructions
@@ -71,7 +72,7 @@ class Parser{
   // of that instruction.
   string encode(Instruction i);
   
-  string cvtInt2Bin(int number, size_t length);
+ 
   string handleRtype(Instruction i);
   string handleItype(Instruction i);
   string handleJtype(Instruction i);

@@ -49,9 +49,9 @@ Register RegisterFile::getNum(string reg)
  /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */
-std::string RegisterFile::readReg(string reg)
+std::string RegisterFile::readReg(int reg)
 {
-  return reg;
+  return myRegister[reg];
     }
 /*Given a string representing a MIPS register operand and a specified value, stores the value within
 said register.
@@ -69,3 +69,14 @@ std::string RegisterFile::writeReg(string reg, string val)
   }
   return "";
 }
+
+void      printContents()
+{
+    for(int i = 0; i < 31; i++)
+    {
+        std::cout << i << ":" << myRegister[i] << endl;
+        itr++;
+    }
+      
+}
+

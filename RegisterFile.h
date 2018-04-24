@@ -36,16 +36,23 @@ public:
 	~RegisterFile();
 	RegisterFile(string regsiterFile);
 
+<<<<<<< HEAD
 Register 		getNum(string reg);
+=======
+
+ Register 		getNum(string reg);
+>>>>>>> 6dd88c2cb9162fc4f519d237e2bfe9fb1299b70d
 /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */
-	std::string 	readReg(string reg);
+std::string 	readReg(string reg);
 
 /*Given a string representing a MIPS register operand and a specified value, stores the value within
 said register.
 */
-	std::string		writeReg(string reg, string value);
+std::string		writeReg(string reg, string value);
+
+void 			printContents();
 
 
 private:
