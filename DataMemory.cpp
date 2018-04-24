@@ -75,5 +75,14 @@ void DataMemory::dmemPrintFinal(string memOutputFile)
   outputFile.close();
 }
  
- 
+ std::string DataMemory::writeMem(string address, string val)
+{
+  string temp = mem[address];
+  mem.insert(std::make_pair(address, val));
+  return temp;
+
+
+  
+
+}
  #endif

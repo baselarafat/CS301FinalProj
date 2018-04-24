@@ -23,6 +23,7 @@ public :
 std::string getdata(std::string address);
 void dmemPrint();
 void dmemPrintFinal(string memOutputFile);
+std::string writeMem(string address, string val);
 
 
 };
