@@ -321,18 +321,12 @@ int main ()
     }
 
 
-    std::string binaddre = Converter::cvthex2Bin(addr);
-    cout << binaddre << endl;
-    //Adds 4 to current address and stores the result.
-    ALU1->setInput_1(binaddre);
-    ALU1->setInput_2("100");
-
     std::string binaddre = Converter::hexToBinary(addr);
-    std::cout<<addr<<std::endl;
+    std::cout<<binaddre<<std::endl;
    
     //Adds 4 to current address and stores the result.
     ALU1->setInput_1(binaddre);
-    ALU1->setInput_2("10");
+    ALU1->setInput_2("100");
 
     ALU1->setOperation("add");
     ALU1->performOperation();
