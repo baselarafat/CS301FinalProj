@@ -141,8 +141,9 @@ then the values could be changed
 */
 std::string RegisterFile::writeReg(string reg, string val)
 {
+
   temp[reg] = myRegister[reg];
-  myRegister.insert(std::make_pair(reg, val));
+  myRegister[reg] = val;
   return temp[reg];
 
 

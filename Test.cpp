@@ -318,7 +318,7 @@ int main ()
        cout << jInstSl2 << endl;
     }
 
-      mux4->setFirstInput(jInstSl2); // must wait for result of Mux5
+      mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
 
        //Sends reg2 and reg3 to mux, based on control 
 
@@ -463,54 +463,82 @@ int main ()
 
     }
 
-  //   //checks to see if it is writting to a register from mux3.
-  //   if(control.getRegWrite())
-  //   {
-  //      string writeData = mux3.mux();
-  //      // remeber string writeRegister holds in the reg
-  //      // code below should write the given value to the register
-  //      if(debugMode)
-  //     {
-  //         cout << "Value being written to mem " << writeData << endl;
-  //     }
-  //      registerFile.writeReg(writeReg, writeData);
+    //checks to see if it is writting to a register from mux3.
+    if(control->getRegWrite() == 1)
+    {
+       string writeData = mux3->mux();
+       // remeber string writeRegister holds in the reg
+       // code below should write the given value to the register
+       if(debugMode)
+      {
+          cout << "Value being written to reg " << writeData << endl;
+      }
 
-  //   }
+      string writeDataHex = Converter::binaryToHex(writeData);
+      bitset<5> writebit (writeRegister);
+      int writeInt = writebit.to_ulong();
+      
+      cout << "Reg before register write: " << regFile->readReg(to_string(writeInt)) << endl;
+      regFile->writeReg(to_string(writeInt), writeDataHex);
 
-  //   //Shifts the previously exstended address by 2 bits(needed for b and j)
-  //   string instructionShiftedLeft = sl2.Shift(extended);
+      if(debugMode)
+      {
+          cout << "Value in reg: " << regFile->readReg(to_string(writeInt)) << endl;
+      }
 
-  //   //Add this value to current PC value(This doesnt make sense to me...)
-  //   ALU2.add(instructionShiftedLeft, add4ToAddress);
-  //   ALU2.preformOperation();
-  //   resultOfAlu2 = ALU2.getResult();
+    }
+
+
+    //Shifts the previously exstended address by 2 bits(needed for b and j)
+    string instructionShiftedLeft = ShiftLeftTwo::Shift(extended);
+    if(debugMode)
+      {
+          cout << "Extended immediate value: " << immediate << endl;
+          cout << "Value shifted left by two bits: " << instructionShiftedLeft << endl;
+      }
+
+      //Add this value to current PC value(This doesnt make sense to me...)
+      ALU2->setInput_1(add4ToAddress);
+      ALU2->setInput_2(instructionShiftedLeft);
+      ALU2->setOperation("add");
+      ALU2->performOperation();
+      string resultOfAlu2 = ALU2->getResult();
+
+      if(debugMode)
+      {
+          cout << "Result of ALU2: " << resultOfAlu2 << endl;
+      }
+
+      mux5->setFirstInput(add4ToAddress);
+      mux5->setSecondInput(resultOfAlu2);
+
+      string resultOfMux5 = mux5->mux();
+
+      if(debugMode)
+      {
+          cout << "Result of Mux5: " << resultOfMux5 << endl;
+      }
+
+    mux4->setFirstInput(resultOfMux5);
     
-  //   if(debugMode)
-  //     {
-  //         cout << "Result of ALU2: " << resultOfAlu2 << endl;
-  //     }
+    string resultOfMux4 = mux4->mux(); //result that is going to program counter
 
-  //   mux5.setFirstInput(add4ToAddress);
-  //   mux5.setSecondInput(resultOfAlu2);
+    if(debugMode)
+      {
+          cout << "Result of mux4: " << resultOfMux4 << endl;
+      }
 
-  //   string resultOfMux5 = mux5.mux();
-
-  //   if(debugMode)
-  //     {
-  //         cout << "Result of Mux5: " << resultOfMux5 << endl;
-  //     }
-
-  //   mux4.setSecondInput(resultOfMux5);
-  //   string resultOfMux4 = mux4.mux();
-
-  //   if(debugMode)
-  //     {
-  //         cout << "Address being sentt to PC: " << resultOfMux4 << endl;
-  //     }
+    //
+    string hexFinalAddress = Converter::binaryToHex(resultOfMux4);
+    if(debugMode)
+      {
+          cout << "Address being sent to PC: " << hexFinalAddress << endl;
+      }
 
 
-  //   //Updates program counter with correct address
-  //   programCounter.moveAddress(resultOfMux5);
+    //Updates program counter with correct address
+    pc.moveAddressTo(hexFinalAddress);
+
   // }
 
 
