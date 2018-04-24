@@ -290,11 +290,10 @@ int main ()
     //FETCH 
     //Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
-    string hexaddr= Converter::hexify(addr);
-    Instruction inst = im->getInstruction(hexaddr); 
+    Instruction inst = im->getInstruction(addr); 
     if(debugMode)
     {
-       cout << "The address being run in this iteration: " << hexaddr << endl;
+       cout << "The address being run in this iteration: " << addr << endl;
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
@@ -341,7 +340,8 @@ int main ()
     //gets last15 didgets of instruction
     int immediate = inst.getImmediate(); 
 
-    //string immediateBin = 
+    string immediateBin = Converter::inttobinarry(immediate);
+    cout << immediateBin << endl;
 
 
     //get j type address

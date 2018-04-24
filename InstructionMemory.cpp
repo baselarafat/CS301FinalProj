@@ -26,11 +26,11 @@ InstructionMemory::InstructionMemory(string filename) {
 
 	 string input;
     string address= "4000000"; //virtual address
-    string hexaddress= Converter::hexify(address);
+   
     while( i.getOpcode() != UNDEFINED && instructionCounter <= 100){
         //Puts values into array, prints them for testing purposes.
         cout << i.getString() << endl;
-        instructions[hexaddress]=i;
+        instructions[address]=i;
         int x =  Converter::hextoint(address);
      	  x=x+4;
       	address= Converter::inttohex(x);
