@@ -295,8 +295,8 @@ int main ()
     
   
   // Loop should run until end of program
-  while(false)
-  {
+  //while(false)
+  //{
 
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
@@ -312,6 +312,7 @@ int main ()
             break;
           }
     }
+  }
     //FETCH 
     //Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
@@ -323,9 +324,9 @@ int main ()
     }
 
     //Adds 4 to current address and stores the result.
-    ALU1->setInput_1(addr);
-    ALU2->setInput_2("4");
-    ALU1->setOperation("0100");
+    ALU1->setInput_1("10");
+    ALU1->setInput_2("10");
+    ALU1->setOperation("add");
     ALU1->performOperation();
     string add4ToAddress = ALU1->getResult(); 
     if(debugMode)
@@ -374,8 +375,8 @@ int main ()
        cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate<<endl;
        // << " " << functCode << " " << jInstruction << endl;
     }
-}
-}
+
+//}
   //   //Shifts the instruction to the left
   //   string jInstSl2 = SL1.Shift(jInstruction); 
   //   mux4.setFirstInput(jInstSl2); // must wait for result of Mux5
