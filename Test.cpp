@@ -255,7 +255,7 @@ int main ()
     ALU* ALU2 = new ALU();// ADD and ALU Result
     ALU* ALU3 = new ALU();// ALU and ALU Result
 
-    OpcodeTable opt = OpcodeTable();
+    //OpcodeTable opt = OpcodeTable();
 
     RegisterFile* regFile = new RegisterFile(registerFile);
 
@@ -312,15 +312,15 @@ int main ()
     }
 
     //retrives opcode from instruction
-   
-    Opcode op=  opt.getOpcode(inst.getString());
 
+    // Opcode op =  opt.getOpcode(inst.getString());
+   
     //sets values to false to reset control unit, then calls method
     //to set control values with opcode.
     control->setToZero();
-    
+   
     //resets values in control unit
-    control->setValues(opt.getOpcodeField(op));
+    control->setValues(inst.getEncoding().substr(0,6));
 
     mux1->setFlow(control->getRegDest());
     mux2->setFlow(control->getAluSrc());
@@ -329,13 +329,13 @@ int main ()
     // mux 5 is set by a combination of branch and the result of ALU
     
     //always goes to read regester1
-    Register reg1 = inst.getRS();
+    string reg1 = inst.getEncoding().substr(6, 5);
     
     //goes to read register 2 and mux1
-    Register reg2 = inst.getRT();
+    string reg2 = inst.getEncoding().substr(11, 5);
     
     //goes to mux1
-    Register reg3 = inst.getRD();
+    string reg3 = inst.getEncoding().substr(16, 5);
 
     //gets last15 didgets of instruction
     int immediate = inst.getImmediate(); 
@@ -377,21 +377,21 @@ int main ()
       mux4->setFirstInput(jInstSl2); // must wait for result of Mux5
 
        //Sends reg2 and reg3 to mux, based on control 
-       mux1->setFirstInput(to_string(reg2));
-       mux1->setSecondInput(to_string(reg3));
+       mux1->setFirstInput(reg2);
+       mux1->setSecondInput(reg3);
 
        //write register gets value from  mux1
        string writeRegister = mux1->mux();
 
-       string valAtReg1 = regFile->readReg(to_string(reg1));
-       string valAtReg2 = regFile->readReg(to_string(reg2));
+       //string valAtReg1 = regFile->readReg(to_string(reg1));
+       //string valAtReg2 = regFile->readReg(to_string(reg2));
     
 
      //test for mux1
      if(debugMode)
      {
-        cout <<  "Value in read reg1: " << valAtReg1 << endl;
-        cout <<  "Value in read reg2: " << valAtReg2 << endl;
+        //cout <<  "Value in read reg1: " << valAtReg1 << endl;
+        //cout <<  "Value in read reg2: " << valAtReg2 << endl;
         cout <<  "Value in write register: " << writeRegister << endl;
      }
 
