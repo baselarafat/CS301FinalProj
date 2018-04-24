@@ -78,6 +78,8 @@ void Parser::getTokens(string line,
   // checking for syntax errors and counting the number of operands.
 {
   // locate the start of a comment
+  if(line.find('#')!=NULL)
+    return;
   string::size_type idx = line.find('#');
   if (idx != string::npos) // found a ';'
     line = line.substr(0,idx);

@@ -210,6 +210,11 @@ static std::string hexify(std::string s){
 			mystring = array;
 		return mystring; 
 		}
+	static std::string inttobinarry(int a){
+		std::string hex =inttohex(a);
+		std::string bin = hexToBinary(hex);
+		return bin;
+ 	}
 		
 
 };

@@ -11,6 +11,8 @@
 #include "ALU.h"
 #include "Multiplexor.h"
 #include "Instruction.h"
+#include "ShiftLeftTwo.h"
+#include "SignExtend.h"
 
 using namespace std;
 class Tester{
@@ -178,9 +180,9 @@ int main ()
 
 //This is an example of how to get Instructions from the Instruction from the InstructionMemory 
   //In this example I'm getting the in
-  
+
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    Instruction i = im->getInstruction("4000008");
+    Instruction i = im->getInstruction("0x4000008");
     string s = i.getString();
     cout<<s<<endl;
 
@@ -255,9 +257,13 @@ int main ()
 
     OpcodeTable opt = OpcodeTable();
 
+    RegisterFile* regFile = new RegisterFile(registerFile);
+
+
+
     // SignExtend signExtend();
 
-    // ShiftLeftTwo SL1();
+    //ShiftLeftTwo SL1() = new ShiftLeftTwo ();
     // ShiftLeftTwo SL2();
 
     
@@ -285,10 +291,10 @@ int main ()
     //Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
     string hexaddr= Converter::hexify(addr);
-    Instruction inst = im->getInstruction(addr); 
+    Instruction inst = im->getInstruction(hexaddr); 
     if(debugMode)
     {
-       cout << "The address being run in this iteration: " << addr << endl;
+       cout << "The address being run in this iteration: " << hexaddr << endl;
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
@@ -335,13 +341,16 @@ int main ()
     //gets last15 didgets of instruction
     int immediate = inst.getImmediate(); 
 
+    //string immediateBin = 
 
+
+    //get j type address
+    string jAddress = inst.getEncoding().substr(6, 25);
+    cout << jAddress << " " << jAddress.length();
+
+
+    //function code 
     string functCode = inst.getEncoding().substr(26, 6);
-
-   
-
-    //goes to ALU control
-    // string functCode = instruction.substr(27, 5);
 
     // //gets what would be instruction for j types
     // string jInstruction = instruction.substr(6, 26);
@@ -349,46 +358,46 @@ int main ()
     
     if(debugMode)
     {
-       cout << "Printing: reg1, reg2, reg3, immediate, functCode" << endl;
+       cout << "Printing: reg1, reg2, reg3, immediate, functCode, jAddress" << endl;
        cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate 
-       << " " << functCode <<  endl;
+       << " " << functCode << endl << jAddress << endl;
 
     }
 
-//}
-  //   //Shifts the instruction to the left
-  //   string jInstSl2 = SL1.Shift(jInstruction); 
-  //   mux4.setFirstInput(jInstSl2); // must wait for result of Mux5
 
-  //   //gets values from reg1 and reg 2
-  //   string valAtReg1 = readReg(reg1);
-  //   string valAtReg2 = readReg(reg2);
+    //Shifts the instruction to the left
+    string jInstSl2 = ShiftLeftTwo::Shift(jAddress); 
+    
+    //test for shift left 
+    if(debugMode)
+    {
+       cout << jInstSl2 << endl;
+    }
 
-  //   //Sends reg2 and reg3 to mux, based on control 
-  //   mux1.setFirstInput(reg2);
-  //   mux1.setSecondInput(reg3);
+      mux4->setFirstInput(jInstSl2); // must wait for result of Mux5
 
-  //   //write register gets value from  mux1
-  //   string writeRegister = mux1.mux();
+       //Sends reg2 and reg3 to mux, based on control 
+       mux1->setFirstInput(to_string(reg2));
+       mux1->setSecondInput(to_string(reg3));
 
-    //test for mux1
+       //write register gets value from  mux1
+       string writeRegister = mux1->mux();
 
-
-     // if(debugMode)
-     // {
-     //    cout <<  "Value in read reg1: " << valAtReg1 << endl;
-     //    cout <<  "Value in read reg2: " << valAtReg2 << endl;
-     //    cout <<  "Value in write register: " << writeRegister << endl;
-     // }
-
-  //   //test for mux1
-  //   if(debugMode)
-  //   {
-  //     cout <<  "Value in write register: " << writeRegister << endl;
-  //   }
+       string valAtReg1 = regFile->readReg(to_string(reg1));
+       string valAtReg2 = regFile->readReg(to_string(reg2));
     
 
-  //   string extended = signExtend.Extend(last15Digits);
+     //test for mux1
+     if(debugMode)
+     {
+        cout <<  "Value in read reg1: " << valAtReg1 << endl;
+        cout <<  "Value in read reg2: " << valAtReg2 << endl;
+        cout <<  "Value in write register: " << writeRegister << endl;
+     }
+
+    
+
+     // string extended = SignExtend::Extend(immediateBin);
 
   //   mux2.setFirstInput(reg2);
   //   mux2.setSecondInput(extended);
