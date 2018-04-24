@@ -148,10 +148,8 @@ std::string RegisterFile::writeReg(string reg, string val)
     }
   }
   return "";
+
 }
-
-
-
 
 void     RegisterFile::printContents()
 {
@@ -162,6 +160,7 @@ void     RegisterFile::printContents()
     }
       
 }
+
 
 
 

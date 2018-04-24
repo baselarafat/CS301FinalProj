@@ -7,6 +7,7 @@
 #include <map>
 #include <sstream>
 #include <fstream>
+#include "Converter.h"
 
 using namespace std;
 class DataMemory{

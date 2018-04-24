@@ -194,7 +194,7 @@ static string binaryToHex(string binary)
     return hex;
 }
 
-std::string hexify(std::string s){
+static std::string hexify(std::string s){
 		char* array= new char [10];
 		std::string mystring;
 	//Checking if it already has "0x" in the begging of the string 
@@ -210,6 +210,11 @@ std::string hexify(std::string s){
 			mystring = array;
 		return mystring; 
 		}
+	static std::string inttobinarry(int a){
+		std::string hex =inttohex(a);
+		std::string bin = hexToBinary(hex);
+		return bin;
+ 	}
 		
 
 };
