@@ -134,12 +134,10 @@ int main ()
 
     infile1.close();
 
-  /// Writting code to read the Data memory file.
-  // will read data and build a 2d vector that can be used
-  // to construct memory contents.
+ 
 
   //int used to store # of instructions, must be <= 100
-  int numOfMemcells = 0;
+  /* int numOfMemcells = 0;
   DataMemory* dm = new DataMemory (dataMemoryFile);
   string memdata = dm->getdata("10000000");
   std::cout<<memdata<<std::endl;
@@ -155,51 +153,10 @@ int main ()
   dm->dmemPrintFinal("output.mem");
 
  
-
-
-  //
-  
-   //builds array to store registers
-  string arrayOfRegisters[32][2];
-
-  int numOfRegisters = 0;
-
-  //
-  ifstream infile3;
-  infile3.open(registerFile);
-    if (!infile3.is_open()) {
-        cerr << "An error has occured when opening the file";
-        exit(1); 
-    }
-  
-  // Loop should run until eof().
-  while(infile3.good())
-  {
-      //creates string and saves each line to input
-      string input;
-      infile3 >> input;
-      
-      int equalsPtr = 0;
-      
-      //gets location of the =
-      for(int k = 0; k < input.length(); k++)
-        {
-            if(input.at(k) == '=')
-            {
-              equalsPtr = k;
-              break;
-            }
-        }
-      arrayOfRegisters[numOfRegisters][0] = input.substr(0,equalsPtr);
-      //puts instruction in
-      arrayOfRegisters[numOfRegisters][1] = input.substr(equalsPtr + 1,8);
-      //increments number of instructions
-      numOfRegisters++;
-  }
-
-  infile3.close();
+ */
 
   // RegisterFile registerFile();
+
 
   // //For loops runs so the values in arrayOfRegisters get 
   // //stored into the Register file
@@ -221,13 +178,17 @@ int main ()
 
 //This is an example of how to get Instructions from the Instruction from the InstructionMemory 
   //In this example I'm getting the in
-
-   InstructionMemory* im = new InstructionMemory (programInputFile);
+  
+    InstructionMemory* im = new InstructionMemory (programInputFile);
     Instruction i = im->getInstruction("4000008");
     string s = i.getString();
     cout<<s<<endl;
 
+
+    std::cout<<std::endl;
+
   // std::cout<<std::endl;
+
 
     /*
   
@@ -236,7 +197,7 @@ int main ()
     The below code is from the lab4 parser class, and will find the encodings 
     for a given programInputFile found above.  Once the other files are added to the 
     folder it should run and collect instructions in binary to be used in the program.
-  */
+  
     // ASMParser *parser;
 
     // parser = new ASMParser(programInputFile);
@@ -264,7 +225,7 @@ int main ()
     
     
 
-
+  */
 
     //Code below will begin using imput to simulate a processor.  First all objects needed 
     // for the execution will be created.
@@ -275,10 +236,7 @@ int main ()
     string firstAddress = "4000000";
     ProgramCounter pc(firstAddress);
     
-    //Creates IM using the array built above.
-    // InstructionMemory im(instructionArray);
-    //We don't create another InstructionMemory, I created it above and renamed it to be im to work with the rest of your code 
-    
+
     //Creates controlunit object.
     ControlUnit* control = new ControlUnit ();
  
@@ -295,7 +253,7 @@ int main ()
     ALU* ALU2 = new ALU();// ADD and ALU Result
     ALU* ALU3 = new ALU();// ALU and ALU Result
 
-   OpcodeTable opt = OpcodeTable();
+    OpcodeTable opt = OpcodeTable();
 
     // SignExtend signExtend();
 
@@ -334,9 +292,12 @@ int main ()
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
+    std::string binaddre = Converter::hexToBinary(addr);
+    std::cout<<binaddre<<std::endl;
+   
     //Adds 4 to current address and stores the result.
-    ALU1->setInput_1("10");
-    ALU1->setInput_2("10");
+    ALU1->setInput_1(binaddre);
+    ALU1->setInput_2("100");
     ALU1->setOperation("add");
     ALU1->performOperation();
     string add4ToAddress = ALU1->getResult(); 
@@ -374,17 +335,24 @@ int main ()
     //gets last15 didgets of instruction
     int immediate = inst.getImmediate(); 
 
+
+    string functCode = inst.getEncoding().substr(26, 6);
+
+   
+
     //goes to ALU control
     // string functCode = instruction.substr(27, 5);
 
     // //gets what would be instruction for j types
     // string jInstruction = instruction.substr(6, 26);
+
     
     if(debugMode)
     {
-       cout << "Printing: reg1, reg2, reg3, immediate, functCode, j addr" << endl;
-       cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate<<endl;
-       // << " " << functCode << " " << jInstruction << endl;
+       cout << "Printing: reg1, reg2, reg3, immediate, functCode" << endl;
+       cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate 
+       << " " << functCode <<  endl;
+
     }
 
 //}
@@ -402,13 +370,24 @@ int main ()
 
   //   //write register gets value from  mux1
   //   string writeRegister = mux1.mux();
-    
+
+    //test for mux1
+
+
+     // if(debugMode)
+     // {
+     //    cout <<  "Value in read reg1: " << valAtReg1 << endl;
+     //    cout <<  "Value in read reg2: " << valAtReg2 << endl;
+     //    cout <<  "Value in write register: " << writeRegister << endl;
+     // }
+
   //   //test for mux1
   //   if(debugMode)
   //   {
   //     cout <<  "Value in write register: " << writeRegister << endl;
   //   }
     
+
   //   string extended = signExtend.Extend(last15Digits);
 
   //   mux2.setFirstInput(reg2);
@@ -545,8 +524,6 @@ int main ()
   //   //Updates program counter with correct address
   //   programCounter.moveAddress(resultOfMux5);
   // }
-  ////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////
 
 
   //Testing stuff 
