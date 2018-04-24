@@ -22,6 +22,7 @@ InstructionMemory::InstructionMemory(string filename) {
     
     int instructionCounter = 0;
 
+
 	string input;
     string address= "4000000"; //virtual address
     while( i.getOpcode() != UNDEFINED && instructionCounter <= 100){
@@ -34,6 +35,7 @@ InstructionMemory::InstructionMemory(string filename) {
         //cout << i.getEncoding() << endl;
         i = parser->getNextInstruction();
         instructionCounter++;
+       
     }
     
     delete parser;
