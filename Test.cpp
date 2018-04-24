@@ -313,7 +313,7 @@ int main ()
 
     //retrives opcode from instruction
    
-    Opcode op=  opt.getOpcode(inst.getString());
+    Opcode op =  opt.getOpcode(inst.getString());
 
     //sets values to false to reset control unit, then calls method
     //to set control values with opcode.
