@@ -46,6 +46,32 @@ std::string DataMemory::getdata(std::string   theAddress){
 	
  		return mem[theAddress];
 }
+
+void DataMemory::dmemPrint()
+{
+
+  map<string,string>::iterator it = mem.begin();
+  it++;
+  while(it != mem.end())
+  {
+    std::cout<< it->first << ":" << it->second <<endl;
+    it++;
+  }
+}
+
+void DataMemory::dmemPrintFinal(string memOutputFile)
+{
+  ofstream outputFile;
+  outputFile.open(memOutputFile);
+  map<string,string>::iterator it = mem.begin();
+  it++;
+  while(it != mem.end())
+  {
+    outputFile<< it->first << ":" << it->second <<endl;
+    it++;
+  }
+  outputFile.close();
+}
  
  
  #endif

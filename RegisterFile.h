@@ -7,6 +7,11 @@
 #define __REGISTERFILE_H__
 
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <sstream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -23,12 +28,17 @@ struct RegisterEntry{
 };
 
 class RegisterFile{
+private: 
+	map<string, string> myRegister;
+	int myIndex;
 public:
 	RegisterFile();
-	~RegisterFile(){}
+	~RegisterFile();
+	RegisterFile(string regsiterFile);
 
 
- Register 		getNum(string reg);
+Register 		getNum(string reg);
+
 /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */

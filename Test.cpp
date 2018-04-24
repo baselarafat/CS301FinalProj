@@ -11,7 +11,6 @@
 #include "ALU.h"
 #include "Multiplexor.h"
 #include "Instruction.h"
-#include "Converter.h"
 
 using namespace std;
 class Tester{
@@ -71,6 +70,7 @@ int main ()
 
       //gets the part of the input after the equals sign
       configResult = configInput.substr(pointerToEquals);
+
 
       //this block of code adds the values from the config file to 
       //the appropriate variable.
@@ -134,58 +134,29 @@ int main ()
 
     infile1.close();
 
-  /// Writting code to read the Data memory file.
-  // will read data and build a 2d vector that can be used
-  // to construct memory contents.
+ 
 
   //int used to store # of instructions, must be <= 100
-  int numOfMemcells = 0;
+  /* int numOfMemcells = 0;
   DataMemory* dm = new DataMemory (dataMemoryFile);
   string memdata = dm->getdata("10000000");
   std::cout<<memdata<<std::endl;
+
+  dm->dmemPrint();
+  //map<string,string>::iterator it = dm->mem.begin();
+  //it++;
+  //while(it != dm->mem.end())
+  //{
+   // std::cout<< it->first << ":" << it->second <<endl;
+    //it++;
+  //}
+  dm->dmemPrintFinal("output.mem");
+
  
-
-  
-   //builds array to store registers
-  string arrayOfRegisters[32][2];
-
-  int numOfRegisters = 0;
-
-  ifstream infile3;
-  infile3.open(registerFile);
-    if (!infile3.is_open()) {
-        cerr << "An error has occured when opening the file";
-        exit(1); 
-    }
-  
-  //@NOT NEEDED ANYMORE, implemented in the register file class
-  // Loop should run until eof().
-  /* while(infile3.good())
-  {
-      //creates string and saves each line to input
-      string input;
-      infile3 >> input;
-      
-      int equalsPtr = 0;
-      
-      //gets location of the =
-      for(int k = 0; k < input.length(); k++)
-        {
-            if(input.at(k) == '=')
-            {
-              equalsPtr = k;
-              break;
-            }
-        }
-      arrayOfRegisters[numOfRegisters][0] = input.substr(0,equalsPtr);
-      //puts instruction in
-      arrayOfRegisters[numOfRegisters][1] = input.substr(equalsPtr + 1,8);
-      //increments number of instructions
-      numOfRegisters++;
-  }
-
-  infile3.close();
  */
+
+  // RegisterFile registerFile();
+
 
   // //For loops runs so the values in arrayOfRegisters get 
   // //stored into the Register file
@@ -207,14 +178,17 @@ int main ()
 
 //This is an example of how to get Instructions from the Instruction from the InstructionMemory 
   //In this example I'm getting the in
-
+  
     InstructionMemory* im = new InstructionMemory (programInputFile);
     Instruction i = im->getInstruction("4000008");
     string s = i.getString();
     cout<<s<<endl;
 
 
-  // std::cout<<std::endl
+    std::cout<<std::endl;
+
+  // std::cout<<std::endl;
+
 
     /*
   
@@ -223,7 +197,7 @@ int main ()
     The below code is from the lab4 parser class, and will find the encodings 
     for a given programInputFile found above.  Once the other files are added to the 
     folder it should run and collect instructions in binary to be used in the program.
-  */
+  
     // ASMParser *parser;
 
     // parser = new ASMParser(programInputFile);
@@ -251,7 +225,7 @@ int main ()
     
     
 
-
+  */
 
     //Code below will begin using imput to simulate a processor.  First all objects needed 
     // for the execution will be created.
@@ -275,12 +249,11 @@ int main ()
     Multiplexor* mux5 = new Multiplexor ();
     
 
-    ALU* ALU1 = new ALU(); // only ADD
-    ALU* ALU2 = new ALU(); // ADD and ALU Result
-    ALU* ALU3 = new ALU(); // ALU and ALU Result
+    ALU* ALU1 = new ALU();// only ADD
+    ALU* ALU2 = new ALU();// ADD and ALU Result
+    ALU* ALU3 = new ALU();// ALU and ALU Result
 
     OpcodeTable opt = OpcodeTable();
-
 
     // SignExtend signExtend();
 
@@ -291,9 +264,8 @@ int main ()
     
   
   // Loop should run until end of program
-
- //  while(false)
- // {
+  //while(false)
+  //{
 
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
@@ -320,14 +292,12 @@ int main ()
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
-
     std::string binaddre = Converter::hexToBinary(addr);
     std::cout<<binaddre<<std::endl;
    
     //Adds 4 to current address and stores the result.
     ALU1->setInput_1(binaddre);
     ALU1->setInput_2("100");
-
     ALU1->setOperation("add");
     ALU1->performOperation();
     string add4ToAddress = ALU1->getResult(); 
@@ -362,11 +332,6 @@ int main ()
     //goes to mux1
     Register reg3 = inst.getRD();
 
-
-    string reg2String = to_string(reg2);
-    string reg3String = to_string(reg3);
-
-
     //gets last15 didgets of instruction
     int immediate = inst.getImmediate(); 
 
@@ -375,12 +340,19 @@ int main ()
 
    
 
+    //goes to ALU control
+    // string functCode = instruction.substr(27, 5);
+
+    // //gets what would be instruction for j types
+    // string jInstruction = instruction.substr(6, 26);
+
     
     if(debugMode)
     {
        cout << "Printing: reg1, reg2, reg3, immediate, functCode" << endl;
-       cout << reg1 << " " << reg2String << " " << reg3 << " " << immediate 
+       cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate 
        << " " << functCode <<  endl;
+
     }
 
 //}
@@ -388,18 +360,17 @@ int main ()
   //   string jInstSl2 = SL1.Shift(jInstruction); 
   //   mux4.setFirstInput(jInstSl2); // must wait for result of Mux5
 
-     //Sends reg2 and reg3 to mux, based on control 
-    mux1->setFirstInput(reg2String);
-    mux1->setSecondInput(reg3String);
+  //   //gets values from reg1 and reg 2
+  //   string valAtReg1 = readReg(reg1);
+  //   string valAtReg2 = readReg(reg2);
 
+  //   //Sends reg2 and reg3 to mux, based on control 
+  //   mux1.setFirstInput(reg2);
+  //   mux1.setSecondInput(reg3);
 
-     //write register gets value from  mux1
-    string writeRegister = mux1->mux();
+  //   //write register gets value from  mux1
+  //   string writeRegister = mux1.mux();
 
-     //gets values from reg1 and reg 2
-     //string valAtReg1 = readReg(reg1);
-     //string valAtReg2 = readReg(reg2);
-    
     //test for mux1
 
 
@@ -409,6 +380,12 @@ int main ()
      //    cout <<  "Value in read reg2: " << valAtReg2 << endl;
      //    cout <<  "Value in write register: " << writeRegister << endl;
      // }
+
+  //   //test for mux1
+  //   if(debugMode)
+  //   {
+  //     cout <<  "Value in write register: " << writeRegister << endl;
+  //   }
     
 
   //   string extended = signExtend.Extend(last15Digits);
@@ -460,36 +437,6 @@ int main ()
   //             alu3Result = ALU3.getResult();
   //         }
            
-
-  /* } else {
-        //runs for lw and sw 
-        ALU3.add(reg1, aluInput)
-        ALU3.preformOperation();
-        alu3Result = ALU3.getResult();
-        break;
-
-    }
-
-    if(debugMode)
-    {
-      cout << "Result from ALU3: " << alu3Result << endl;
-    }
-
-    if(controlunit.getBranch() == 1 && alu3Result == "equal")
-    {
-      // if this runs it is a branch instruction AND the branch
-      // condition passed.  Basically the AND in the data path.
-      mux5.setFlow(control.getBranch());
-    }
-
-    mux3.setFirstInput(alu3Result);
-    if(control.getMemRead() == 1)
-    {
-       
-       //currently readMem reads a bitset, var below is a string 
-       string dataFromMem = dataMemory.readMem(alu3Result);
-       mux3.setSecondInput(dataFromMem);
-*/
     
   //   } else {
   //       //runs for lw and sw 
@@ -519,7 +466,6 @@ int main ()
   //      bitset<32> dataFromMem;
   //      dataFromMem = dataMemory.readMem();
   //      mux3.setSecondInput(dataFromMem.to_string());
-
       
   //     if(debugMode)
   //     {
@@ -577,22 +523,7 @@ int main ()
 
   //   //Updates program counter with correct address
   //   programCounter.moveAddress(resultOfMux5);
-
-      //this will print the memory contents in the data memory and register file and the end
-      // of each instruction pass.
-      if(printMemoryContents)
-      {
-          cout << "Printing contents of the registers:" << endl;
-
-          // register.printContents()
-
-          cout << "Printing contents of data memory:" << endl;
-      }   
-  //   
   // }
-
-
-
 
 
   //Testing stuff 

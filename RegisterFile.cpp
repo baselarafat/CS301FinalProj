@@ -2,7 +2,6 @@
 
 RegisterFile::RegisterFile()
 {
- 
   int i = 0;
 
   myRegisters[i].name = "$0";  myRegisters[i].number = i; i++;
@@ -81,8 +80,37 @@ RegisterFile::RegisterFile()
   myRegisters[i].name = "$fp";  myRegisters[i].number = 30; i++;
 
   myRegisters[i].name = "$ra";  myRegisters[i].number = 31; i++;
+}
+RegisterFile::~RegisterFile(){}
+RegisterFile::RegisterFile(string registerFile)
+{
 
+  int currentReg = 0;
 
+  //
+  ifstream infile3;
+  infile3.open(registerFile);
+    if (!infile3.is_open()) {
+        cerr << "An error has occured when opening the file";
+        exit(1); 
+    }
+  
+  // Loop should run until eof().
+  while(infile3.good())
+  {
+      //creates string and saves each line to input
+      string input;
+      infile3 >> input;
+      int delimiter =input.find(":");
+
+      string reg1 = input.substr(0,delimiter);
+      //puts instruction in
+      string reg2 = input.substr(delimiter + 1, input.length()-1);
+      myRegister[reg1]=reg2;
+      //increments number of instructions
+  }
+
+  infile3.close();
 }
 
 Register RegisterFile::getNum(string reg)
@@ -98,21 +126,13 @@ Register RegisterFile::getNum(string reg)
   return NumRegisters;
 }
 
-
  /*Given a string representing a MIPS register operand, returns the value associated
 with said register. If the string is not a valid register, returns the number of registers
 */
 std::string RegisterFile::readReg(string reg)
 {
-  for(int i = 0; i < 2*NumRegisters; i++){
-    if(myRegisters[i].name == reg){
-      return myRegisters[i].value;
+  return myRegister[reg];
     }
-   
-  }
-  return "";
-  
-}
 /*Given a string representing a MIPS register operand and a specified value, stores the value within
 said register.
 
@@ -130,14 +150,18 @@ std::string RegisterFile::writeReg(string reg, string val)
   return "";
 }
 
-/* void      printContents()
+
+
+
+void     RegisterFile::printContents()
 {
-    typename std::map<int,std::string>::const_iterator itr = myRegisters.begin();
     for(int i = 0; i < 31; i++)
     {
-        std::cout << i << ":" << *itr;
-        itr++;
+        string temp = to_string(i);
+        std::cout << i << ":" << myRegister[temp] << endl;
     }
       
 }
-*/
+
+
+
