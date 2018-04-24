@@ -302,7 +302,6 @@ int main ()
     // ShiftLeftTwo SL1();
     // ShiftLeftTwo SL2();
 
-    // DataMem dataMemory();
     
   
   // Loop should run until end of program
@@ -327,6 +326,7 @@ int main ()
     //FETCH 
     //Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
+    string hexaddr= Converter::hexify(addr);
     Instruction inst = im->getInstruction(addr); 
     if(debugMode)
     {
