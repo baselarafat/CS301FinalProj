@@ -194,5 +194,23 @@ static string binaryToHex(string binary)
     return hex;
 }
 
+std::string hexify(std::string s){
+		char* array= new char [10];
+		std::string mystring;
+	//Checking if it already has "0x" in the begging of the string 
+		if((s.at(0)=='0')&& (s.at(1)=='x'))
+			for(int i=0;i<s.length();i++)
+				array[i]=s.at(i);
+		else {
+			array[0]='0';
+			array[1]='x';
+			for(int i=0;i<s.length();i++)
+				array[i+2]=s.at(i);
+			}
+			mystring = array;
+		return mystring; 
+		}
+		
+
 };
 #endif

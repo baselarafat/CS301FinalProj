@@ -20,7 +20,8 @@ public :
  ~DataMemory();
 
 std::string getdata(std::string address);
-
+void dmemPrint();
+void dmemPrintFinal(string memOutputFile);
 
 
 };
