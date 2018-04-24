@@ -67,7 +67,7 @@ Instruction InstructionMemory::getInstruction(std::string   theAddress){
 	// }
  		return instructions[theAddress];
 }
-int InstructionMemory::hextoint(std::string s ){
+ int InstructionMemory::hextoint(std::string s ){
   stringstream ss (s);
   int x;
    ss>>hex>>x;
@@ -78,6 +78,13 @@ string InstructionMemory::inttohex(int x){
   ss<<hex<<x;
   std::string s = ss.str();
   return s;
+}
+std::string cvthex2Bin(std::string s){
+  int len = s.length();
+  int a = InstructionMemory::hextoint(s);
+  string bin = Parser::cvtInt2Bin(a,len);
+  return bin;
+
 }
 
  
