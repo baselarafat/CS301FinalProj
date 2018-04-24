@@ -10,7 +10,7 @@
 #include "ControlUnit.h"
 #include "ALU.h"
 #include "Multiplexor.h"
-// #include "Instruction.h"
+#include "Instruction.h"
 
 using namespace std;
 class Tester{
