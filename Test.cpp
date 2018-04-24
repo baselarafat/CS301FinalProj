@@ -371,13 +371,6 @@ int main ()
     int immediate = inst.getImmediate(); 
 
 
-    //goes to ALU control
-
-    // string functCode = instruction.substr(27, 5);
-    
-    // //gets what would be instruction for j types
-    // string jInstruction = instruction.substr(6, 26);
-
     string functCode = inst.getEncoding().substr(26, 6);
 
    
