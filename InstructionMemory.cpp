@@ -5,6 +5,7 @@
 #include "InstructionMemory.h"
 
 
+
 InstructionMemory::InstructionMemory()  {}
 InstructionMemory::InstructionMemory(string filename) {
 	Parser *parser;
@@ -23,15 +24,15 @@ InstructionMemory::InstructionMemory(string filename) {
     int instructionCounter = 0;
 
 
-	string input;
+	 string input;
     string address= "4000000"; //virtual address
     while( i.getOpcode() != UNDEFINED && instructionCounter <= 100){
         //Puts values into array, prints them for testing purposes.
         cout << i.getString() << endl;
         instructions[address]=i;
-        int x = hextoint(address);
+        int x =  Converter::hextoint(address);
      	  x=x+4;
-      	address=inttohex(x);
+      	address= Converter::inttohex(x);
         //cout << i.getEncoding() << endl;
         i = parser->getNextInstruction();
         instructionCounter++;
@@ -69,18 +70,25 @@ Instruction InstructionMemory::getInstruction(std::string   theAddress){
 	// }
  		return instructions[theAddress];
 }
-int InstructionMemory::hextoint(std::string s ){
-  stringstream ss (s);
-  int x;
-   ss>>hex>>x;
-   return x;
-}
-string InstructionMemory::inttohex(int x){
-  stringstream ss ;
-  ss<<hex<<x;
-  std::string s = ss.str();
-  return s;
-}
+//  int InstructionMemory::hextoint(std::string s ){
+//   stringstream ss (s);
+//   int x;
+//    ss>>hex>>x;
+//    return x;
+// }
+// string InstructionMemory::inttohex(int x){
+//   stringstream ss ;
+//   ss<<hex<<x;
+//   std::string s = ss.str();
+//   return s;
+// }
+// std::string cvthex2Bin(std::string s){
+//   int len = s.length();
+//   int a = InstructionMemory::hextoint(s);
+//   string bin = Parser::cvtInt2Bin(a,len);
+//   return bin;
+
+// }
 
  
  

@@ -9,6 +9,8 @@
 #include <fstream>
 #include "Instruction.h"
 #include "Parser.h"
+#include "Converter.h"
+
 using namespace std;
 class InstructionMemory{
 
@@ -21,8 +23,8 @@ public :
  ~InstructionMemory();
 
 Instruction getInstruction(std::string address);
-int hextoint(std::string s );
-std::string inttohex(int x);
+
+
 
 
 };

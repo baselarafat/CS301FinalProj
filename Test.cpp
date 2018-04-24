@@ -11,6 +11,7 @@
 #include "ALU.h"
 #include "Multiplexor.h"
 #include "Instruction.h"
+#include "Converter.h"
 
 using namespace std;
 class Tester{
@@ -282,6 +283,7 @@ int main ()
 
    OpcodeTable opt = OpcodeTable();
 
+
     // SignExtend signExtend();
 
     // ShiftLeftTwo SL1();
@@ -320,6 +322,8 @@ int main ()
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
+    std::string binaddre = Converter::cvthex2Bin(addr);
+    std::cout<<addr<<std::endl; 
     //Adds 4 to current address and stores the result.
     ALU1->setInput_1("10");
     ALU1->setInput_2("10");
@@ -367,9 +371,16 @@ int main ()
 
 
     //goes to ALU control
+
+    // string functCode = instruction.substr(27, 5);
+    
+    // //gets what would be instruction for j types
+    // string jInstruction = instruction.substr(6, 26);
+
     string functCode = inst.getEncoding().substr(26, 6);
 
    
+
     
     if(debugMode)
     {
