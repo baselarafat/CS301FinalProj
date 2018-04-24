@@ -141,13 +141,18 @@ then the values could be changed
 */
 std::string RegisterFile::writeReg(string reg, string val)
 {
-  for(int i = 0; i < 2*NumRegisters; i++){
-    if(myRegisters[i].name == reg){
-      myRegisters[i].value = val;
-    return myRegisters[i].value;
-    }
-  }
-  return "";
+  temp[reg] = myRegister[reg];
+  myRegister.insert(std::make_pair(reg, val));
+  return temp[reg];
+
+
+  // for(int i = 0; i < 2*NumRegisters; i++){
+  //   if(myRegisters[i].name == reg){
+  //     myRegisters[i].value = val;
+  //   return myRegisters[i].value;
+  //   }
+  // }
+  // return "";
 
 }
 
