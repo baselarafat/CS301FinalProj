@@ -141,8 +141,8 @@ int main ()
   //int used to store # of instructions, must be <= 100
   int numOfMemcells = 0;
   DataMemory* dm = new DataMemory (dataMemoryFile);
-  string memdata = dm->getdata("10000000");
-  //std::cout<<memdata<<std::endl;
+  string memdata = dm->getdata("0x10000000");
+  // std::cout<<memdata<<std::endl;
 
   //dm->dmemPrint();
   //map<string,string>::iterator it = dm->mem.begin();
