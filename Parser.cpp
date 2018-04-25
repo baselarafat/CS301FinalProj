@@ -336,7 +336,9 @@ string Parser::encode(Instruction i)
     case JTYPE :
       // convert op code, immediate to binary and concatenate string for proper order
       encoded += opTable.getOpcodeField(op);
+      cout << opTable.getOpcodeField(op) << endl;
       encoded += cvtInt2BinString(imm, 26);
+      cout << imm << endl;
       return encoded;
       
   }

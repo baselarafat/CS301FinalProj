@@ -180,7 +180,7 @@ int main ()
   //In this example I'm getting the in
 
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    Instruction i = im->getInstruction("0x40000008");
+    Instruction i = im->getInstruction("0x04000008");
     string s = i.getString();
     cout<<s<<endl;
 
@@ -189,7 +189,7 @@ int main ()
  
     //Sets first address at the start and creates Program Counter Object
     
-    string firstAddress = "40000000";
+    string firstAddress = "04000000";
     ProgramCounter pc(firstAddress);
     
 
@@ -468,20 +468,26 @@ int main ()
      if(control->getMemWrite() == 1)
     {
       string hexMemWrite = Converter::binaryToHex(alu3Result);
+      
+      string hexMemWriteFinal = Converter::hexify(hexMemWrite);
 
       // valAtReg2 is value to be written
       // address to be written to is alu3 result(needs to be converted to hex)
-      dm->writeMem(hexMemWrite, valAtReg2);
+      dm->writeMem(hexMemWriteFinal, valAtReg2);
       
     }
     //sends result of the alu to the 3rd multiplexor
-    mux3->setFirstInput(alu3Result);
+    string alu3ResultInHex = Converter::binaryToHex(alu3Result);
+    mux3->setFirstInput(alu3ResultInHex);
     if(control->getMemRead() == 1)
     {
        //runs if op uses a memory read, and sends value to the 3rd multiplexor
        //aluresult needs to be translated to hex
        string alu3ResultHex = Converter::binaryToHex(alu3Result);
-       string dataFromMem = dm->getdata(alu3ResultHex);
+       string finalHexMemRead = Converter::hexify(alu3ResultHex);
+
+       string dataFromMem = dm->getdata(finalHexMemRead);
+       
        mux3->setSecondInput(dataFromMem);
       
       if(debugMode)
@@ -503,12 +509,12 @@ int main ()
           cout << "Value being written to reg " << writeData << endl;
       }
 
-      string writeDataHex = Converter::binaryToHex(writeData);
+      //so binary can be changed to int
       bitset<5> writebit (writeRegister);
       int writeInt = writebit.to_ulong();
       
       cout << "Reg before register write: " << regFile->readReg(to_string(writeInt)) << endl;
-      regFile->writeReg(to_string(writeInt), writeDataHex);
+      regFile->writeReg(to_string(writeInt), writeData);
 
       if(debugMode)
       {
@@ -567,6 +573,7 @@ int main ()
 
 
     //Updates program counter with correct address
+
     pc.moveAddressTo(hexFinalAddress);
 
     //prints the register memory and the datamemory after each instruction if true.
