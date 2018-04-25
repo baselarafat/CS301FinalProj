@@ -356,7 +356,7 @@ int main ()
         cout <<  "Testing values in read registers and the write register after mux" << endl;
         cout <<  "Value in read reg1: " << valAtReg1 << endl;
         cout <<  "Value in read reg2: " << valAtReg2 << endl;
-        cout <<  "Value in write register: " << writeRegister << endl;
+        cout <<  "Value of write register: " << writeRegister << endl;
      }
 
     
@@ -377,7 +377,7 @@ int main ()
        string aluInput = mux2->mux();
 
        ALU3->setInput_1(valAtReg1Bin);
-       ALU3->setInput_2(valAtReg2Bin);
+       ALU3->setInput_2(aluInput);
 
 
       if(debugMode)
