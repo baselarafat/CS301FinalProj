@@ -154,14 +154,6 @@ int main ()
     //Parser is run through instruction memory to initializes instructions
     // Initializes the instruction memory with the input file.
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    if(debugMode)
-    {
-      cout << "Testing third instruction slot to make sure instruction memory
-      was initialized correctly." << endl;
-      Instruction i = im->getInstruction("0x04000008");
-      string s = i.getString();
-      cout<<s<<endl;
-    }
 
     //Sets first address at the start and creates Program Counter Object
     string firstAddress = "04000000";
