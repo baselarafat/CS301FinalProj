@@ -452,10 +452,11 @@ int main ()
     //if there is a memory write (sw) it occurs here
      if(control->getMemWrite() == 1)
     {
-        
+      string hexMemWrite = Converter::binaryToHex(alu3Result);
+
       // valAtReg2 is value to be written
       // address to be written to is alu3 result(needs to be converted to hex)
-      dm->writeMem(Converter::binaryToHex(alu3Result), valAtReg2);
+      dm->writeMem(hexMemWrite, valAtReg2);
       
     }
     //sends result of the alu to the 3rd multiplexor
@@ -463,7 +464,9 @@ int main ()
     if(control->getMemRead() == 1)
     {
        //runs if op uses a memory read, and sends value to the 3rd multiplexor
-       string dataFromMem = dm->getdata(alu3Result);
+       //aluresult needs to be translated to hex
+       string alu3ResultHex = Converter::binaryToHex(alu3Result);
+       string dataFromMem = dm->getdata(alu3ResultHex);
        mux3->setSecondInput(dataFromMem);
       
       if(debugMode)
