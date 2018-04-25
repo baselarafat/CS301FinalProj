@@ -25,7 +25,7 @@ InstructionMemory::InstructionMemory(string filename) {
 
 
 	  string input;
-    string address= "4000000"; //virtual address
+    string address= "40000000"; //virtual address
    
    
    
@@ -64,7 +64,7 @@ InstructionMemory::InstructionMemory(string filename) {
 
 InstructionMemory::~InstructionMemory() {}
 
-Instruction InstructionMemory::getInstruction(std::string   theAddress){
+Instruction InstructionMemory::getInstruction(std::string theAddress){
 	// std::string Instruction = thearray[10][1];
 	// for(int i=0;i<100;i++){
 	// 	Instruction = thearray[i][1];
@@ -72,6 +72,20 @@ Instruction InstructionMemory::getInstruction(std::string   theAddress){
 	// 		Instruction = thearray[i][1];
 	// }
  		return instructions[theAddress];
+}
+
+bool InstructionMemory::isValidInstruction(std::string theAddress)
+{
+   std::map<string, Instruction>::const_iterator itr = instructions.find(theAddress);
+   if(itr == instructions.end() || instructions[theAddress].getOpcode() == UNDEFINED)
+   {
+     return false;
+   }
+   else 
+  {
+    return true;
+  }
+
 }
 //  int InstructionMemory::hextoint(std::string s ){
 //   stringstream ss (s);
