@@ -43,7 +43,7 @@ ifstream infile;
 DataMemory::~DataMemory() {}
 
 std::string DataMemory::getdata(std::string   theAddress){
-	
+	  
  		return mem[theAddress];
 }
 

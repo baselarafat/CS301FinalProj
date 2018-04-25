@@ -443,12 +443,14 @@ int main ()
     mux3->setFirstInput(alu3ResultInHex);
     if(control->getMemRead() == 1)
     {
+      cout << "hey" << endl;
        //runs if op uses a memory read, and sends value to the 3rd multiplexor
        //aluresult needs to be translated to hex
        string alu3ResultHex = Converter::binaryToHex(alu3Result);
        string finalHexMemRead = Converter::hexify(alu3ResultHex);
 
        string dataFromMem = dm->getdata(finalHexMemRead);
+       cout << dataFromMem << endl;
        dataFromMem = dataFromMem.substr(2);
 
        mux3->setSecondInput(dataFromMem);
