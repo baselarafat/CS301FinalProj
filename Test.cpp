@@ -24,13 +24,9 @@ class Tester{
 int main ()
 {
   
-  //writting code to read the configuration file
-  //will read contents of the file and save information set up
-  //to be used by the program.
-
-  //This should be changed to take command line argument (I think?)
+  //The following code will read the config file
   string configFile = "input.config";
-  
+  //initialized varibales
   string programInputFile;
   string dataMemoryFile;
   string registerFile;
@@ -41,10 +37,7 @@ int main ()
   bool printMemoryContents;
   bool writeToFile;
 
-
-
   ifstream infile1;
-  
   //opens file then make sure it was successful
   infile1.open(configFile);
     if (!infile1.is_open()) {
@@ -151,17 +144,6 @@ int main ()
     //it++;
   //}
   //dm->dmemPrintFinal("output.mem");
-
-  // RegisterFile registerFile();
-
-
-  // //For loops runs so the values in arrayOfRegisters get 
-  // //stored into the Register file
-  // for(int i = 0; i < numOfRegisters; i++)
-  // {
-  //     registerFile.writeReg(arrayOfRegisters[i][0], arrayOfRegisters[i][1])
-  // }
-
  
  // }
 //------------------------------------------------------------------//
@@ -169,9 +151,7 @@ int main ()
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
-
-
-
+    //Parser is run through instruction memory to initializes instructions
     // Initializes the instruction memory with the input file.
     InstructionMemory* im = new InstructionMemory (programInputFile);
     if(debugMode)
@@ -183,8 +163,6 @@ int main ()
       cout<<s<<endl;
     }
 
-
- 
     //Sets first address at the start and creates Program Counter Object
     string firstAddress = "04000000";
     ProgramCounter pc(firstAddress);
@@ -430,7 +408,6 @@ int main ()
               alu3Result = ALU3->getResult();
           }
            
-    
     } else {
         //runs for lw and sw 
         ALU3->setOperation("add");
@@ -578,11 +555,8 @@ int main ()
        
        cout << "Printing the contents of the data memory" << endl;
        dm->dmemPrint();
-
     }
 
   }
-
   return 0;
-
 }

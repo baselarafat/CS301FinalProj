@@ -28,7 +28,6 @@ InstructionMemory::InstructionMemory(string filename) {
     string address= "04000000"; //virtual address
    
    
-   
     while( i.getOpcode() != UNDEFINED && instructionCounter <= 100){
         //Puts values into array, prints them for testing purposes.
         cout << i.getString() << endl;
