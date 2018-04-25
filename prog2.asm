@@ -1,5 +1,6 @@
+#This works
 add	$3, $4, $8
-addi	$2, $1, 100
+addi	$2, $1, 0x100
 sub	$2, $3, $9
 slt	$1, $2, $10
 slt	$1, $2, $3
