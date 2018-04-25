@@ -11,6 +11,7 @@
 #include <vector>
 #include <sstream>
 #include <stdlib.h>
+#include "Converter.h"
 using namespace std;
 
 /* This class reads in a MIPS assembly file and checks its syntax.  If
@@ -66,6 +67,8 @@ class Parser{
 
   // Converts a string to an integer.  Assumes s is something like "-231" and produces -231
   int  cvtNumString2Number(string s);
+
+  string cvtInt2BinString(int i, int bits);
 
 
   // Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding

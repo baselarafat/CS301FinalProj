@@ -81,6 +81,7 @@ class ALU {
 		// @param 	bin 	32-bit binary string to convert
 		// @return 	32-bit binary string representation of given input
 		string computeTwosComplement(string bin);
+		string lessThan(string input1, string input2);
 
 };
 
