@@ -343,6 +343,7 @@ string Parser::handleJtype(Instruction i){
   Opcode op = i.getOpcode();
   opcStr = opcTb.getOpcodeField(op);
   opcStr += cvtInt2Bin(i.getImmediate(), 26);
+  cout << i.getImmediate() << endl;
   opcStr += opcTb.getFunctField(op);
   return opcStr;
 }
