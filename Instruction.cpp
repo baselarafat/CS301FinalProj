@@ -40,7 +40,6 @@ void Instruction::setValues(Opcode op, Register rs, Register rt, Register rd, in
   //    myImmediate = imm;  
 
 }
-
 string Instruction::getString()
 // Returns a string which represents all of the fields 
 {

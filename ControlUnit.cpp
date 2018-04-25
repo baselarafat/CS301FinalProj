@@ -30,6 +30,7 @@ void ControlUnit::setValues(std::string opcode)
 	if(opcode == "001000")
 	{
 		aluSrc = true;
+		regWrite = true;
 		// I think? this means add
 		aluOp0 = false;
 		aluOp1 = false;

@@ -339,5 +339,5 @@ string Parser::encode(Instruction i)
       break;
   }
 
-  return encoded;
+
 }

@@ -13,6 +13,7 @@
 #include "Instruction.h"
 #include "ShiftLeftTwo.h"
 #include "SignExtend.h"
+#include "Converter.h"
 
 using namespace std;
 class Tester{
@@ -179,7 +180,7 @@ int main ()
   //In this example I'm getting the in
 
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    Instruction i = im->getInstruction("0x4000008");
+    Instruction i = im->getInstruction("0x40000008");
     string s = i.getString();
     cout<<s<<endl;
 
@@ -188,7 +189,7 @@ int main ()
  
     //Sets first address at the start and creates Program Counter Object
     
-    string firstAddress = "4000000";
+    string firstAddress = "40000000";
     ProgramCounter pc(firstAddress);
     
 
@@ -215,8 +216,9 @@ int main ()
     
   
   // Loop should run until end of program
-  //while(false)
-  //{
+  while(im->isValidInstruction(pc.getCurrentAddress())) 
+  {
+  
 
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
@@ -225,11 +227,15 @@ int main ()
        while(true)
        {
           string x;
-          cout << "Please enter y to move to the next step in the Program!" << endl;
+          cout << "Please enter y to move to the next step in the Program or enter n to exit the Program!" << endl;
           cin >> x;
           if(x == "y")
           { 
             break;
+          }
+          if(x == "n")
+          {
+            exit(1);
           }
       }
     }
@@ -274,7 +280,9 @@ int main ()
     mux4->setFlow(control->getJump());
     // mux 5 is set by a combination of branch and the result of ALU
     
-    //always goes to read regester1
+    cout << "Instruction: " << inst.getEncoding() << endl;
+
+    //always goes to read register1
     string reg1 = inst.getEncoding().substr(6, 5);
     
     //goes to read register 2 and mux1
@@ -290,8 +298,8 @@ int main ()
 
 
     //get j type address
-    string jAddress = inst.getEncoding().substr(6, 25);
-    cout << jAddress << " " << jAddress.length();
+    string jAddress = inst.getEncoding().substr(6, 26);
+    cout << "Address for Jump: " << jAddress << endl;
 
 
     //function code 
@@ -315,7 +323,8 @@ int main ()
     //test for shift left 
     if(debugMode)
     {
-       cout << jInstSl2 << endl;
+      cout << "Below is the jump instruction shifted left 2" << endl;
+      cout << jInstSl2 << endl;
     }
 
       mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
@@ -448,12 +457,24 @@ int main ()
       mux5->setFlow(0);
     }
 
+    //if there is a memory write (sw) it occurs here
+     if(control->getMemWrite() == 1)
+    {
+      string hexMemWrite = Converter::binaryToHex(alu3Result);
+
+      // valAtReg2 is value to be written
+      // address to be written to is alu3 result(needs to be converted to hex)
+      dm->writeMem(hexMemWrite, valAtReg2);
+      
+    }
     //sends result of the alu to the 3rd multiplexor
     mux3->setFirstInput(alu3Result);
     if(control->getMemRead() == 1)
     {
        //runs if op uses a memory read, and sends value to the 3rd multiplexor
-       string dataFromMem = dm->getdata(alu3Result);
+       //aluresult needs to be translated to hex
+       string alu3ResultHex = Converter::binaryToHex(alu3Result);
+       string dataFromMem = dm->getdata(alu3ResultHex);
        mux3->setSecondInput(dataFromMem);
       
       if(debugMode)
@@ -462,6 +483,7 @@ int main ()
       }
 
     }
+
 
     //checks to see if it is writting to a register from mux3.
     if(control->getRegWrite() == 1)
@@ -487,6 +509,7 @@ int main ()
       }
 
     }
+
 
 
     //Shifts the previously exstended address by 2 bits(needed for b and j)
@@ -539,7 +562,19 @@ int main ()
     //Updates program counter with correct address
     pc.moveAddressTo(hexFinalAddress);
 
-  // }
+    //prints the register memory and the datamemory after each instruction if true.
+    if(printMemoryContents)
+    {
+       cout << "Printing the contents of the registers" << endl;
+       regFile->printContents();
+       
+       cout << "Printing the contents of the data memory" << endl;
+       dm->dmemPrint();
+
+    }
+
+
+  }
 
 
   //Testing stuff 

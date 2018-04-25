@@ -159,7 +159,7 @@ std::string RegisterFile::writeReg(string reg, string val)
 
 void     RegisterFile::printContents()
 {
-    for(int i = 0; i < 31; i++)
+    for(int i = 0; i <= 31; i++)
     {
         string temp = to_string(i);
         std::cout << i << ":" << myRegister[temp] << endl;

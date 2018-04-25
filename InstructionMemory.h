@@ -24,6 +24,8 @@ public :
 
 Instruction getInstruction(std::string address);
 
+bool isValidInstruction(std::string theAddress);
+
 
 
 
