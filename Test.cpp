@@ -175,20 +175,20 @@ int main ()
 
 
 
-
-//This is an example of how to get Instructions from the Instruction from the InstructionMemory 
-  //In this example I'm getting the in
-
+    // Initializes the instruction memory with the input file.
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    Instruction i = im->getInstruction("0x04000008");
-    string s = i.getString();
-    cout<<s<<endl;
+    if(debugMode)
+    {
+      cout << "Testing third instruction slot to make sure instruction memory
+      was initialized correctly." << endl;
+      Instruction i = im->getInstruction("0x04000008");
+      string s = i.getString();
+      cout<<s<<endl;
+    }
 
 
-    std::cout<<std::endl;
  
     //Sets first address at the start and creates Program Counter Object
-    
     string firstAddress = "04000000";
     ProgramCounter pc(firstAddress);
     
@@ -209,13 +209,13 @@ int main ()
     ALU* ALU2 = new ALU();// ADD and ALU Result
     ALU* ALU3 = new ALU();// ALU and ALU Result
 
-    //OpcodeTable opt = OpcodeTable();
 
     RegisterFile* regFile = new RegisterFile(registerFile);
 
     
   
-  // Loop should run until end of program
+  // Loop should run until end of program, ends when the 
+  // instruction memory gets to an invalid program.
   while(im->isValidInstruction(pc.getCurrentAddress())) 
   {
   
@@ -249,6 +249,7 @@ int main ()
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
+
     std::string binaddre = Converter::hexToBinary(addr);
     std::cout<<binaddre<<std::endl;
    
@@ -263,9 +264,7 @@ int main ()
        cout << "Result of adding 4 to the address: " << add4ToAddress << endl;
     }
 
-    //retrives opcode from instruction
-
-    // Opcode op =  opt.getOpcode(inst.getString());
+    
    
     //sets values to false to reset control unit, then calls method
     //to set control values with opcode.
@@ -280,7 +279,10 @@ int main ()
     mux4->setFlow(control->getJump());
     // mux 5 is set by a combination of branch and the result of ALU
     
-    cout << "Instruction: " << inst.getEncoding() << endl;
+    if(debugMode)
+    {
+      cout << "Instruction (as string of 32 bits): " << inst.getEncoding() << endl;
+    }
 
     //always goes to read register1
     string reg1 = inst.getEncoding().substr(6, 5);
@@ -294,9 +296,6 @@ int main ()
     //gets last15 didgets of instruction
     string immediate = inst.getEncoding().substr(17, 15); 
 
-    cout << immediate << endl;
-
-
     //get j type address
     string jAddress = inst.getEncoding().substr(6, 26);
     cout << "Address for Jump: " << jAddress << endl;
@@ -305,9 +304,6 @@ int main ()
     //function code 
     string functCode = inst.getEncoding().substr(26, 6);
 
-
-
-    
     if(debugMode)
     {
        cout << "Printing: reg1, reg2, reg3, immediate, functCode, jAddress" << endl;
@@ -317,7 +313,7 @@ int main ()
     }
 
 
-    //Shifts the instruction to the left
+    //Shifts the value to the left (value used for address in jtype)
     string jInstSl2 = ShiftLeftTwo::Shift(jAddress); 
     
     //test for shift left 
@@ -327,7 +323,7 @@ int main ()
       cout << jInstSl2 << endl;
     }
 
-      mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
+       mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
 
        //Sends reg2 and reg3 to mux, based on control 
 

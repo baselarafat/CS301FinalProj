@@ -69,6 +69,8 @@ void ControlUnit::setValues(std::string opcode)
 	
 }
 
+//The following accessors return 1 if the control 
+// is set to true and 0 if false.
 int ControlUnit::getRegDest()
 {
 	if(regDest)
