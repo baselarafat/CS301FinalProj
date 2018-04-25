@@ -26,7 +26,6 @@ OpcodeTable::OpcodeTable()
   // myArray[UNDEFINED].name = "undefined";  myArray[UNDEFINED].numOps = -1;   myArray[UNDEFINED].rdPos = -1;  myArray[UNDEFINED].rsPos = -1;  myArray[UNDEFINED].rtPos = -1;   myArray[UNDEFINED].immPos = -1; myArray[UNDEFINED].op_field = ""; myArray[UNDEFINED].funct_field = "";
 
 }
-
 Opcode OpcodeTable::getOpcode(string str)
 // Given a valid MIPS assembly mnemonic, returns an Opcode which represents a 
 // template for that instruction.

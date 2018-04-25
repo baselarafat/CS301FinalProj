@@ -179,7 +179,7 @@ int main ()
   //In this example I'm getting the in
 
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    Instruction i = im->getInstruction("0x4000008");
+    Instruction i = im->getInstruction("0x40000008");
     string s = i.getString();
     cout<<s<<endl;
 
@@ -188,7 +188,7 @@ int main ()
  
     //Sets first address at the start and creates Program Counter Object
     
-    string firstAddress = "4000000";
+    string firstAddress = "40000000";
     ProgramCounter pc(firstAddress);
     
 
@@ -215,8 +215,9 @@ int main ()
     
   
   // Loop should run until end of program
-  //while(false)
-  //{
+  while(im->isValidInstruction(pc.getCurrentAddress())) 
+  {
+  
 
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
@@ -561,7 +562,8 @@ int main ()
 
     }
 
-  // }
+
+  }
 
 
   //Testing stuff 
