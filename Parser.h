@@ -65,6 +65,8 @@ class Parser{
   // Returns true if s represents a valid decimal integer
   bool isNumberString(string s);
 
+  static int isNumberhex(string s );
+
   // Converts a string to an integer.  Assumes s is something like "-231" and produces -231
   int  cvtNumString2Number(string s);
 

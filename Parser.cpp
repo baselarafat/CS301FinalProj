@@ -157,21 +157,30 @@ void Parser::getTokens(string line,
   return;
 }
 
-bool Parser::isNumberString(string s)
+ int Parser::isNumberhex(std::string s ){
+   int len = s.length();
+  if(len>2){
+  if((s.at(0)=='0') && (s.at(1)=='x')){
+    stringstream ss (s);
+    int x;
+    ss>>hex>>x;
+    return x;
+}
+}
+return -1;
+}
+ bool Parser::isNumberString(string s)
   // Returns true if s represents a valid decimal integer
 {
-
   int len = s.length();
  if (len == 0) return false;
-  if((s.at(0)==0) && (s.at(1)=='x')&& (len > 2)){
-    for(int i=2;i<len;i++)
-    if(!isDigit(s.at(i))) return false ;
-      else {
-        return true;
-      }
+  if(len>2 && s.at(1)=='x'){
+    int a = isNumberhex(s);
+    if(a==-1)
+      return false;
+    else return true ;
   }
- 
-  else if ((isSign(s.at(0)) && len > 1) || isDigit(s.at(0)))
+   if (((s.at(0)=='-') && len > 1) || isdigit(s.at(0)))
   {
 
     // check remaining characters
@@ -184,7 +193,6 @@ bool Parser::isNumberString(string s)
   return false;
 }
 
-
 int Parser::cvtNumString2Number(string s)
   // Converts a string to an integer.  Assumes s is something like "-231" and produces -231
 {
@@ -194,23 +202,15 @@ int Parser::cvtNumString2Number(string s)
       << endl;
     return 0;
   }
-  int k = 1;
-  int val = 0;
-  for (int i = s.length()-1; i>0; i--)
-  {
-    char c = s.at(i);
-    val = val + k*((int)(c - '0'));
-    k = k*10;
+  int len = s.length();
+  if(len>2 && s.at(1)=='x'){
+    int a = isNumberhex(s);
+    return a;
   }
-  if (isSign(s.at(0)))
-  {
-    if (s.at(0) == '-') val = -1*val;
-  }
-  else
-  {
-    val = val + k*((int)(s.at(0) - '0'));
-  }
-  return val;
+  stringstream ss(s);
+  int x;
+  ss>>x;
+  return x;
 }
 
 
@@ -261,21 +261,22 @@ bool Parser::getOperands(Instruction &i, Opcode o,
     if(isNumberString(operand[imm_p])){  // does it have a numeric immediate field?
      
       imm = cvtNumString2Number(operand[imm_p]);
-      if(((abs(imm) & 0xFFFF0000)<<1))  // too big a number to fit
-        return false;
+
+      // if(((abs(imm) & 0xFFFF0000)<<1))
+               // too big a number to fit
+        // return false;
     }
     else{ 
-        if(opcodes.isIMMLabel(o)){ // Can the operand be a hex label?
-      // Convert the hex label to an int
-imm = Converter::hextoint(operand[imm_p]);
-cout << "Immediate: " << imm << endl;
-// imm = stoi(operand[imm_p], nullptr, 16);
-// myAddress += 4; // increment the label generator
-}
-  else // There is an error
-return false;
-}
-}
+      if(opcodes.isIMMLabel(o)){  // Can the operand be a label?
+        // Assign the immediate field an address
+        imm = myLabelAddress;
+        myLabelAddress += 4;  // increment the label generator
+      }
+      else  // There is an error
+        return false;
+    }
+
+  }
 
   i.setValues(o, rs, rt, rd, imm);
   return true;
@@ -342,6 +343,7 @@ string Parser::encode(Instruction i)
       return encoded;
       
   }
+
 
 
 }
