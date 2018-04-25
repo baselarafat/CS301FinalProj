@@ -473,6 +473,7 @@ int main ()
 
       // valAtReg2 is value to be written
       // address to be written to is alu3 result(needs to be converted to hex)
+      valAtReg2 = Converter::hexify(valAtReg2);
       dm->writeMem(hexMemWriteFinal, valAtReg2);
       
     }
@@ -487,7 +488,8 @@ int main ()
        string finalHexMemRead = Converter::hexify(alu3ResultHex);
 
        string dataFromMem = dm->getdata(finalHexMemRead);
-       
+       dataFromMem = dataFromMem.substr(2);
+
        mux3->setSecondInput(dataFromMem);
       
       if(debugMode)
@@ -514,6 +516,7 @@ int main ()
       int writeInt = writebit.to_ulong();
       
       cout << "Reg before register write: " << regFile->readReg(to_string(writeInt)) << endl;
+    
       regFile->writeReg(to_string(writeInt), writeData);
 
       if(debugMode)
