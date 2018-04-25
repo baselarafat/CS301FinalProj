@@ -382,7 +382,8 @@ int main ()
 
       if(debugMode)
       {
-        cout << "Second input for ALU3: " << aluInput << endl;
+        cout << "FirstInput  of ALU3: " << valAtReg1Bin << endl;
+        cout << "Secondinput of ALU3: " << aluInput << endl;
       }
 
     //The following code acts as the ALU control for ALU3
