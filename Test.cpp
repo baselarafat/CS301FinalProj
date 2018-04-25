@@ -227,11 +227,15 @@ int main ()
        while(true)
        {
           string x;
-          cout << "Please enter y to move to the next step in the Program!" << endl;
+          cout << "Please enter y to move to the next step in the Program or enter n to exit the Program!" << endl;
           cin >> x;
           if(x == "y")
           { 
             break;
+          }
+          if(x == "n")
+          {
+            exit(1);
           }
       }
     }
