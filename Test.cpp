@@ -274,7 +274,7 @@ int main ()
     mux4->setFlow(control->getJump());
     // mux 5 is set by a combination of branch and the result of ALU
     
-    //always goes to read regester1
+    //always goes to read register1
     string reg1 = inst.getEncoding().substr(6, 5);
     
     //goes to read register 2 and mux1
