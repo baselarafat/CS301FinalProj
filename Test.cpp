@@ -280,6 +280,8 @@ int main ()
     mux4->setFlow(control->getJump());
     // mux 5 is set by a combination of branch and the result of ALU
     
+    cout << "Instruction: " << inst.getEncoding() << endl;
+
     //always goes to read register1
     string reg1 = inst.getEncoding().substr(6, 5);
     
@@ -296,8 +298,8 @@ int main ()
 
 
     //get j type address
-    string jAddress = inst.getEncoding().substr(6, 25);
-    cout << jAddress << " " << jAddress.length();
+    string jAddress = inst.getEncoding().substr(6, 26);
+    cout << "Address for Jump: " << jAddress << endl;
 
 
     //function code 
@@ -321,7 +323,8 @@ int main ()
     //test for shift left 
     if(debugMode)
     {
-       cout << jInstSl2 << endl;
+      cout << "Below is the jump instruction shifted left 2" << endl;
+      cout << jInstSl2 << endl;
     }
 
       mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
