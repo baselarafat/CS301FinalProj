@@ -74,9 +74,8 @@ int main ()
       //gets the part of the input after the equals sign
       configResult = configInput.substr(pointerToEquals);
 
-
       //this block of code adds the values from the config file to 
-      //the appropriate variable.
+      //the appropriate variables.
       switch(i) 
       {
           case 0 :
@@ -136,8 +135,6 @@ int main ()
     }
 
     infile1.close();
-
- 
 
   //int used to store # of instructions, must be <= 100
   int numOfMemcells = 0;
@@ -213,13 +210,11 @@ int main ()
     RegisterFile* regFile = new RegisterFile(registerFile);
 
     
-  
   // Loop should run until end of program, ends when the 
   // instruction memory gets to an invalid program.
   while(im->isValidInstruction(pc.getCurrentAddress())) 
   {
   
-
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
     if(outputMode == "single_step"){
@@ -264,8 +259,6 @@ int main ()
        cout << "Result of adding 4 to the address: " << add4ToAddress << endl;
     }
 
-    
-   
     //sets values to false to reset control unit, then calls method
     //to set control values with opcode.
     control->setToZero();
@@ -325,24 +318,27 @@ int main ()
 
        mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
 
-       //Sends reg2 and reg3 to mux, based on control 
-
+       //Sends reg2 and reg3 to mux1
        mux1->setFirstInput(reg2);
        mux1->setSecondInput(reg3);
 
-       //write register gets value from  mux1
+       //write register gets value from mux1
+       //if a writeReg occurs this stores the register to be written to
        string writeRegister = mux1->mux();
 
+       //Converstion to bitset so a conversion to int can be done
        bitset<5> reg1bit (reg1);
        bitset<5> reg2bit (reg2);
 
+       //Converts from bitset to integer
        int reg1int = reg1bit.to_ulong();
        int reg2int = reg2bit.to_ulong();
 
-
+       //Readreg accepts decimal value as a string, so we use to string
        string valAtReg1 = regFile->readReg(to_string(reg1int));
        string valAtReg2 = regFile->readReg(to_string(reg2int));
        
+       //Converts values from hex (how its stored in register) to binary
        string valAtReg1Bin = Converter::hexToBinary(valAtReg1);
        string valAtReg2Bin = Converter::hexToBinary(valAtReg2);
 
@@ -354,8 +350,8 @@ int main ()
         cout <<  "Value in read reg2: " << valAtReg2 << endl;
         cout <<  "Value of write register: " << writeRegister << endl;
      }
-
-    
+      
+       //sign extend accepts bitset.
        bitset<16> immbit (immediate);
        string extended = SignExtend::Extend(immbit);
        if(debugMode)
@@ -495,7 +491,6 @@ int main ()
 
     }
 
-
     //checks to see if it is writting to a register from mux3.
     if(control->getRegWrite() == 1)
     {
@@ -521,8 +516,6 @@ int main ()
       }
 
     }
-
-
 
     //Shifts the previously exstended address by 2 bits(needed for b and j)
     string instructionShiftedLeft = ShiftLeftTwo::Shift(extended);
@@ -570,9 +563,7 @@ int main ()
           cout << "Address being sent to PC: " << hexFinalAddress << endl;
       }
 
-
     //Updates program counter with correct address
-
     pc.moveAddressTo(hexFinalAddress);
 
     //prints the control fields, register memory and datamemory 
@@ -590,34 +581,7 @@ int main ()
 
     }
 
-
   }
-
-
-  //Testing stuff 
-
-//   stringstream ss (s4);
-  
-//   for(int i=0;i<10;i++){
-//      int x;
-//     ss>>hex>>x;
-//   ss<<hex<<x;
-//   x=x+4;
-
-  
-//   string s5 =ss.str();
-//   std::cout<<hex<<x<<std::endl;
-
-//   std::cout<<mem.at(s5)<<std::endl;
-// }
-// string s4 ="4000000";
-// Tester t ;
-// for(int i=0;i<9;i++){
-// int x = t.hextoint(s4);
-// x=x+4;
-// s4 =t.inttohex(x);
-// std::cout<<instructions.at(s4)<<endl;
-// }
 
   return 0;
 

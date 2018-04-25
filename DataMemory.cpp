@@ -37,18 +37,13 @@ ifstream infile;
    }
 
   infile.close();
-	
-     
   
 }
 
 DataMemory::~DataMemory() {}
 
 std::string DataMemory::getdata(std::string   theAddress){
-	   
-    cout << "Called Get Data" << endl;
-    cout << "Address: " << theAddress << endl;
-    cout << "Returning: " << mem[theAddress] << endl;
+	
  		return mem[theAddress];
 }
 
@@ -80,9 +75,6 @@ void DataMemory::dmemPrintFinal(string memOutputFile)
  
  std::string DataMemory::writeMem(string address, string val)
 {
-  cout << "LOOK HERE!! MEM WRITE WAS CALLED" << endl;
-  cout << address << endl;
-  cout << val << endl;
   string temp = mem[address];
   //mem.insert(std::make_pair(address, val));
   mem[address] = val;
