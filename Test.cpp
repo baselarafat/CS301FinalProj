@@ -579,9 +579,13 @@ int main ()
 
     pc.moveAddressTo(hexFinalAddress);
 
-    //prints the register memory and the datamemory after each instruction if true.
+    //prints the control fields, register memory and datamemory 
+    //after each instruction if printMemoryContents is set to true.
     if(printMemoryContents)
     {
+       cout << "Printing Control Fields for last instuction" << endl;
+       control->printControl();
+
        cout << "Printing the contents of the registers" << endl;
        regFile->printContents();
        

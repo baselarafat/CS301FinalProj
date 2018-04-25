@@ -51,6 +51,8 @@ class ControlUnit
 
         int getAluOp1();
 
+        void printControl();
+
         
 };
 #endif

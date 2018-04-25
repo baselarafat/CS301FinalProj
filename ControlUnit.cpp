@@ -2,6 +2,8 @@
 #define __ControlUnit_CPP__
 
 #include "ControlUnit.h"
+#include <iostream>
+#include <string>
 
 ControlUnit::ControlUnit(){}
 
@@ -194,6 +196,8 @@ int ControlUnit::getAluOp1()
 	}
 }
 
+//Method that sets all values to 0, must be done prior to 
+//each instruction
 void ControlUnit::setToZero()
 {
 	this->regDest = false;
@@ -206,6 +210,24 @@ void ControlUnit::setToZero()
 	this->memWrite = false;
 	this->aluSrc = false;
 	this->regWrite = false;
+}
+
+//Method that prints out the contents of the Control
+void ControlUnit::printControl()
+{
+	std::cout << "RegDest: "  << getRegDest()  << std::endl;
+	std::cout << "Jump: "     << getJump()     << std::endl;
+	std::cout << "Branch: "   << getBranch()   << std::endl;
+	std::cout << "MemRead: "  << getMemRead()  << std::endl;
+	std::cout << "MemToReg: " << getmemToReg() << std::endl;
+	std::cout << "MemWrite: " << getMemWrite() << std::endl;
+	std::cout << "Alusrc: "   << getAluSrc()   << std::endl;
+	std::cout << "RegWrite: " << getRegWrite() << std::endl;
+	std::string operation  = std::to_string(getAluOp1());
+	std::string operation2 = std::to_string(getAluOp0());
+	operation.append(operation2);
+	std::cout << "ALUOp: " << operation << std::endl;
+
 }
 
 #endif    
