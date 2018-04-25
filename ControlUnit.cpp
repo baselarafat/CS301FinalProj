@@ -64,6 +64,7 @@ void ControlUnit::setValues(std::string opcode)
 		aluOp0 = true;
 		aluOp1 = false;
 	}
+	
 }
 
 int ControlUnit::getRegDest()
