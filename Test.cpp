@@ -448,6 +448,15 @@ int main ()
       mux5->setFlow(0);
     }
 
+    //if there is a memory write (sw) it occurs here
+     if(control->getMemWrite() == 1)
+    {
+        
+      // valAtReg2 is value to be written
+      // address to be written to is alu3 result(needs to be converted to hex)
+      dm->writeMem(Converter::binaryToHex(alu3Result), valAtReg2);
+      
+    }
     //sends result of the alu to the 3rd multiplexor
     mux3->setFirstInput(alu3Result);
     if(control->getMemRead() == 1)
@@ -462,6 +471,7 @@ int main ()
       }
 
     }
+
 
     //checks to see if it is writting to a register from mux3.
     if(control->getRegWrite() == 1)
@@ -487,6 +497,7 @@ int main ()
       }
 
     }
+
 
 
     //Shifts the previously exstended address by 2 bits(needed for b and j)
@@ -538,6 +549,17 @@ int main ()
 
     //Updates program counter with correct address
     pc.moveAddressTo(hexFinalAddress);
+
+    //prints the register memory and the datamemory after each instruction if true.
+    if(printMemoryContents)
+    {
+       cout << "Printing the contents of the registers" << endl;
+       regFile->printContents();
+       
+       cout << "Printing the contents of the data memory" << endl;
+       dm->dmemPrint();
+
+    }
 
   // }
 
