@@ -38,6 +38,7 @@ class Instruction{
   // Returns string representing the 32 binary encoding of MIPS instruction
   string getEncoding() { return myEncoding; };
 
+
  private:
   Opcode myOpcode;
   Register myRS;
