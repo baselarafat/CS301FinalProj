@@ -13,6 +13,7 @@
 #include "Instruction.h"
 #include "ShiftLeftTwo.h"
 #include "SignExtend.h"
+#include "Converter.h"
 
 using namespace std;
 class Tester{
