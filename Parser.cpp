@@ -2,6 +2,7 @@
 #include <bitset>
 #include <cmath>
 #include <string.h>
+#include <iostream>
 
 Parser::Parser(string filename)
   // Specify a text file containing MIPS assembly instructions. Function
@@ -20,6 +21,9 @@ Parser::Parser(string filename)
   else{
     string line;
     while( getline(in, line)){
+      int found = line.find("#");
+    if (found != std::string::npos)
+      continue;
       string opcode("");
       string operand[80];
       int operand_count = 0;
@@ -28,7 +32,9 @@ Parser::Parser(string filename)
 
       if(opcode.length() == 0 && operand_count != 0){
         // No opcode but operands
+        
         myFormatCorrect = false;
+
         break;
       }
 
@@ -36,12 +42,15 @@ Parser::Parser(string filename)
 
       if(o == UNDEFINED){
         // invalid opcode specified
+
         myFormatCorrect = false; 
+
         break;
       }
-     
+      ;
       bool success = getOperands(i, o, operand, operand_count);
       if(!success){
+
         myFormatCorrect = false;
         break;
       }
@@ -151,10 +160,20 @@ void Parser::getTokens(string line,
 bool Parser::isNumberString(string s)
   // Returns true if s represents a valid decimal integer
 {
+
   int len = s.length();
-  if (len == 0) return false;
-  if ((isSign(s.at(0)) && len > 1) || isDigit(s.at(0)))
+ if (len == 0) return false;
+  if((s.at(0)==0) && (s.at(1)=='x')&& (len > 2)){
+    for(int i=2;i<len;i++)
+    if(!isDigit(s.at(i))) return false ;
+      else {
+        return true;
+      }
+  }
+ 
+  else if ((isSign(s.at(0)) && len > 1) || isDigit(s.at(0)))
   {
+
     // check remaining characters
     for (int i=1; i < len; i++)
     {
@@ -214,6 +233,7 @@ bool Parser::getOperands(Instruction &i, Opcode o,
   int rd_p = opcodes.RDposition(o);
   int imm_p = opcodes.IMMposition(o);
 
+
   if(rs_p != -1){
     rs = registers.getNum(operand[rs_p]);
     if(rs == NumRegisters){
@@ -237,112 +257,87 @@ bool Parser::getOperands(Instruction &i, Opcode o,
   }
 
   if(imm_p != -1){
+  
     if(isNumberString(operand[imm_p])){  // does it have a numeric immediate field?
+     
       imm = cvtNumString2Number(operand[imm_p]);
       if(((abs(imm) & 0xFFFF0000)<<1))  // too big a number to fit
         return false;
     }
     else{ 
-      if(opcodes.isIMMLabel(o)){  // Can the operand be a label?
-        // Assign the immediate field an address
-        imm = myLabelAddress;
-        myLabelAddress += 4;  // increment the label generator
-      }
-      else  // There is an error
-        return false;
-    }
-
-  }
+        if(opcodes.isIMMLabel(o)){ // Can the operand be a hex label?
+      // Convert the hex label to an int
+imm = Converter::hextoint(operand[imm_p]);
+cout << "Immediate: " << imm << endl;
+// imm = stoi(operand[imm_p], nullptr, 16);
+// myAddress += 4; // increment the label generator
+}
+  else // There is an error
+return false;
+}
+}
 
   i.setValues(o, rs, rt, rd, imm);
   return true;
 }
-
+string Parser::cvtInt2BinString(int i, int bits)
+{
+  // cout << "pre-substring: " << std::bitset<26>(i).to_string() << endl;
+  if(bits != 26)
+  return bitset<26>(i).to_string().substr((26 - bits), 26); //to binary
+  else{
+    // Divides i by 4 to remove 2 most least significant bits
+    i = i/4;
+    return bitset<26>(i).to_string().substr((26 - bits), 26); //to binary
+  }
+  return "";
+}
 
 string Parser::encode(Instruction i)
   // Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
   // of that instruction.
 {
-  // Your code here
-  OpcodeTable opcTb;
-  Opcode op = i.getOpcode();
-  string opcStr = "";
+  // get all possible info for instruction
+  Register rs = i.getRS();
+  Register rt = i.getRT();
+  Register rd = i.getRD();
+  int imm   = i.getImmediate();
 
-  if(opcTb.getInstType(op) == RTYPE){
-    opcStr = handleRtype(i);
+  string encoded = "";
+
+  OpcodeTable opTable;
+  Opcode op = i.getOpcode();              // get opcode
+  InstType instType = opTable.getInstType(op);  // find out instruction type
+
+  switch(instType){
+    case RTYPE :
+      // convert op code, rs, rt, rd, shamt, and func to binary and concatenate string for proper order
+      encoded += opTable.getOpcodeField(op);
+      (rs == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rs, 5));  // if there is no rs, add 00000 to string, else add encoded rs
+      (rt == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rt, 5));
+      (rd == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rd, 5));
+      (imm == 0) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(imm, 5));
+
+      encoded += opTable.getFunctField(op);
+
+      break;
+
+    case ITYPE :
+      // convert op code, rs, and immediate to binary and concatenate string for proper order
+      encoded += opTable.getOpcodeField(op);
+      (rs == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rs, 5));
+      (rt == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rt, 5));
+      encoded += cvtInt2BinString(imm, 16);
+
+      break;
+
+    case JTYPE :
+      // convert op code, immediate to binary and concatenate string for proper order
+      encoded += opTable.getOpcodeField(op);
+      encoded += cvtInt2BinString(imm, 26);
+
+      break;
   }
 
-  else if(opcTb.getInstType(op) == ITYPE){
-    opcStr = handleItype(i);
-  }
-
-  else if(opcTb.getInstType(op) == JTYPE){
-    opcStr = handleJtype(i);
-  }
-  
-  return opcStr;
-}
-
-string Parser::cvtInt2Bin(int number, size_t bits){
-  if(bits == 16)
-    return bitset<16>(number).to_string();
-  else if(bits == 26)
-    return bitset<26>(number).to_string();
-  else if(bits == 5) 
-    return bitset<5>(number).to_string();
-  else 
-    return bitset<5>(number).to_string();
-}
-
-string Parser::handleRtype(Instruction i){
-  OpcodeTable opcTb;
-  string opcStr = "";
-  Opcode op = i.getOpcode();
-  opcStr = opcTb.getOpcodeField(op);
-  int numOperands = opcTb.numOperands(op);
-  if(numOperands==1){
-    opcStr += "0000000000";
-    opcStr += cvtInt2Bin(i.getRD(), 5);
-  }
-  else if(numOperands==2){
-    opcStr += cvtInt2Bin(i.getRS(), 5);
-    opcStr += cvtInt2Bin(i.getRT(), 5);
-    opcStr += "0000000000";
-    opcStr += opcTb.getFunctField(op);
-    return opcStr;
-   }
-
-  else{
-      opcStr+=cvtInt2Bin(i.getRS(), 5);
-      opcStr+=cvtInt2Bin(i.getRT(), 5);
-      opcStr+=cvtInt2Bin(i.getRD(), 5); 
-  }
-
-    if(opcTb.IMMposition(op)==-1)
-      opcStr += "00000";
-    else 
-      opcStr += cvtInt2Bin(i.getImmediate(), 5);
-    opcStr += opcTb.getFunctField(op);
-  return opcStr;  
-}
-
-string Parser::handleItype(Instruction i){
-  OpcodeTable opcTb;
-  string opcStr = "";
-  Opcode op = i.getOpcode();
-  opcStr = opcTb.getOpcodeField(op);
-  opcStr += cvtInt2Bin(i.getRS(), 5);
-  opcStr += cvtInt2Bin(i.getRT(), 5);
-  opcStr += cvtInt2Bin(i.getImmediate(), 16);
-  return opcStr;
-}
-
-string Parser::handleJtype(Instruction i){
-  OpcodeTable opcTb;
-  string opcStr = "";
-  Opcode op = i.getOpcode();
-  opcStr = opcTb.getOpcodeField(op);
-  opcStr += cvtInt2Bin(i.getImmediate(), 26);
-  opcStr += opcTb.getFunctField(op);
-  return opcStr;
+  return encoded;
 }

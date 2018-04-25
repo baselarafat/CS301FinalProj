@@ -21,6 +21,10 @@ void ALU::performOperation() {
 	else if (operation.compare("compare") == 0) {
 		result = compare(input_1, input_2); 
 	}
+	else if (operation.compare("lessThan") == 0) {
+		result = lessThan(input_1, input_2);
+	}
+
 
 	// TODO : calculate address function for sw/lw?
 
@@ -61,6 +65,21 @@ string ALU::compare(string input1, string input2) {
 	}
 	return "not_equal";
 }
+string ALU::lessThan(string input1, string input2) {
+	double input1_dec = binaryToDecimal(input1);
+	double input2_dec = binaryToDecimal(input2);
+
+	double diff_dec = input1_dec - input2_dec;
+	// If difference is negative, input1 < input2, return 1
+	if (diff_dec < 0) { 
+		return "00000000000000000000000000000001";
+	}
+	// Otherwise, return 0
+	else {
+		return "00000000000000000000000000000000";
+	}
+}
+
 
 double ALU::binaryToDecimal(string input) {
 
