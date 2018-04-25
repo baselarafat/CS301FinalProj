@@ -84,7 +84,8 @@ void DataMemory::dmemPrintFinal(string memOutputFile)
   cout << address << endl;
   cout << val << endl;
   string temp = mem[address];
-  mem.insert(std::make_pair(address, val));
+  //mem.insert(std::make_pair(address, val));
+  mem[address] = val;
   return temp;
 
 
