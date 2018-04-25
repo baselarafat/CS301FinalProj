@@ -319,8 +319,9 @@ string Parser::encode(Instruction i)
       (imm == 0) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(imm, 5));
 
       encoded += opTable.getFunctField(op);
+      return encoded;
 
-      break;
+      
 
     case ITYPE :
       // convert op code, rs, and immediate to binary and concatenate string for proper order
@@ -328,15 +329,16 @@ string Parser::encode(Instruction i)
       (rs == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rs, 5));
       (rt == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rt, 5));
       encoded += cvtInt2BinString(imm, 16);
+      return encoded;
 
-      break;
+     
 
     case JTYPE :
       // convert op code, immediate to binary and concatenate string for proper order
       encoded += opTable.getOpcodeField(op);
       encoded += cvtInt2BinString(imm, 26);
-
-      break;
+      return encoded;
+      
   }
 
 

@@ -1,4 +1,3 @@
-#Hi you motherfucker
 add	$3, $4, $8
 addi	$2, $1, 100
 sub	$2, $3, $9
