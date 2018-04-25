@@ -420,6 +420,12 @@ int main ()
            if(functCode == "101010")
            {
               //SLT instruction, not yet implemented in ALU
+              ALU3->setOperation("lessThan");
+              ALU3->performOperation();
+              alu3Result = ALU3->getResult();
+              cout << alu3Result << endl;
+              cout << endl;
+
               
            }
         }
