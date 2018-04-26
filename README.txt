@@ -1,50 +1,24 @@
 CS301 Programming Assignment:
 
-Classes:
-This class will store the current address.  Classes that need access methods in this class are Instruction Memory and Multiplexor5.
-ProgramCounter
-	
-	Constructors:
-	ProgramCounter()
-	ProgramCounter(string address)
+Completed by. Will Saada, Basil Arafat, Vincent Camp and Nick Biffis
 
-	variables:
-	string currentAddress
+This purpose of the project is to a create a 32 bit MIPS assembly 
+processor with ADD, SUB, ADDI, SLT, LW, SW, BEQ, J instructions 
+implemented.  The input config file contains paraments important to 
+running the program.  program_input must have a file of mips code in it,
+memory_contents_input should have a file with the current memory contents in
+it.  register_file_input must have a file with the current contents of the register
+file.  output_mode can have two different inputs, single step and batch.  Single
+step asks for the user to hit 'y' before moving between the instructions.  Batch
+will complete every instruction all at once.  Print_memory_contents is set to true if 
+the user wants to print the state of the registers, the state of memory and the 
+control signals for each instruction.  write_to_file is a boolean that if true 
+is placed after the equal it will print all of the output to a file specified by the output_file point.  Debug mode causes a bunch of print statements to be shown that depict what is going 
+on in the data path if it is set to true.
 
-	methods:
-	moveAddressTo(string address)
-	-returns void
-	getCurrentAddress()
-	-returns the current address
-
-Multiplexor Class:
-This class defines a few methods that are needed for all multiplexors. Can create a Multiplexor object with input 1-5, each represents the different classes.  Instruction Memory, ALU, Control Unit, Register File, Shift Left, DataMemory, all have access to one of the five Multiplexor objects.  
-
-	Constructors:
-	Multiplexor(int num)
-
-	Variables:
-	int muxNumber
-	int muxSignal
-	string muxResult
-
-	Method:
-	//This method is set by control unit for each multiplexor, based on the opcode.
-	setControl(int num)
-	//Choses the result to pass on based on the signal and sets value
-	//of the result.
-	std::string mux();
-	//Sends input to mux
-    std::string setFirstInput(std::string firstInput);
-    //Sends input to mux
-    std::string setSecondInput(std::string secondInput);
-    //Sets which part of mux is need
-    void setSignal(bool signal);
-
-    std::string getResult()
-    
-    bool getSignal();
-
+How to Run:
+make
+./finalproj [input.config]
 
 
 
