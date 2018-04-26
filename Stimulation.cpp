@@ -1,21 +1,20 @@
 #include"Stimulation.h"
 
+void Stimulation::getFiles(){
+  ConfigurationParser* coparser = new ConfigurationParser (configFile);
+  coparser->Parseit();
+  programInputFile= coparser->getprogramInputFile();
+  dataMemoryFile=coparser->getdataMemoryFile();
+  registerFile=coparser->getregisterFile();
+  outputMode=coparser->getoutputMode();
+  outputFile=coparser->getoutputFile();
+  debugMode=coparser->getdebugMode();
+  printMemoryContents=coparser->getprintMemoryContents();
+  writeToFile=coparser->getwriteToFile();
+}
 void Stimulation::run ()
 {
-  
-  ///The following code will read the config file
-  string configFile = "input.config";
-  ///initialized varibales
-  string programInputFile;
-  string dataMemoryFile;
-  string registerFile;
-  string outputMode;
-  string outputFile;
-
-  bool debugMode;
-  bool printMemoryContents;
-  bool writeToFile;
-
+  getFiles();
   ifstream infile1;
   ///opens file then make sure it was successful
   infile1.open(configFile);
