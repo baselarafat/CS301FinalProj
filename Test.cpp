@@ -268,7 +268,7 @@ int main ()
     {
        cout << "Printing: reg1, reg2, reg3, immediate, functCode, jAddress" << endl;
        cout << reg1 << " " << reg2 << " " << reg3 << " " << immediate 
-       << " " << functCode << endl << jAddress << endl;
+       << " " << functCode << endl <<hex<< jAddress << endl;
 
     }
 
@@ -547,7 +547,7 @@ int main ()
     }
       cout << "Printing the contents of the instruction memory"<<endl;
       im->printContents();
-      
+
 
   }
   return 0;
