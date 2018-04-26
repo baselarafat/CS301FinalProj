@@ -44,7 +44,10 @@ DataMemory::~DataMemory() {}
 
 std::string DataMemory::getdata(std::string   theAddress){
 	  
- 		return mem[theAddress];
+    cout << "Called Get Data" << endl;
+    cout << "Address: " << theAddress << endl;
+    cout << "Returning: " << mem[theAddress] << endl;
+    return mem[theAddress];
 }
 
 void DataMemory::dmemPrint()
