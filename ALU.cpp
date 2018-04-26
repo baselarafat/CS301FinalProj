@@ -27,7 +27,10 @@ void ALU::performOperation() {
 
 }
 
-	// operation to add two binary inputs
+	// Adds input1 and input2 (binary numbers represented as strings) and returns the result
+	// @param 	input1 	one of two operands being summed
+	// @param	input2 	one of two operands being summed
+	// @return 	string representation of input1 + input2
 string ALU::add(string input1, string input2) {
 	
 	double input1_dec = binaryToDecimal(input1);
@@ -40,7 +43,10 @@ string ALU::add(string input1, string input2) {
 	return sum_bin;
 }
 
-	// Operation to subtract one binary input from another
+	// Subtracts input2 from input1 (binary numbers represented as strings) and returns the result
+	// @param 	input1 	input to subtract from
+	// @param	input2 	input subtracted from input1
+	// @return 	string representation of input1 - input2
 string ALU::subtract(string input1, string input2) {
 
 	double input1_dec = binaryToDecimal(input1);
@@ -53,7 +59,10 @@ string ALU::subtract(string input1, string input2) {
 	return diff_bin;
 }
 
-	// Operation to check for equality of two binary inputs
+	// Returns "equal" if input1 and input2 are equivalent, "not_equal" otherwise
+	// @param 	input1 	one of two operands being tested for equivalency 
+	// @param	input2 	one of two operands being tested for equivalency 
+	// @return 	"equal" if input1 and input2 are equivalent, "not_equal" if not
 string ALU::compare(string input1, string input2) {
 	double input1_dec = binaryToDecimal(input1);
 	double input2_dec = binaryToDecimal(input2);
@@ -66,7 +75,10 @@ string ALU::compare(string input1, string input2) {
 	return "not_equal";
 }
 
-	// Operation to one binary input is smaller than another
+	// Returns "00000000000000000000000000000001" if input1 is less than input2, "00000000000000000000000000000000" if otherwise
+	// @param	input1 	input being tested if it is less than input2
+	// @param	input2 	input that is being tested against, to see if input1 is smaller
+	// @return 	"00000000000000000000000000000001" if input1 is less than input2, "00000000000000000000000000000000" if not
 string ALU::lessThan(string input1, string input2) {
 	double input1_dec = binaryToDecimal(input1);
 	double input2_dec = binaryToDecimal(input2);
@@ -82,7 +94,9 @@ string ALU::lessThan(string input1, string input2) {
 	}
 }
 
-	// Converts binary input to decimal value
+	// Converts 32-bit binary string input to its decimal value
+	// @param 	input 	32-bit binary string input to convert
+	// @return 	double decimal representation of given input
 double ALU::binaryToDecimal(string input) {
 
 	double decimal = 0.0;
@@ -100,7 +114,9 @@ double ALU::binaryToDecimal(string input) {
 	return decimal;
 }
 
-	// Converts decimal input to binary value
+	// Converts decimal input to its 32-bit binary string 
+	// @param 	input 	decimal input to convert
+	// @return 	string 32-bit binary representation of given input
 string ALU::decimalToBinary(double value) { 
 	bitset<32> bits = value;
 	return bits.to_string();

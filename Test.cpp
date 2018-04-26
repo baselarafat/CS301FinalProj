@@ -133,17 +133,6 @@ int main ()
   int numOfMemcells = 0;
   DataMemory* dm = new DataMemory (dataMemoryFile);
   string memdata = dm->getdata("0x10000000");
-  // std::cout<<memdata<<std::endl;
-
-  //dm->dmemPrint();
-  //map<string,string>::iterator it = dm->mem.begin();
-  //it++;
-  //while(it != dm->mem.end())
-  //{
-   // std::cout<< it->first << ":" << it->second <<endl;
-    //it++;
-  //}
-  //dm->dmemPrintFinal("output.mem");
  
  // }
 //------------------------------------------------------------------//
