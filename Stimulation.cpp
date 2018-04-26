@@ -454,11 +454,14 @@ void Stimulation::run ()
   }
   if(writeToFile)
   {
-
-   cout<<"The Instructionmemory has been written to the outputFile"<<endl;
-    im->imemPrintFinal(outputFile);
-    cout<<"The Datamemory has been written to the outputFile"<<endl;
-      dm->dmemPrintFinal(outputFile);
+  ofstream out;
+  out.open(outputFile);
+  out<<"The output has been printed to outdata.memory, outregister.memory, outinstruction.memory"<<endl;
+  out.close();
+   cout<<"The Instructionmemory has been written to the outinstruction.memory"<<endl;
+    im->imemPrintFinal("outinstruction.memory");
+    cout<<"The Datamemory has been written to the outdata.memory"<<endl;
+      dm->dmemPrintFinal("outdata.memory");
       
   }
  
