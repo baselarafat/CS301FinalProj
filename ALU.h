@@ -19,15 +19,15 @@ class ALU {
 		ALU();
 
 		// Sets the first input to the ALU
-		// @pararm 	in_1 	32-bit binary string input
+		// @param 	in_1 	32-bit binary string input
 		inline void setInput_1(string in_1) { input_1 = in_1; }
 
 		// Sets the second input to the ALU
-		// @pararm 	in_2 	32-bit binary string input
+		// @param 	in_2 	32-bit binary string input
 		inline void setInput_2(string in_2) { input_2 = in_2; }
 
 		// Sets the operation to be performed on the inputs
-		// @pararm 	op 	string operation to be performed: "add", "sub", or "compare"
+		// @param 	op 	string operation to be performed: "add", "sub", or "compare"
 		inline void setOperation(string op) { operation = op; }
 
 		// Performs appropriate operation on the ALU inputs

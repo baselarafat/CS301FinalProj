@@ -5,8 +5,10 @@
 #include "InstructionMemory.h"
 
 
-
+  // Default constructor
 InstructionMemory::InstructionMemory()  {}
+  // Accesses and parses through the Instruction memory
+  // @param   filename    file to be accessed and store given instructions
 InstructionMemory::InstructionMemory(string filename) {
 	Parser *parser;
 
@@ -96,7 +98,8 @@ bool InstructionMemory::isValidInstruction(std::string theAddress)
 }
 void InstructionMemory::printContents()
 {
-  // Initializes iterator and iterates through myInstructionMapping, printing contents
+  // Initializes iterator and iterates through myInstructionMapping, gathering the contents
+  // at each Instruction address and printing them out
     typedef map<string, Instruction>::iterator mapIterator;
     for (mapIterator iter = instructions.begin(); iter != instructions.end(); iter++) {
         int len = iter->first.length();
