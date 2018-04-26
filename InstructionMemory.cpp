@@ -72,7 +72,11 @@ Instruction InstructionMemory::getInstruction(std::string theAddress){
 	// 	if(thearray[i][0]==theAddress)
 	// 		Instruction = thearray[i][1];
 	// }
+  if(!isValidInstruction(theAddress)){
+    cerr << "The instruction address doesn't exist  " <<theAddress<< endl;
+        exit(1);}
  		return instructions[theAddress];
+  
 }
 
 bool InstructionMemory::isValidInstruction(std::string theAddress)
@@ -87,6 +91,19 @@ bool InstructionMemory::isValidInstruction(std::string theAddress)
     return true;
   }
 
+}
+void InstructionMemory::printContents()
+{
+  // Initializes iterator and iterates through myInstructionMapping, printing contents
+    typedef map<string, Instruction>::iterator mapIterator;
+    for (mapIterator iter = instructions.begin(); iter != instructions.end(); iter++) {
+       
+        string hexifiedfirst  = Converter::hexify(iter->first);
+
+        string s = Converter::binaryToHex(iter->second.getEncoding());
+        string shexified = Converter::hexify(s);
+        cout << hexifiedfirst << ":" <<shexified<<endl;
+    }
 }
 //  int InstructionMemory::hextoint(std::string s ){
 //   stringstream ss (s);
