@@ -26,15 +26,15 @@ public :
  ~DataMemory();
 
 /// Given an Address, returns the data associated with that address
-/// @ param  theAddress  specified address to gather data from
-/// @ return  mem[theAddress] the data associated with the specified address in the data memory
+/// @param  theAddress  specified address to gather data from
+/// @return  mem[theAddress] the data associated with the specified address in the data memory
 std::string getdata(std::string address);
 
 /// Prints the data memory to console
 void dmemPrint();
 
 /// Prints the data memory to the Output file
-///  @ param   memOutputFile   file that data memory will be written to
+///  @param   memOutputFile   file that data memory will be written to
 void dmemPrintFinal(string memOutputFile);
 
 /// Given an address and a value, will write the value within the specified data memory address
