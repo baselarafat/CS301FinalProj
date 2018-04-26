@@ -39,6 +39,7 @@ void Stimulation::run ()
       /// cout<<s<<endl;
     }
 
+
     ///Sets first address at the start and creates Program Counter Object
     string firstAddress = "04000000";
     ProgramCounter pc(firstAddress);
@@ -235,7 +236,7 @@ void Stimulation::run ()
 
     ///The following code acts as the ALU control for ALU3
     
-    string alu3Result;
+/*    string alu3Result;
     if(control->getAluOp1() == 1 || control->getAluOp0() == 1)
     { 
         if(control->getAluOp1() == 1)
@@ -294,6 +295,14 @@ void Stimulation::run ()
 
     }
 
+*/
+    string operation = ALUControl::getOperation(control->getAluOp1(), control->getAluOp0(), 
+      functCode);
+    cout << operation << endl;
+    ALU3->setOperation(operation);
+    ALU3->performOperation();
+    string alu3Result = ALU3->getResult();
+
     if(debugMode)
     {
       cout << "Result from ALU3: " << alu3Result << endl;
@@ -328,12 +337,17 @@ void Stimulation::run ()
     mux3->setFirstInput(alu3ResultInHex);
     if(control->getMemRead() == 1)
     {
+
+       //runs if op uses a memory read, and sends value to the 3rd multiplexor
+       //aluresult needs to be translated to hex
+
        ///runs if op uses a memory read, and sends value to the 3rd multiplexor
        ///aluresult needs to be translated to hex
        string alu3ResultHex = Converter::binaryToHex(alu3Result);
        string finalHexMemRead = Converter::hexify(alu3ResultHex);
 
        string dataFromMem = dm->getdata(finalHexMemRead);
+       cout << dataFromMem << endl;
        dataFromMem = dataFromMem.substr(2);
 
        mux3->setSecondInput(dataFromMem);

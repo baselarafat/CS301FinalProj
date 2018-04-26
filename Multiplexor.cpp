@@ -16,18 +16,22 @@ Multiplexor::~Multiplexor(){}
 
 ///will be used by the Control Unit, which sends true or false based 
 ///on whether or not the mux is needed.
+//@param int Sets the flow for the mux
 void Multiplexor::setFlow(int flow)
 {
     this->flow = flow;
     
 }
 ///Returns signal for testing 
+//@return int Returns the flow value 
 int Multiplexor::getFlow()
 {
     return flow;
 }
 
 ///Set's input at point that coincides with 0 on the picture
+//@param string The first input to the mux (coincides with the 0 in the processor)
+//@return string Returns value input for testing
 std::string Multiplexor::setFirstInput(std::string firstInput)
 {
 	this->firstInput = firstInput;
@@ -35,6 +39,8 @@ std::string Multiplexor::setFirstInput(std::string firstInput)
 }
 
 ///Sets input at 1 that coincides with 1 on the picture
+//@param string The second input to the mux (coincides with the 1 in the processor)
+//@return string Returns value input for testing
 std::string Multiplexor::setSecondInput(std::string secondInput)
 {
 	this->secondInput = secondInput;
@@ -42,7 +48,8 @@ std::string Multiplexor::setSecondInput(std::string secondInput)
 }
 
 
-///calls mux and returns the result chosed
+///calls mux and returns the result chosen
+//@return string Result chosen by multiplexor
 std::string Multiplexor::mux()
 {
 	if(this->flow == 0)

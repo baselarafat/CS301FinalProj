@@ -43,8 +43,11 @@ DataMemory::~DataMemory() {}
       // @ param  theAddress  specified address to gather data from
       // @ return  mem[theAddress] the data associated with the specified address in the data memory
 std::string DataMemory::getdata(std::string   theAddress){
-	
- 		return mem[theAddress];
+	  
+    cout << "Called Get Data" << endl;
+    cout << "Address: " << theAddress << endl;
+    cout << "Returning: " << mem[theAddress] << endl;
+    return mem[theAddress];
 }
 
       // Prints the data memory to console

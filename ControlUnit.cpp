@@ -134,12 +134,6 @@ int ControlUnit::getmemToReg()
 }
 
 
-/// std::string ControlUnit::getAluOp()
-/// {
-
-/// 		return aluOp;
-/// }
-
 int ControlUnit::getMemWrite()
 {
 	if(memWrite)
@@ -219,18 +213,18 @@ void ControlUnit::setToZero()
 ///Method that prints out the contents of the Control
 void ControlUnit::printControl()
 {
-	std::cout << "RegDest: "  << getRegDest()  << std::endl;
-	std::cout << "Jump: "     << getJump()     << std::endl;
-	std::cout << "Branch: "   << getBranch()   << std::endl;
-	std::cout << "MemRead: "  << getMemRead()  << std::endl;
-	std::cout << "MemToReg: " << getmemToReg() << std::endl;
-	std::cout << "MemWrite: " << getMemWrite() << std::endl;
-	std::cout << "Alusrc: "   << getAluSrc()   << std::endl;
-	std::cout << "RegWrite: " << getRegWrite() << std::endl;
+	std::cout << "RegDest: 0x" << getRegDest()  << std::endl;
+	std::cout << "Jump: 0x" << getJump()     << std::endl;
+	std::cout << "Branch: 0x" << getBranch()   << std::endl;
+	std::cout << "MemRead: 0x" << getMemRead()  << std::endl;
+	std::cout << "MemToReg: 0x" << getmemToReg() << std::endl;
+	std::cout << "MemWrite: 0x" << getMemWrite() << std::endl;
+	std::cout << "Alusrc: 0x" << getAluSrc()   << std::endl;
+	std::cout << "RegWrite: 0x" << getRegWrite() << std::endl;
 	std::string operation  = std::to_string(getAluOp1());
 	std::string operation2 = std::to_string(getAluOp0());
 	operation.append(operation2);
-	std::cout << "ALUOp: " << operation << std::endl;
+	std::cout << "ALUOp: 0x" << operation << std::endl;
 
 }
 

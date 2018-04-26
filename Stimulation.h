@@ -20,6 +20,7 @@
 #include "SignExtend.h"
 #include "Converter.h"
 #include "ConfigurationParser.h"
+#include "ALUControl.h"
 
 using namespace std;
 class Stimulation{
