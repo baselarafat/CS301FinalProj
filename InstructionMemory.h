@@ -1,6 +1,6 @@
 #ifndef __INSTRUCTIONMEMORY_H__
 #define __INSTRUCTIONMEMORY_H__
-//Get an address then release out data from memory that corresponds to that instruction
+///Get an address then release out data from memory that corresponds to that instruction
 
 #include <string>
 #include <iostream>

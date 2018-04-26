@@ -15,27 +15,27 @@ class Instruction{
  public:
   Instruction();
 
-  // You can specify all the fields to initialize the Instruction
+  /// You can specify all the fields to initialize the Instruction
   Instruction(Opcode op, Register rs, Register rt, Register rd, int imm);
   ~Instruction() {};
 
-  // Allows you to specify all the fields of the Instruction
+  /// Allows you to specify all the fields of the Instruction
   void setValues(Opcode op, Register rs, Register rt, Register rd, int imm);
 
-  // Returns the various fields for the Instruction
+  /// Returns the various fields for the Instruction
   Opcode getOpcode()   { return myOpcode;}
   Register getRS()     { return myRS; };
   Register getRD()     { return myRD; };
   Register getRT()     { return myRT; };
   int getImmediate()   { return myImmediate; };
 
-  // Returns a string which represents all of the fields 
+  /// Returns a string which represents all of the fields 
   string getString();
 
-  // Stores the 32 bit binary encoding of MIPS instruction passed in
+  /// Stores the 32 bit binary encoding of MIPS instruction passed in
   void setEncoding(string s) { myEncoding = s;};
 
-  // Returns string representing the 32 binary encoding of MIPS instruction
+  /// Returns string representing the 32 binary encoding of MIPS instruction
   string getEncoding() { return myEncoding; };
 
 

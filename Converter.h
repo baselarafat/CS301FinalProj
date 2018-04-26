@@ -15,7 +15,7 @@ class Converter{
 
 	}
 
-    // Converts a given hex value to an int
+    /// Converts a given hex value to an int
 	static int hextoint(std::string s ){
   	stringstream ss (s);
   	int x;
@@ -23,7 +23,7 @@ class Converter{
    	return x;
 }
 
-    // Converts a given int value to hex
+    /// Converts a given int value to hex
 static string inttohex(int x){
   stringstream ss ;
   ss<<hex<<x;
@@ -31,7 +31,7 @@ static string inttohex(int x){
   return s;
 }
 
-    //Converts a given hex value to binary
+    ///Converts a given hex value to binary
 	static string hexToBinary(string hex)
 {
     string bin;
@@ -39,10 +39,10 @@ static string inttohex(int x){
     for (int unsigned(i) = 0; i < hex.length(); i++)
     {
 
-        // Get the next char in the hex
+        /// Get the next char in the hex
         char currChar = hex.at(i);
 
-        // Convert the next char in the hex to the appropriate 4-bit binary representation
+        /// Convert the next char in the hex to the appropriate 4-bit binary representation
         switch (currChar)
         {
         case '0':
@@ -117,18 +117,18 @@ static string inttohex(int x){
 }
 static string binaryToHex(string binary)
 {
-    string hex;               // string that will hold final hex string to return
-    string extender = "0000"; // string to extend input string so length is divisible by 4
-    string temp;              // string that will hold 4 bit chunks of input string
+    string hex;               /// string that will hold final hex string to return
+    string extender = "0000"; /// string to extend input string so length is divisible by 4
+    string temp;              /// string that will hold 4 bit chunks of input string
 
-    // Extend inputted string to be of a length divisible by 4
+    /// Extend inputted string to be of a length divisible by 4
     if (binary.length() % 4 != 0) {
         int extenderLength = 4 - binary.length() % 4;
         extender = extender.substr(0, extenderLength);
-        binary = extender + binary; // append extender to front of binary string
+        binary = extender + binary; /// append extender to front of binary string
     }
 
-    // Loop through 4 bit chunks of binary string, appending to hex string
+    /// Loop through 4 bit chunks of binary string, appending to hex string
     for (int unsigned (i) = 0; i < binary.length(); i += 4)
     {
         temp = binary.substr(i, 4);
@@ -202,7 +202,7 @@ static string binaryToHex(string binary)
 
 static std::string hexify(std::string s){
 		std::string mystring;
-	//Checking if it already has "0x" in the begging of the string 
+	///Checking if it already has "0x" in the begging of the string 
 		if(s.length()<1)
             return s;
         else if((s.at(0)=='0')&& (s.at(1)=='x'))
@@ -214,7 +214,7 @@ static std::string hexify(std::string s){
 		}
     }
 
-    // Converts given int value into binary
+    /// Converts given int value into binary
 	static std::string inttobinarry(int a){
 		std::string hex =inttohex(a);
 		std::string bin = hexToBinary(hex);

@@ -5,8 +5,8 @@
 #include <iostream>
 
 Parser::Parser(string filename)
-  // Specify a text file containing MIPS assembly instructions. Function
-  // checks syntactic correctness of file and creates a list of Instructions.
+  /// Specify a text file containing MIPS assembly instructions. Function
+  /// checks syntactic correctness of file and creates a list of Instructions.
 {
   Instruction i;
   myFormatCorrect = true;
@@ -31,7 +31,7 @@ Parser::Parser(string filename)
       getTokens(line, opcode, operand, operand_count);
 
       if(opcode.length() == 0 && operand_count != 0){
-        // No opcode but operands
+        /// No opcode but operands
         
         myFormatCorrect = false;
 
@@ -41,7 +41,7 @@ Parser::Parser(string filename)
       Opcode o = opcodes.getOpcode(opcode); 
 
       if(o == UNDEFINED){
-        // invalid opcode specified
+        /// invalid opcode specified
 
         myFormatCorrect = false; 
 
@@ -67,7 +67,7 @@ Parser::Parser(string filename)
 
 
 Instruction Parser::getNextInstruction()
-  // Iterator that returns the next Instruction in the list of Instructions.
+  /// Iterator that returns the next Instruction in the list of Instructions.
 {
   if(myIndex < (int)(myInstructions.size())){
     myIndex++;
@@ -83,37 +83,37 @@ void Parser::getTokens(string line,
     string &opcode,
     string *operand,
     int &numOperands)
-  // Decomposes a line of assembly code into strings for the opcode field and operands, 
-  // checking for syntax errors and counting the number of operands.
+  /// Decomposes a line of assembly code into strings for the opcode field and operands, 
+  /// checking for syntax errors and counting the number of operands.
 {
-  // locate the start of a comment
+  /// locate the start of a comment
   
   string::size_type idx = line.find('#');
-  if (idx != string::npos) // found a ';'
+  if (idx != string::npos) /// found a ';'
     line = line.substr(0,idx);
   int len = line.length();
   opcode = "";
   numOperands = 0;
 
   if (len == 0) return;
-  int p = 0; // position in line
+  int p = 0; /// position in line
 
-  // line.at(p) is whitespace or p >= len
+  /// line.at(p) is whitespace or p >= len
   while (p < len && isWhitespace(line.at(p)))
     p++;
-  // opcode starts
+  /// opcode starts
   while (p < len && !isWhitespace(line.at(p)))
   {
     opcode = opcode + line.at(p);
     p++;
   }
-  //    for(int i = 0; i < 3; i++){
+  ///    for(int i = 0; i < 3; i++){
   int i = 0;
   while(p < len){
     while ( p < len && isWhitespace(line.at(p)))
       p++;
 
-    // operand may start
+    /// operand may start
     bool flag = false;
     while (p < len && !isWhitespace(line.at(p)))
     {
@@ -138,9 +138,9 @@ void Parser::getTokens(string line,
   string::size_type idx2 = operand[numOperands-1].find(')');
 
   if (idx == string::npos || idx2 == string::npos ||
-      ((idx2 - idx) < 2 )){ // no () found
+      ((idx2 - idx) < 2 )){ /// no () found
   }
-  else{ // split string
+  else{ /// split string
     string offset = operand[numOperands-1].substr(0,idx);
     string regStr = operand[numOperands-1].substr(idx+1, idx2-idx-1);
 
@@ -151,13 +151,13 @@ void Parser::getTokens(string line,
 
 
 
-  // ignore anything after the whitespace after the operand
-  // We could do a further look and generate an error message
-  // but we'll save that for later.
+  /// ignore anything after the whitespace after the operand
+  /// We could do a further look and generate an error message
+  /// but we'll save that for later.
   return;
 }
 
-  // Checks to see if a given number is in hex
+  /// Checks to see if a given number is in hex
  int Parser::isNumberhex(std::string s ){
    int len = s.length();
   if(len>2){
@@ -171,9 +171,9 @@ void Parser::getTokens(string line,
 return -1;
 }
 
-  // Checks to see if a given number is a string
+  /// Checks to see if a given number is a string
  bool Parser::isNumberString(string s)
-  // Returns true if s represents a valid decimal integer
+  /// Returns true if s represents a valid decimal integer
 {
   int len = s.length();
  if (len == 0) return false;
@@ -186,7 +186,7 @@ return -1;
    if (((s.at(0)=='-') && len > 1) || isdigit(s.at(0)))
   {
 
-    // check remaining characters
+    /// check remaining characters
     for (int i=1; i < len; i++)
     {
       if (!isdigit(s.at(i))) return false;
@@ -197,7 +197,7 @@ return -1;
 }
 
 int Parser::cvtNumString2Number(string s)
-  // Converts a string to an integer.  Assumes s is something like "-231" and produces -231
+  /// Converts a string to an integer.  Assumes s is something like "-231" and produces -231
 {
   if (!isNumberString(s))
   {
@@ -216,8 +216,8 @@ int Parser::cvtNumString2Number(string s)
   return x;
 }
 
- // Given an Opcode, a string representing the operands, and the number of operands, 
- // breaks operands apart and stores fields into Instruction. 
+ /// Given an Opcode, a string representing the operands, and the number of operands, 
+ /// breaks operands apart and stores fields into Instruction. 
 bool Parser::getOperands(Instruction &i, Opcode o, 
     string *operand, int operand_count)
   
@@ -261,21 +261,21 @@ bool Parser::getOperands(Instruction &i, Opcode o,
 
   if(imm_p != -1){
   
-    if(isNumberString(operand[imm_p])){  // does it have a numeric immediate field?
+    if(isNumberString(operand[imm_p])){  /// does it have a numeric immediate field?
      
       imm = cvtNumString2Number(operand[imm_p]);
 
-      // if(((abs(imm) & 0xFFFF0000)<<1))
-               // too big a number to fit
-        // return false;
+      /// if(((abs(imm) & 0xFFFF0000)<<1))
+               /// too big a number to fit
+        /// return false;
     }
     else{ 
-      if(opcodes.isIMMLabel(o)){  // Can the operand be a label?
-        // Assign the immediate field an address
+      if(opcodes.isIMMLabel(o)){  /// Can the operand be a label?
+        /// Assign the immediate field an address
         imm = myLabelAddress;
-        myLabelAddress += 4;  // increment the label generator
+        myLabelAddress += 4;  /// increment the label generator
       }
-      else  // There is an error
+      else  /// There is an error
         return false;
     }
 
@@ -285,25 +285,25 @@ bool Parser::getOperands(Instruction &i, Opcode o,
   return true;
 }
 
-  // Converts a given integer to a binary string
+  /// Converts a given integer to a binary string
 string Parser::cvtInt2BinString(int i, int bits)
 {
-  // cout << "pre-substring: " << std::bitset<26>(i).to_string() << endl;
+  /// cout << "pre-substring: " << std::bitset<26>(i).to_string() << endl;
   if(bits != 26)
-  return bitset<26>(i).to_string().substr((26 - bits), 26); //to binary
+  return bitset<26>(i).to_string().substr((26 - bits), 26); ///to binary
   else{
-    // Divides i by 4 to remove 2 most least significant bits
+    /// Divides i by 4 to remove 2 most least significant bits
     i = i/4;
-    return bitset<26>(i).to_string().substr((26 - bits), 26); //to binary
+    return bitset<26>(i).to_string().substr((26 - bits), 26); ///to binary
   }
   return "";
 }
 
 string Parser::encode(Instruction i)
-  // Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
-  // of that instruction.
+  /// Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
+  /// of that instruction.
 {
-  // get all possible info for instruction
+  /// get all possible info for instruction
   Register rs = i.getRS();
   Register rt = i.getRT();
   Register rd = i.getRD();
@@ -312,14 +312,14 @@ string Parser::encode(Instruction i)
   string encoded = "";
 
   OpcodeTable opTable;
-  Opcode op = i.getOpcode();              // get opcode
-  InstType instType = opTable.getInstType(op);  // find out instruction type
+  Opcode op = i.getOpcode();              /// get opcode
+  InstType instType = opTable.getInstType(op);  /// find out instruction type
 
   switch(instType){
     case RTYPE :
-      // convert op code, rs, rt, rd, shamt, and func to binary and concatenate string for proper order
+      /// convert op code, rs, rt, rd, shamt, and func to binary and concatenate string for proper order
       encoded += opTable.getOpcodeField(op);
-      (rs == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rs, 5));  // if there is no rs, add 00000 to string, else add encoded rs
+      (rs == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rs, 5));  /// if there is no rs, add 00000 to string, else add encoded rs
       (rt == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rt, 5));
       (rd == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rd, 5));
       (imm == 0) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(imm, 5));
@@ -330,7 +330,7 @@ string Parser::encode(Instruction i)
       
 
     case ITYPE :
-      // convert op code, rs, and immediate to binary and concatenate string for proper order
+      /// convert op code, rs, and immediate to binary and concatenate string for proper order
       encoded += opTable.getOpcodeField(op);
       (rs == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rs, 5));
       (rt == -1) ? (encoded += cvtInt2BinString(0, 5)) : (encoded += cvtInt2BinString(rt, 5));
@@ -340,7 +340,7 @@ string Parser::encode(Instruction i)
      
 
     case JTYPE :
-      // convert op code, immediate to binary and concatenate string for proper order
+      /// convert op code, immediate to binary and concatenate string for proper order
       encoded += opTable.getOpcodeField(op);
       cout << opTable.getOpcodeField(op) << endl;
       encoded += cvtInt2BinString(imm, 26);
