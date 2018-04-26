@@ -16,6 +16,8 @@ private :
  std::map<string,string> mem;
 
 public : 
+
+/// Default constructor
  DataMemory();
  DataMemory(std::string filename);
  ~DataMemory();

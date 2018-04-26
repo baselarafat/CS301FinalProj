@@ -9,6 +9,8 @@ ControlUnit::ControlUnit(){}
 
 ControlUnit::~ControlUnit(){}
 
+// Given an opcode binary identification, sets the opcode values
+// @param opcode	opcode value to evaluated for type
 void ControlUnit::setValues(std::string opcode)
 {	
 	///Jump instruction

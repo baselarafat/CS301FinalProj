@@ -15,7 +15,13 @@ class Converter{
 
 	}
 
+<<<<<<< HEAD
+    // Converts a given hex value to an int
+    // @param   s   hex input to be changed to an int value
+    // @return  integer conversion of the provided hex value
+=======
     /// Converts a given hex value to an int
+>>>>>>> 75d0650df3d95ea8edfdbb513c84e76abc377cc1
 	static int hextoint(std::string s ){
   	stringstream ss (s);
   	int x;
@@ -23,7 +29,13 @@ class Converter{
    	return x;
 }
 
+<<<<<<< HEAD
+    // Converts a given int value to hex
+    //  @param  x   integer value to be changed to a hex value
+    //  @return s   hexadecimal conversion of the provided integer value
+=======
     /// Converts a given int value to hex
+>>>>>>> 75d0650df3d95ea8edfdbb513c84e76abc377cc1
 static string inttohex(int x){
   stringstream ss ;
   ss<<hex<<x;
@@ -31,7 +43,13 @@ static string inttohex(int x){
   return s;
 }
 
+<<<<<<< HEAD
+    //Converts a given hex value to binary
+    //  @param  hex  hex value to be changed to a binary value
+    //  @return bin  binary conversion of the provided hex value  
+=======
     ///Converts a given hex value to binary
+>>>>>>> 75d0650df3d95ea8edfdbb513c84e76abc377cc1
 	static string hexToBinary(string hex)
 {
     string bin;
@@ -115,6 +133,10 @@ static string inttohex(int x){
     }
     return bin;
 }
+
+    // Converts a given binary value to hex
+    //  @param  binary   binary value to be changed to a hex value
+    //  @return hex   hexadecimal conversion of the provided binary value
 static string binaryToHex(string binary)
 {
     string hex;               /// string that will hold final hex string to return
@@ -200,9 +222,15 @@ static string binaryToHex(string binary)
     return hex;
 }
 
+    //Checking if it already has "0x" in the begging of the string
+    // @param   s   string to be converted to it's hex equivalent
+    // @return  mystring    the hexadeciaml conversion of the provided string
 static std::string hexify(std::string s){
 		std::string mystring;
+<<<<<<< HEAD
+=======
 	///Checking if it already has "0x" in the begging of the string 
+>>>>>>> 75d0650df3d95ea8edfdbb513c84e76abc377cc1
 		if(s.length()<1)
             return s;
         else if((s.at(0)=='0')&& (s.at(1)=='x'))
@@ -214,7 +242,13 @@ static std::string hexify(std::string s){
 		}
     }
 
+<<<<<<< HEAD
+    // Converts given int value into binary
+    //  @param  a   integer value to be converted to it's binary equivalent
+    //  @return bin thebinary conversion of the provided integer
+=======
     /// Converts given int value into binary
+>>>>>>> 75d0650df3d95ea8edfdbb513c84e76abc377cc1
 	static std::string inttobinarry(int a){
 		std::string hex =inttohex(a);
 		std::string bin = hexToBinary(hex);

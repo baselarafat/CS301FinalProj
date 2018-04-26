@@ -4,8 +4,12 @@
 
 #include "DataMemory.h"
 
-
+/// Default constructor
 DataMemory::DataMemory()  {}
+
+/// Makes sure the file given is opened correctly and 
+/// identifies the delimiter
+/// @param filename file that will be checked for syntactic correctness
 DataMemory::DataMemory(string filename) {
 
 ifstream infile;
@@ -42,7 +46,13 @@ ifstream infile;
 
 DataMemory::~DataMemory() {}
 
+<<<<<<< HEAD
+      // Given an Address, returns the data associated with that address
+      // @ param  theAddress  specified address to gather data from
+      // @ return  mem[theAddress] the data associated with the specified address in the data memory
+=======
       /// Given an Address, returns the data associated with that address
+>>>>>>> 75d0650df3d95ea8edfdbb513c84e76abc377cc1
 std::string DataMemory::getdata(std::string   theAddress){
 	
  		return mem[theAddress];
