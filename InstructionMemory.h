@@ -44,6 +44,10 @@ bool isValidInstruction(std::string theAddress);
 void printContents();
 
 
+void imemPrintFinal(string OutputFile);
+
+
+
 };
 
 #endif

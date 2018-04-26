@@ -92,11 +92,11 @@ void Stimulation::run ()
     ///Retrives address from the instruction memory as a string of 1s/0s.
     string addr = pc.getCurrentAddress();
     Instruction inst = im->getInstruction(addr); 
-    if(debugMode)
-    {
-       cout << "The address being run in this iteration: " << addr << endl;
+   
+    
+       // cout << "The address being run in this iteration: " << addr << endl;
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
-    }
+    
 
 
     std::string binaddre = Converter::hexToBinary(addr);
@@ -145,6 +145,7 @@ void Stimulation::run ()
 
     ///get j type address
     string jAddress = inst.getEncoding().substr(6, 26);
+    if(debugMode)
     cout << "Address for Jump: " << jAddress << endl;
 
 
@@ -439,7 +440,10 @@ void Stimulation::run ()
   }
   if(writeToFile)
   {
-    cout<<"The memory has been written to the outputFile"<<endl;
+
+   cout<<"The Instructionmemory has been written to the outputFile"<<endl;
+    im->imemPrintFinal(outputFile);
+    cout<<"The Datamemory has been written to the outputFile"<<endl;
       dm->dmemPrintFinal(outputFile);
       
   }
