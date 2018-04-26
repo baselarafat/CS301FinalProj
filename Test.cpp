@@ -156,8 +156,7 @@ int main ()
     InstructionMemory* im = new InstructionMemory (programInputFile);
     if(debugMode)
     {
-      cout << "Testing third instruction slot to make sure instruction memory
-      was initialized correctly." << endl;
+      cout << "Testing third instruction slot to make sure instruction memory was initialized correctly." << endl;
       Instruction i = im->getInstruction("0x04000008");
       string s = i.getString();
       cout<<s<<endl;
