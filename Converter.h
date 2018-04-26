@@ -14,18 +14,24 @@ class Converter{
 	~Converter(){
 
 	}
+
+    // Converts a given hex value to an int
 	static int hextoint(std::string s ){
   	stringstream ss (s);
   	int x;
    	ss>>hex>>x;
    	return x;
 }
+
+    // Converts a given int value to hex
 static string inttohex(int x){
   stringstream ss ;
   ss<<hex<<x;
   std::string s = ss.str();
   return s;
 }
+
+    //Converts a given hex value to binary
 	static string hexToBinary(string hex)
 {
     string bin;
@@ -207,6 +213,8 @@ static std::string hexify(std::string s){
 		return mystring; 
 		}
     }
+
+    // Converts given int value into binary
 	static std::string inttobinarry(int a){
 		std::string hex =inttohex(a);
 		std::string bin = hexToBinary(hex);
