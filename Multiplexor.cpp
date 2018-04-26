@@ -1,3 +1,9 @@
+/*
+This class has three important variables, flow, input 1 and input 2.  
+The flow is set by the control unit and the inputs are sent to each 
+multiplexor in the datapath.  Based on the flow given by the control 
+the multiplexor sends that value to continue in the datapath.
+*/
 #ifndef __MULTIPLEXOR_CPP__
 #define __MULTIPLEXOR_CPP__
 
@@ -28,7 +34,7 @@ std::string Multiplexor::setFirstInput(std::string firstInput)
 	return this->firstInput;
 }
 
-//Sets input at 1 that coincides with 1 on picture
+//Sets input at 1 that coincides with 1 on the picture
 std::string Multiplexor::setSecondInput(std::string secondInput)
 {
 	this->secondInput = secondInput;
@@ -36,7 +42,7 @@ std::string Multiplexor::setSecondInput(std::string secondInput)
 }
 
 
-//calls mux
+//calls mux and returns the result chosed
 std::string Multiplexor::mux()
 {
 	if(this->flow == 0)

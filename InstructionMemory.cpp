@@ -25,8 +25,7 @@ InstructionMemory::InstructionMemory(string filename) {
 
 
 	  string input;
-    string address= "40000000"; //virtual address
-   
+    string address= "04000000"; //virtual address
    
    
     while( i.getOpcode() != UNDEFINED && instructionCounter <= 100){
@@ -35,7 +34,9 @@ InstructionMemory::InstructionMemory(string filename) {
         instructions[address]=i;
         int x =  Converter::hextoint(address);
      	  x=x+4;
-      	address= Converter::inttohex(x);
+      	string address2= Converter::inttohex(x);
+        address = "0";
+        address.append(address2);
         //cout << i.getEncoding() << endl;
         i = parser->getNextInstruction();
         instructionCounter++;

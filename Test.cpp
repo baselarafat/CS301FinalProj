@@ -24,13 +24,9 @@ class Tester{
 int main ()
 {
   
-  //writting code to read the configuration file
-  //will read contents of the file and save information set up
-  //to be used by the program.
-
-  //This should be changed to take command line argument (I think?)
+  //The following code will read the config file
   string configFile = "input.config";
-  
+  //initialized varibales
   string programInputFile;
   string dataMemoryFile;
   string registerFile;
@@ -41,10 +37,7 @@ int main ()
   bool printMemoryContents;
   bool writeToFile;
 
-
-
   ifstream infile1;
-  
   //opens file then make sure it was successful
   infile1.open(configFile);
     if (!infile1.is_open()) {
@@ -74,9 +67,8 @@ int main ()
       //gets the part of the input after the equals sign
       configResult = configInput.substr(pointerToEquals);
 
-
       //this block of code adds the values from the config file to 
-      //the appropriate variable.
+      //the appropriate variables.
       switch(i) 
       {
           case 0 :
@@ -137,8 +129,6 @@ int main ()
 
     infile1.close();
 
- 
-
   //int used to store # of instructions, must be <= 100
   int numOfMemcells = 0;
   DataMemory* dm = new DataMemory (dataMemoryFile);
@@ -154,17 +144,6 @@ int main ()
     //it++;
   //}
   //dm->dmemPrintFinal("output.mem");
-
-  // RegisterFile registerFile();
-
-
-  // //For loops runs so the values in arrayOfRegisters get 
-  // //stored into the Register file
-  // for(int i = 0; i < numOfRegisters; i++)
-  // {
-  //     registerFile.writeReg(arrayOfRegisters[i][0], arrayOfRegisters[i][1])
-  // }
-
  
  // }
 //------------------------------------------------------------------//
@@ -172,24 +151,20 @@ int main ()
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
-
-
-
-
-//This is an example of how to get Instructions from the Instruction from the InstructionMemory 
-  //In this example I'm getting the in
-
+    //Parser is run through instruction memory to initializes instructions
+    // Initializes the instruction memory with the input file.
     InstructionMemory* im = new InstructionMemory (programInputFile);
-    Instruction i = im->getInstruction("0x40000008");
-    string s = i.getString();
-    cout<<s<<endl;
+    if(debugMode)
+    {
+      cout << "Testing third instruction slot to make sure instruction memory
+      was initialized correctly." << endl;
+      Instruction i = im->getInstruction("0x04000008");
+      string s = i.getString();
+      cout<<s<<endl;
+    }
 
-
-    std::cout<<std::endl;
- 
     //Sets first address at the start and creates Program Counter Object
-    
-    string firstAddress = "40000000";
+    string firstAddress = "04000000";
     ProgramCounter pc(firstAddress);
     
 
@@ -209,17 +184,15 @@ int main ()
     ALU* ALU2 = new ALU();// ADD and ALU Result
     ALU* ALU3 = new ALU();// ALU and ALU Result
 
-    //OpcodeTable opt = OpcodeTable();
 
     RegisterFile* regFile = new RegisterFile(registerFile);
 
     
-  
-  // Loop should run until end of program
+  // Loop should run until end of program, ends when the 
+  // instruction memory gets to an invalid program.
   while(im->isValidInstruction(pc.getCurrentAddress())) 
   {
   
-
     //If the user chose to use single step mode, this code asks the user to
     //press y to continue, will continuously run until user enters y
     if(outputMode == "single_step"){
@@ -249,6 +222,7 @@ int main ()
        cout << "The instruction referenced by the above address: " << inst.getString() << endl;
     }
 
+
     std::string binaddre = Converter::hexToBinary(addr);
     std::cout<<binaddre<<std::endl;
    
@@ -263,10 +237,6 @@ int main ()
        cout << "Result of adding 4 to the address: " << add4ToAddress << endl;
     }
 
-    //retrives opcode from instruction
-
-    // Opcode op =  opt.getOpcode(inst.getString());
-   
     //sets values to false to reset control unit, then calls method
     //to set control values with opcode.
     control->setToZero();
@@ -280,7 +250,10 @@ int main ()
     mux4->setFlow(control->getJump());
     // mux 5 is set by a combination of branch and the result of ALU
     
-    cout << "Instruction: " << inst.getEncoding() << endl;
+    if(debugMode)
+    {
+      cout << "Instruction (as string of 32 bits): " << inst.getEncoding() << endl;
+    }
 
     //always goes to read register1
     string reg1 = inst.getEncoding().substr(6, 5);
@@ -294,9 +267,6 @@ int main ()
     //gets last15 didgets of instruction
     string immediate = inst.getEncoding().substr(17, 15); 
 
-    cout << immediate << endl;
-
-
     //get j type address
     string jAddress = inst.getEncoding().substr(6, 26);
     cout << "Address for Jump: " << jAddress << endl;
@@ -305,9 +275,6 @@ int main ()
     //function code 
     string functCode = inst.getEncoding().substr(26, 6);
 
-
-
-    
     if(debugMode)
     {
        cout << "Printing: reg1, reg2, reg3, immediate, functCode, jAddress" << endl;
@@ -317,7 +284,7 @@ int main ()
     }
 
 
-    //Shifts the instruction to the left
+    //Shifts the value to the left (value used for address in jtype)
     string jInstSl2 = ShiftLeftTwo::Shift(jAddress); 
     
     //test for shift left 
@@ -327,26 +294,29 @@ int main ()
       cout << jInstSl2 << endl;
     }
 
-      mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
+       mux4->setSecondInput(jInstSl2); // must wait for result of Mux5
 
-       //Sends reg2 and reg3 to mux, based on control 
-
+       //Sends reg2 and reg3 to mux1
        mux1->setFirstInput(reg2);
        mux1->setSecondInput(reg3);
 
-       //write register gets value from  mux1
+       //write register gets value from mux1
+       //if a writeReg occurs this stores the register to be written to
        string writeRegister = mux1->mux();
 
+       //Converstion to bitset so a conversion to int can be done
        bitset<5> reg1bit (reg1);
        bitset<5> reg2bit (reg2);
 
+       //Converts from bitset to integer
        int reg1int = reg1bit.to_ulong();
        int reg2int = reg2bit.to_ulong();
 
-
+       //Readreg accepts decimal value as a string, so we use to string
        string valAtReg1 = regFile->readReg(to_string(reg1int));
        string valAtReg2 = regFile->readReg(to_string(reg2int));
        
+       //Converts values from hex (how its stored in register) to binary
        string valAtReg1Bin = Converter::hexToBinary(valAtReg1);
        string valAtReg2Bin = Converter::hexToBinary(valAtReg2);
 
@@ -358,8 +328,8 @@ int main ()
         cout <<  "Value in read reg2: " << valAtReg2 << endl;
         cout <<  "Value of write register: " << writeRegister << endl;
      }
-
-    
+      
+       //sign extend accepts bitset.
        bitset<16> immbit (immediate);
        string extended = SignExtend::Extend(immbit);
        if(debugMode)
@@ -382,7 +352,8 @@ int main ()
 
       if(debugMode)
       {
-        cout << "Second input for ALU3: " << aluInput << endl;
+        cout << "FirstInput  of ALU3: " << valAtReg1Bin << endl;
+        cout << "Secondinput of ALU3: " << aluInput << endl;
       }
 
     //The following code acts as the ALU control for ALU3
@@ -437,7 +408,6 @@ int main ()
               alu3Result = ALU3->getResult();
           }
            
-    
     } else {
         //runs for lw and sw 
         ALU3->setOperation("add");
@@ -467,20 +437,28 @@ int main ()
      if(control->getMemWrite() == 1)
     {
       string hexMemWrite = Converter::binaryToHex(alu3Result);
+      
+      string hexMemWriteFinal = Converter::hexify(hexMemWrite);
 
       // valAtReg2 is value to be written
       // address to be written to is alu3 result(needs to be converted to hex)
-      dm->writeMem(hexMemWrite, valAtReg2);
+      valAtReg2 = Converter::hexify(valAtReg2);
+      dm->writeMem(hexMemWriteFinal, valAtReg2);
       
     }
     //sends result of the alu to the 3rd multiplexor
-    mux3->setFirstInput(alu3Result);
+    string alu3ResultInHex = Converter::binaryToHex(alu3Result);
+    mux3->setFirstInput(alu3ResultInHex);
     if(control->getMemRead() == 1)
     {
        //runs if op uses a memory read, and sends value to the 3rd multiplexor
        //aluresult needs to be translated to hex
        string alu3ResultHex = Converter::binaryToHex(alu3Result);
-       string dataFromMem = dm->getdata(alu3ResultHex);
+       string finalHexMemRead = Converter::hexify(alu3ResultHex);
+
+       string dataFromMem = dm->getdata(finalHexMemRead);
+       dataFromMem = dataFromMem.substr(2);
+
        mux3->setSecondInput(dataFromMem);
       
       if(debugMode)
@@ -489,7 +467,6 @@ int main ()
       }
 
     }
-
 
     //checks to see if it is writting to a register from mux3.
     if(control->getRegWrite() == 1)
@@ -502,12 +479,13 @@ int main ()
           cout << "Value being written to reg " << writeData << endl;
       }
 
-      string writeDataHex = Converter::binaryToHex(writeData);
+      //so binary can be changed to int
       bitset<5> writebit (writeRegister);
       int writeInt = writebit.to_ulong();
       
       cout << "Reg before register write: " << regFile->readReg(to_string(writeInt)) << endl;
-      regFile->writeReg(to_string(writeInt), writeDataHex);
+    
+      regFile->writeReg(to_string(writeInt), writeData);
 
       if(debugMode)
       {
@@ -515,8 +493,6 @@ int main ()
       }
 
     }
-
-
 
     //Shifts the previously exstended address by 2 bits(needed for b and j)
     string instructionShiftedLeft = ShiftLeftTwo::Shift(extended);
@@ -564,50 +540,23 @@ int main ()
           cout << "Address being sent to PC: " << hexFinalAddress << endl;
       }
 
-
     //Updates program counter with correct address
     pc.moveAddressTo(hexFinalAddress);
 
-    //prints the register memory and the datamemory after each instruction if true.
+    //prints the control fields, register memory and datamemory 
+    //after each instruction if printMemoryContents is set to true.
     if(printMemoryContents)
     {
+       cout << "Printing Control Fields for last instuction" << endl;
+       control->printControl();
+
        cout << "Printing the contents of the registers" << endl;
        regFile->printContents();
        
        cout << "Printing the contents of the data memory" << endl;
        dm->dmemPrint();
-
     }
 
-
   }
-
-
-  //Testing stuff 
-
-//   stringstream ss (s4);
-  
-//   for(int i=0;i<10;i++){
-//      int x;
-//     ss>>hex>>x;
-//   ss<<hex<<x;
-//   x=x+4;
-
-  
-//   string s5 =ss.str();
-//   std::cout<<hex<<x<<std::endl;
-
-//   std::cout<<mem.at(s5)<<std::endl;
-// }
-// string s4 ="4000000";
-// Tester t ;
-// for(int i=0;i<9;i++){
-// int x = t.hextoint(s4);
-// x=x+4;
-// s4 =t.inttohex(x);
-// std::cout<<instructions.at(s4)<<endl;
-// }
-
   return 0;
-
 }
