@@ -30,8 +30,6 @@ void Stimulation::run ()
     ///Parser is run through instruction memory to initializes instructions
     /// Initializes the instruction memory with the input file.
     InstructionMemory* im = new InstructionMemory (programInputFile);
-<<<<<<< HEAD:Test.cpp
-=======
     if(debugMode)
     {
       cout << "Testing third instruction slot to make sure instruction memory"
@@ -40,7 +38,7 @@ void Stimulation::run ()
       /// string s = i.getString();
       /// cout<<s<<endl;
     }
->>>>>>> a8e37fa6a1c5f626c3a03530f03287827b8f4cba:Stimulation.cpp
+
 
     ///Sets first address at the start and creates Program Counter Object
     string firstAddress = "04000000";
@@ -237,7 +235,7 @@ void Stimulation::run ()
 
     ///The following code acts as the ALU control for ALU3
     
-    string alu3Result;
+/*    string alu3Result;
     if(control->getAluOp1() == 1 || control->getAluOp0() == 1)
     { 
         if(control->getAluOp1() == 1)
@@ -296,6 +294,14 @@ void Stimulation::run ()
 
     }
 
+*/
+    string operation = ALUControl::getOperation(control->getAluOp1(), control->getAluOp0(), 
+      functCode);
+    cout << operation << endl;
+    ALU3->setOperation(operation);
+    ALU3->performOperation();
+    string alu3Result = ALU3->getResult();
+
     if(debugMode)
     {
       cout << "Result from ALU3: " << alu3Result << endl;
@@ -330,14 +336,12 @@ void Stimulation::run ()
     mux3->setFirstInput(alu3ResultInHex);
     if(control->getMemRead() == 1)
     {
-<<<<<<< HEAD:Test.cpp
-      cout << "hey" << endl;
+
        //runs if op uses a memory read, and sends value to the 3rd multiplexor
        //aluresult needs to be translated to hex
-=======
+
        ///runs if op uses a memory read, and sends value to the 3rd multiplexor
        ///aluresult needs to be translated to hex
->>>>>>> a8e37fa6a1c5f626c3a03530f03287827b8f4cba:Stimulation.cpp
        string alu3ResultHex = Converter::binaryToHex(alu3Result);
        string finalHexMemRead = Converter::hexify(alu3ResultHex);
 

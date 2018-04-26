@@ -134,12 +134,6 @@ int ControlUnit::getmemToReg()
 }
 
 
-/// std::string ControlUnit::getAluOp()
-/// {
-
-/// 		return aluOp;
-/// }
-
 int ControlUnit::getMemWrite()
 {
 	if(memWrite)
