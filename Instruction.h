@@ -16,10 +16,20 @@ class Instruction{
   Instruction();
 
   /// You can specify all the fields to initialize the Instruction
+  /// @param  op  current instruction opcode
+  /// @param  rs  current instruction register source
+  /// @param  rt  current instruction register source 2
+  /// @param  rd  current instruction register destination
+  /// @param  imm   current instruction immediate value
   Instruction(Opcode op, Register rs, Register rt, Register rd, int imm);
   ~Instruction() {};
 
   /// Allows you to specify all the fields of the Instruction
+  /// @param  op  current instruction opcode
+  /// @param  rs  current instruction register source
+  /// @param  rt  current instruction register source 2
+  /// @param  rd  current instruction register destination
+  /// @param  imm   current instruction immediate value
   void setValues(Opcode op, Register rs, Register rt, Register rd, int imm);
 
   /// Returns the various fields for the Instruction
@@ -29,13 +39,16 @@ class Instruction{
   Register getRT()     { return myRT; };
   int getImmediate()   { return myImmediate; };
 
-  /// Returns a string which represents all of the fields 
+  /// Returns a string which represents all of the fields
+  /// @return s.str()   a string representing all of the fields
   string getString();
 
   /// Stores the 32 bit binary encoding of MIPS instruction passed in
+  /// @param  s   MIPS instruction
   void setEncoding(string s) { myEncoding = s;};
 
   /// Returns string representing the 32 binary encoding of MIPS instruction
+  /// @return myEncoding  string representing the 32 binary encoding of MIPS instruction
   string getEncoding() { return myEncoding; };
 
 
