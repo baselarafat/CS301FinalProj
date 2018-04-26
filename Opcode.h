@@ -39,35 +39,47 @@ class OpcodeTable {
  public:
   OpcodeTable();
 
-  /// Given a valid MIPS assembly mnemonic, returns an Opcode which represents a 
-  /// template for that instruction.
+  /// Given a valid MIPS assembly mnemonic, returns an Opcode which represents a template for that instruction.
+  /// @param  str MIPS assembly mnemonic
+  /// @return opcode for the specified mnemonic 
   Opcode getOpcode(string str);
 
   /// Given an Opcode, returns number of expected operands.
+  /// @param opcode for current instruction
+  /// @return number of operands for the specified opcode
   int numOperands(Opcode o);
 
-  /// Given an Opcode, returns the position of RS/RT/RD/IMM field.  If field is not
-  /// appropriate for this Opcode, returns -1.
+  /// Given an Opcode, returns the position of RS field.  If field is not appropriate for this Opcode, returns -1.
+  /// @param opcode of the current instruction
+  /// @return the position of the RS/RT/RD/IMM fields respectively 
   int RSposition(Opcode o);
   int RTposition(Opcode o);
   int RDposition(Opcode o);
   int IMMposition(Opcode o);
 
-  /// Given an Opcode, returns true if instruction expects a label in the instruction.
-  /// See "J".
+  /// Given an Opcode, returns true if instruction expects a label in the instruction. See "J".
+  /// @param opcode of the current instruction
+  /// @return true/false as to whether the instruction expects label
   bool isIMMLabel(Opcode o);
 
   /// Given an Opcode, returns instruction type.
+  /// @param opcode of the current instruction
+  /// @return the type of instruction
   InstType getInstType(Opcode o);
 
-  /// Given an Opcode, returns a string representing the binary encoding of the opcode
-  /// field.
+  /// Given an Opcode, returns a string representing the binary encoding of the opcode field.
+  /// @param opcode of the current instruction
+  /// @return string representing the binary encoding of the opcode 
   string getOpcodeField(Opcode o);
 
-  /// Given an Opcode, returns a string representing the binary encoding of the function
-  /// field.
+  /// Given an Opcode, returns a string representing the binary encoding of the function field.
+  /// @param opcode of the current instruction
+  /// @return string representing the binary encoding of the funct field
   string getFunctField(Opcode o);
   
+  ///Given an opcode return the name of the instruction associated with the opcode
+  /// @param opcode of the current instruction
+  /// @return name of instruction   
   string name(Opcode o);
 
 
