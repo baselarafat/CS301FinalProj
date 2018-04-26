@@ -21,8 +21,8 @@ Parser::Parser(string filename)
   else{
     string line;
     while( getline(in, line)){
-      int found = line.find("#");
-    if (found != std::string::npos)
+      std::size_t found = line.find("#");
+    if (found !=  (std::string::npos))
       continue;
       string opcode("");
       string operand[80];
@@ -349,6 +349,6 @@ string Parser::encode(Instruction i)
       
   }
 
-
+return encoded;
 
 }

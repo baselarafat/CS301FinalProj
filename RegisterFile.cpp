@@ -86,7 +86,7 @@ RegisterFile::~RegisterFile(){}
 RegisterFile::RegisterFile(string registerFile)
 {
 
-  int currentReg = 0;
+  
 
   // Makes sure the file is opened correctly
   ifstream infile3;

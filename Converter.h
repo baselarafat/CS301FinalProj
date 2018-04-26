@@ -35,8 +35,8 @@ static string inttohex(int x){
 	static string hexToBinary(string hex)
 {
     string bin;
-
-    for (int i = 0; i < hex.length(); i++)
+  
+    for (int unsigned(i) = 0; i < hex.length(); i++)
     {
 
         // Get the next char in the hex
@@ -129,7 +129,7 @@ static string binaryToHex(string binary)
     }
 
     // Loop through 4 bit chunks of binary string, appending to hex string
-    for (int i = 0; i < binary.length(); i += 4)
+    for (int unsigned (i) = 0; i < binary.length(); i += 4)
     {
         temp = binary.substr(i, 4);
         if (!temp.compare("0000"))
