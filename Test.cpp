@@ -156,18 +156,11 @@ int main ()
     InstructionMemory* im = new InstructionMemory (programInputFile);
     if(debugMode)
     {
-<<<<<<< HEAD
-      cout << "Testing third instruction slot to make sure instruction memory was initialized correctly." << endl;
-      Instruction i = im->getInstruction("0x04000008");
-      string s = i.getString();
-      cout<<s<<endl;
-=======
       cout << "Testing third instruction slot to make sure instruction memory"
       "was initialized correctly." << endl;
       // Instruction i = im->getInstruction("0x04000008");
       // string s = i.getString();
       // cout<<s<<endl;
->>>>>>> b53658720e003b465b4dbbd22b74edb756826451
     }
 
     //Sets first address at the start and creates Program Counter Object
