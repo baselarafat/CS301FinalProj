@@ -55,7 +55,7 @@ int main ()
 
       //loops through string until it finds equals
       //sets pointer to j
-      for(int j = 0; j < configInput.length(); j++)
+      for(int unsigned(j) = 0; j < configInput.length(); j++)
       {
           if(configInput.at(j) == '=')
           {
@@ -130,7 +130,7 @@ int main ()
     infile1.close();
 
   //int used to store # of instructions, must be <= 100
-  int numOfMemcells = 0;
+  
   DataMemory* dm = new DataMemory (dataMemoryFile);
   string memdata = dm->getdata("0x10000000");
  
@@ -549,6 +549,12 @@ int main ()
       im->printContents();
 
 
+  }
+  if(writeToFile)
+  {
+    cout<<"The memory has been written to the outputFile"<<endl;
+      dm->dmemPrintFinal(outputFile);
+      
   }
   return 0;
 }

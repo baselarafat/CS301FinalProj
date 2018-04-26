@@ -101,8 +101,8 @@ void InstructionMemory::printContents()
     for (mapIterator iter = instructions.begin(); iter != instructions.end(); iter++) {
         int len = iter->first.length();
         string first =iter->first.substr(1,len);
+        first.insert(1,"0");
         string hexifiedfirst  = Converter::hexify(first);
-
         string second = Converter::binaryToHex(iter->second.getEncoding());
         string shexified = Converter::hexify(second);
         cout << hexifiedfirst << ":" <<shexified<<endl;
