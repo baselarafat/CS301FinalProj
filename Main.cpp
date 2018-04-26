@@ -3,7 +3,17 @@
 ///Computer Orginization CS 301 Spring 2018
 #include "Stimulation.h"
 
-int main (){
-	Stimulation* stm = new Stimulation ("input.config");
+
+int main(int argc, char *argv[])
+{
+	Stimulation* stm ;
+	
+  if(argc < 2){
+    cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
+    exit(1);
+  }
+	stm =new Stimulation (argv[1]);
 	stm->run();
+
+	delete stm;
 };
