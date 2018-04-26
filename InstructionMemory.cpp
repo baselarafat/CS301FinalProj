@@ -52,7 +52,7 @@ InstructionMemory::InstructionMemory(string filename) {
 InstructionMemory::~InstructionMemory() {}
 
   /// Given an address, will get the instruction associated with the specified address
-  /// @param theAddress  Address given to accessand get the associated Instruction
+  /// @param theAddress  Address given to access and get the associated Instruction
   /// @return Instruction associated with given address
 Instruction InstructionMemory::getInstruction(std::string theAddress){
   if(!isValidInstruction(theAddress)){
@@ -63,6 +63,8 @@ Instruction InstructionMemory::getInstruction(std::string theAddress){
 }
 
   /// Checks to make sure that a valid instruction is given
+  /// @param theAddress  Address given to check if it's instruction is valid
+  /// @return false if the instruction at the given address is invalid, and true otherwise
 bool InstructionMemory::isValidInstruction(std::string theAddress)
 {
    std::map<string, Instruction>::const_iterator itr = instructions.find(theAddress);
@@ -76,10 +78,11 @@ bool InstructionMemory::isValidInstruction(std::string theAddress)
   }
 
 }
-void InstructionMemory::printContents()
-{
+
   /// Initializes iterator and iterates through myInstructionMapping, gathering the contents
   /// at each Instruction address and printing them out
+void InstructionMemory::printContents()
+{
     typedef map<string, Instruction>::iterator mapIterator;
     for (mapIterator iter = instructions.begin(); iter != instructions.end(); iter++) {
         int len = iter->first.length();
@@ -91,25 +94,6 @@ void InstructionMemory::printContents()
         cout << hexifiedfirst << ":" <<shexified<<endl;
     }
 }
-///  int InstructionMemory::hextoint(std::string s ){
-///   stringstream ss (s);
-///   int x;
-///    ss>>hex>>x;
-///    return x;
-/// }
-/// string InstructionMemory::inttohex(int x){
-///   stringstream ss ;
-///   ss<<hex<<x;
-///   std::string s = ss.str();
-///   return s;
-/// }
-/// std::string cvthex2Bin(std::string s){
-///   int len = s.length();
-///   int a = InstructionMemory::hextoint(s);
-///   string bin = Parser::cvtInt2Bin(a,len);
-///   return bin;
-
-/// }
 
  
  
