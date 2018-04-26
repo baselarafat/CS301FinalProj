@@ -1,0 +1,83 @@
+\hypertarget{class_data_memory}{}\section{Data\+Memory Class Reference}
+\label{class_data_memory}\index{Data\+Memory@{Data\+Memory}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_data_memory_af27e74a463cfa8d051d1fdc7a1a1c2b0}\label{class_data_memory_af27e74a463cfa8d051d1fdc7a1a1c2b0}} 
+\mbox{\hyperlink{class_data_memory_af27e74a463cfa8d051d1fdc7a1a1c2b0}{Data\+Memory}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_memory_a599d160106c78e0371bdb59d815b7868}{Data\+Memory}} (std\+::string filename)
+\item 
+std\+::string \mbox{\hyperlink{class_data_memory_ae360f23f4085e52acdfddd56e1a32909}{getdata}} (std\+::string address)
+\item 
+\mbox{\Hypertarget{class_data_memory_a6da7c9bd0cf4ed80de85f92a201de0a2}\label{class_data_memory_a6da7c9bd0cf4ed80de85f92a201de0a2}} 
+void \mbox{\hyperlink{class_data_memory_a6da7c9bd0cf4ed80de85f92a201de0a2}{dmem\+Print}} ()
+\begin{DoxyCompactList}\small\item\em Prints the data memory to console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_memory_a82f942ff85aeac08d6452bb4c42d891f}{dmem\+Print\+Final}} (string mem\+Output\+File)
+\item 
+std\+::string \mbox{\hyperlink{class_data_memory_ac9c4f2b4ce44214f8043d84edd35e9c4}{write\+Mem}} (string address, string val)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_data_memory_a599d160106c78e0371bdb59d815b7868}\label{class_data_memory_a599d160106c78e0371bdb59d815b7868}} 
+\index{Data\+Memory@{Data\+Memory}!Data\+Memory@{Data\+Memory}}
+\index{Data\+Memory@{Data\+Memory}!Data\+Memory@{Data\+Memory}}
+\subsubsection{\texorpdfstring{Data\+Memory()}{DataMemory()}}
+{\footnotesize\ttfamily Data\+Memory\+::\+Data\+Memory (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+Makes sure the file given is opened correctly and identifies the delimiter 
+\begin{DoxyParams}{Parameters}
+{\em filename} & file that will be checked for syntactic correctness \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_data_memory_a82f942ff85aeac08d6452bb4c42d891f}\label{class_data_memory_a82f942ff85aeac08d6452bb4c42d891f}} 
+\index{Data\+Memory@{Data\+Memory}!dmem\+Print\+Final@{dmem\+Print\+Final}}
+\index{dmem\+Print\+Final@{dmem\+Print\+Final}!Data\+Memory@{Data\+Memory}}
+\subsubsection{\texorpdfstring{dmem\+Print\+Final()}{dmemPrintFinal()}}
+{\footnotesize\ttfamily void Data\+Memory\+::dmem\+Print\+Final (\begin{DoxyParamCaption}\item[{string}]{mem\+Output\+File }\end{DoxyParamCaption})}
+
+Prints the data memory to the Output file 
+\begin{DoxyParams}{Parameters}
+{\em mem\+Output\+File} & file that data memory will be written to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_data_memory_ae360f23f4085e52acdfddd56e1a32909}\label{class_data_memory_ae360f23f4085e52acdfddd56e1a32909}} 
+\index{Data\+Memory@{Data\+Memory}!getdata@{getdata}}
+\index{getdata@{getdata}!Data\+Memory@{Data\+Memory}}
+\subsubsection{\texorpdfstring{getdata()}{getdata()}}
+{\footnotesize\ttfamily std\+::string Data\+Memory\+::getdata (\begin{DoxyParamCaption}\item[{std\+::string}]{address }\end{DoxyParamCaption})}
+
+Given an Address, returns the data associated with that address 
+\begin{DoxyParams}{Parameters}
+{\em the\+Address} & specified address to gather data from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mem\mbox{[}the\+Address\mbox{]} the data associated with the specified address in the data memory 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_data_memory_ac9c4f2b4ce44214f8043d84edd35e9c4}\label{class_data_memory_ac9c4f2b4ce44214f8043d84edd35e9c4}} 
+\index{Data\+Memory@{Data\+Memory}!write\+Mem@{write\+Mem}}
+\index{write\+Mem@{write\+Mem}!Data\+Memory@{Data\+Memory}}
+\subsubsection{\texorpdfstring{write\+Mem()}{writeMem()}}
+{\footnotesize\ttfamily std\+::string Data\+Memory\+::write\+Mem (\begin{DoxyParamCaption}\item[{string}]{address,  }\item[{string}]{val }\end{DoxyParamCaption})}
+
+Given an address and a value, will write the value within the specified data memory address 
+\begin{DoxyParams}{Parameters}
+{\em address} & address to be written to \\
+\hline
+{\em val} & value to be stored into the specified address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+temp the value originally stored within the specified address 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Data\+Memory.\+h\item 
+Data\+Memory.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,73 @@
+\hypertarget{class_instruction_memory}{}\section{Instruction\+Memory Class Reference}
+\label{class_instruction_memory}\index{Instruction\+Memory@{Instruction\+Memory}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_instruction_memory_ab8cf52c9d90ee839882175f1f0d092da}\label{class_instruction_memory_ab8cf52c9d90ee839882175f1f0d092da}} 
+\mbox{\hyperlink{class_instruction_memory_ab8cf52c9d90ee839882175f1f0d092da}{Instruction\+Memory}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_instruction_memory_a9e98dfb1c96db56d02cbd1a7aed31ec7}{Instruction\+Memory}} (std\+::string filename)
+\item 
+\mbox{\hyperlink{class_instruction}{Instruction}} \mbox{\hyperlink{class_instruction_memory_a9991daa81af7611a8ff76bbbd4b64630}{get\+Instruction}} (std\+::string address)
+\item 
+bool \mbox{\hyperlink{class_instruction_memory_a530d8236c9ddb2827d13a17bb5a6cdd6}{is\+Valid\+Instruction}} (std\+::string the\+Address)
+\item 
+void \mbox{\hyperlink{class_instruction_memory_a56a478d5ce8327bf58c9d726898921f8}{print\+Contents}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_instruction_memory_a9e98dfb1c96db56d02cbd1a7aed31ec7}\label{class_instruction_memory_a9e98dfb1c96db56d02cbd1a7aed31ec7}} 
+\index{Instruction\+Memory@{Instruction\+Memory}!Instruction\+Memory@{Instruction\+Memory}}
+\index{Instruction\+Memory@{Instruction\+Memory}!Instruction\+Memory@{Instruction\+Memory}}
+\subsubsection{\texorpdfstring{Instruction\+Memory()}{InstructionMemory()}}
+{\footnotesize\ttfamily Instruction\+Memory\+::\+Instruction\+Memory (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+Accesses and parses through the \mbox{\hyperlink{class_instruction}{Instruction}} memory 
+\begin{DoxyParams}{Parameters}
+{\em filename} & file to be accessed and store given instructions \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_instruction_memory_a9991daa81af7611a8ff76bbbd4b64630}\label{class_instruction_memory_a9991daa81af7611a8ff76bbbd4b64630}} 
+\index{Instruction\+Memory@{Instruction\+Memory}!get\+Instruction@{get\+Instruction}}
+\index{get\+Instruction@{get\+Instruction}!Instruction\+Memory@{Instruction\+Memory}}
+\subsubsection{\texorpdfstring{get\+Instruction()}{getInstruction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_instruction}{Instruction}} Instruction\+Memory\+::get\+Instruction (\begin{DoxyParamCaption}\item[{std\+::string}]{the\+Address }\end{DoxyParamCaption})}
+
+Given an address, will get the instruction associated with the specified address 
+\begin{DoxyParams}{Parameters}
+{\em the\+Address} & Address given to access and get the associated \mbox{\hyperlink{class_instruction}{Instruction}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_instruction}{Instruction}} associated with given address 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_instruction_memory_a530d8236c9ddb2827d13a17bb5a6cdd6}\label{class_instruction_memory_a530d8236c9ddb2827d13a17bb5a6cdd6}} 
+\index{Instruction\+Memory@{Instruction\+Memory}!is\+Valid\+Instruction@{is\+Valid\+Instruction}}
+\index{is\+Valid\+Instruction@{is\+Valid\+Instruction}!Instruction\+Memory@{Instruction\+Memory}}
+\subsubsection{\texorpdfstring{is\+Valid\+Instruction()}{isValidInstruction()}}
+{\footnotesize\ttfamily bool Instruction\+Memory\+::is\+Valid\+Instruction (\begin{DoxyParamCaption}\item[{std\+::string}]{the\+Address }\end{DoxyParamCaption})}
+
+Checks to make sure that a valid instruction is given 
+\begin{DoxyParams}{Parameters}
+{\em the\+Address} & Address given to check if it\textquotesingle{}s instruction is valid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if the instruction at the given address is invalid, and true otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_instruction_memory_a56a478d5ce8327bf58c9d726898921f8}\label{class_instruction_memory_a56a478d5ce8327bf58c9d726898921f8}} 
+\index{Instruction\+Memory@{Instruction\+Memory}!print\+Contents@{print\+Contents}}
+\index{print\+Contents@{print\+Contents}!Instruction\+Memory@{Instruction\+Memory}}
+\subsubsection{\texorpdfstring{print\+Contents()}{printContents()}}
+{\footnotesize\ttfamily void Instruction\+Memory\+::print\+Contents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Initializes iterator and iterates through my\+Instruction\+Mapping, gathering the contents at each \mbox{\hyperlink{class_instruction}{Instruction}} address and printing them out 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Instruction\+Memory.\+h\item 
+Instruction\+Memory.\+cpp\end{DoxyCompactItemize}

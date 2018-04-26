@@ -1,0 +1,121 @@
+\hypertarget{class_converter}{}\section{Converter Class Reference}
+\label{class_converter}\index{Converter@{Converter}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_converter_a144e272d3905a27f6eb214e76f9b6b5f}{hextoint}} (std\+::string s)
+\item 
+static string \mbox{\hyperlink{class_converter_a02f64183ea19c2d2671252cadb17f66f}{inttohex}} (int x)
+\item 
+static string \mbox{\hyperlink{class_converter_aabed706cd6259a3d1c5c303cf2a411ff}{hex\+To\+Binary}} (string hex)
+\item 
+static string \mbox{\hyperlink{class_converter_a27f709c876d1b9283bf8cf0cd54e5578}{binary\+To\+Hex}} (string binary)
+\item 
+static std\+::string \mbox{\hyperlink{class_converter_a768192ad785d9cc92a0815b85ba5653f}{hexify}} (std\+::string s)
+\item 
+static std\+::string \mbox{\hyperlink{class_converter_aceba1af9f263ae93e9e2b7f4f291c72b}{inttobinarry}} (int a)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_converter_a27f709c876d1b9283bf8cf0cd54e5578}\label{class_converter_a27f709c876d1b9283bf8cf0cd54e5578}} 
+\index{Converter@{Converter}!binary\+To\+Hex@{binary\+To\+Hex}}
+\index{binary\+To\+Hex@{binary\+To\+Hex}!Converter@{Converter}}
+\subsubsection{\texorpdfstring{binary\+To\+Hex()}{binaryToHex()}}
+{\footnotesize\ttfamily static string Converter\+::binary\+To\+Hex (\begin{DoxyParamCaption}\item[{string}]{binary }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Converts a given binary value to hex 
+\begin{DoxyParams}{Parameters}
+{\em binary} & binary value to be changed to a hex value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+hex hexadecimal conversion of the provided binary value 
+\end{DoxyReturn}
+string that will hold final hex string to return
+
+string to extend input string so length is divisible by 4
+
+string that will hold 4 bit chunks of input string
+
+Extend inputted string to be of a length divisible by 4
+
+append extender to front of binary string
+
+Loop through 4 bit chunks of binary string, appending to hex string \mbox{\Hypertarget{class_converter_a768192ad785d9cc92a0815b85ba5653f}\label{class_converter_a768192ad785d9cc92a0815b85ba5653f}} 
+\index{Converter@{Converter}!hexify@{hexify}}
+\index{hexify@{hexify}!Converter@{Converter}}
+\subsubsection{\texorpdfstring{hexify()}{hexify()}}
+{\footnotesize\ttfamily static std\+::string Converter\+::hexify (\begin{DoxyParamCaption}\item[{std\+::string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Checking if it already has \char`\"{}0x\char`\"{} in the begging of the string 
+\begin{DoxyParams}{Parameters}
+{\em s} & string to be converted to it\textquotesingle{}s hex equivalent \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mystring the hexadeciaml conversion of the provided string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_converter_aabed706cd6259a3d1c5c303cf2a411ff}\label{class_converter_aabed706cd6259a3d1c5c303cf2a411ff}} 
+\index{Converter@{Converter}!hex\+To\+Binary@{hex\+To\+Binary}}
+\index{hex\+To\+Binary@{hex\+To\+Binary}!Converter@{Converter}}
+\subsubsection{\texorpdfstring{hex\+To\+Binary()}{hexToBinary()}}
+{\footnotesize\ttfamily static string Converter\+::hex\+To\+Binary (\begin{DoxyParamCaption}\item[{string}]{hex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Converts a given hex value to binary 
+\begin{DoxyParams}{Parameters}
+{\em hex} & hex value to be changed to a binary value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bin binary conversion of the provided hex value 
+\end{DoxyReturn}
+Get the next char in the hex
+
+Convert the next char in the hex to the appropriate 4-\/bit binary representation \mbox{\Hypertarget{class_converter_a144e272d3905a27f6eb214e76f9b6b5f}\label{class_converter_a144e272d3905a27f6eb214e76f9b6b5f}} 
+\index{Converter@{Converter}!hextoint@{hextoint}}
+\index{hextoint@{hextoint}!Converter@{Converter}}
+\subsubsection{\texorpdfstring{hextoint()}{hextoint()}}
+{\footnotesize\ttfamily static int Converter\+::hextoint (\begin{DoxyParamCaption}\item[{std\+::string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Converts a given hex value to an int 
+\begin{DoxyParams}{Parameters}
+{\em s} & hex input to be changed to an int value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer conversion of the provided hex value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_converter_aceba1af9f263ae93e9e2b7f4f291c72b}\label{class_converter_aceba1af9f263ae93e9e2b7f4f291c72b}} 
+\index{Converter@{Converter}!inttobinarry@{inttobinarry}}
+\index{inttobinarry@{inttobinarry}!Converter@{Converter}}
+\subsubsection{\texorpdfstring{inttobinarry()}{inttobinarry()}}
+{\footnotesize\ttfamily static std\+::string Converter\+::inttobinarry (\begin{DoxyParamCaption}\item[{int}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Converts given int value into binary 
+\begin{DoxyParams}{Parameters}
+{\em a} & integer value to be converted to it\textquotesingle{}s binary equivalent \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bin thebinary conversion of the provided integer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_converter_a02f64183ea19c2d2671252cadb17f66f}\label{class_converter_a02f64183ea19c2d2671252cadb17f66f}} 
+\index{Converter@{Converter}!inttohex@{inttohex}}
+\index{inttohex@{inttohex}!Converter@{Converter}}
+\subsubsection{\texorpdfstring{inttohex()}{inttohex()}}
+{\footnotesize\ttfamily static string Converter\+::inttohex (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Converts a given int value to hex 
+\begin{DoxyParams}{Parameters}
+{\em x} & integer value to be changed to a hex value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+s hexadecimal conversion of the provided integer value 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Converter.\+h\end{DoxyCompactItemize}

@@ -9,36 +9,38 @@ ControlUnit::ControlUnit(){}
 
 ControlUnit::~ControlUnit(){}
 
+// Given an opcode binary identification, sets the opcode values
+// @param opcode	opcode value to evaluated for type
 void ControlUnit::setValues(std::string opcode)
 {	
-	//Jump instruction
+	///Jump instruction
 	if(opcode == "000010")
 	{
 		this->jump = true;
 	}
 
-	//R-Type
+	///R-Type
 	if(opcode == "000000")
 	{
 		regDest = true;
 		regWrite = true;
-		/// 10 so true, false
+		//// 10 so true, false
 		aluOp0 = false;
 		aluOp1 = true;
 	}
 
-	//I-Type
-	//Addi
+	///I-Type
+	///Addi
 	if(opcode == "001000")
 	{
 		aluSrc = true;
 		regWrite = true;
-		// I think? this means add
+		/// I think? this means add
 		aluOp0 = false;
 		aluOp1 = false;
 	}
 
-	//LW
+	///LW
 	if(opcode == "100011")
 	{
 		aluSrc = true;
@@ -49,7 +51,7 @@ void ControlUnit::setValues(std::string opcode)
 		aluOp1 = false;
 	}
 
-	//SW
+	///SW
 	if(opcode == "101011")
 	{
 		aluSrc = true;
@@ -58,19 +60,19 @@ void ControlUnit::setValues(std::string opcode)
 		aluOp1 = false;
 	}
 
-	//BEQ
+	///BEQ
 	if(opcode == "000100")
 	{
 		branch = true;
-		//Represents 01
+		///Represents 01
 		aluOp0 = true;
 		aluOp1 = false;
 	}
 	
 }
 
-//The following accessors return 1 if the control 
-// is set to true and 0 if false.
+///The following accessors return 1 if the control 
+/// is set to true and 0 if false.
 int ControlUnit::getRegDest()
 {
 	if(regDest)
@@ -132,11 +134,11 @@ int ControlUnit::getmemToReg()
 }
 
 
-// std::string ControlUnit::getAluOp()
-// {
+/// std::string ControlUnit::getAluOp()
+/// {
 
-// 		return aluOp;
-// }
+/// 		return aluOp;
+/// }
 
 int ControlUnit::getMemWrite()
 {
@@ -198,8 +200,8 @@ int ControlUnit::getAluOp1()
 	}
 }
 
-//Method that sets all values to 0, must be done prior to 
-//each instruction
+///Method that sets all values to 0, must be done prior to 
+///each instruction
 void ControlUnit::setToZero()
 {
 	this->regDest = false;
@@ -214,7 +216,7 @@ void ControlUnit::setToZero()
 	this->regWrite = false;
 }
 
-//Method that prints out the contents of the Control
+///Method that prints out the contents of the Control
 void ControlUnit::printControl()
 {
 	std::cout << "RegDest: "  << getRegDest()  << std::endl;

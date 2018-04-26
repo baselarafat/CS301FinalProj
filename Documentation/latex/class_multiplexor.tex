@@ -1,0 +1,53 @@
+\hypertarget{class_multiplexor}{}\section{Multiplexor Class Reference}
+\label{class_multiplexor}\index{Multiplexor@{Multiplexor}}
+
+
+{\ttfamily \#include $<$Multiplexor.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_multiplexor_a69c9a975586cc73853780b769e275763}\label{class_multiplexor_a69c9a975586cc73853780b769e275763}} 
+std\+::string \mbox{\hyperlink{class_multiplexor_a69c9a975586cc73853780b769e275763}{set\+First\+Input}} (std\+::string first\+Input)
+\begin{DoxyCompactList}\small\item\em Set\textquotesingle{}s input at point that coincides with 0 on the picture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_multiplexor_afcc3b61e4bb50501e5f11f81d6603641}\label{class_multiplexor_afcc3b61e4bb50501e5f11f81d6603641}} 
+std\+::string \mbox{\hyperlink{class_multiplexor_afcc3b61e4bb50501e5f11f81d6603641}{set\+Second\+Input}} (std\+::string second\+Input)
+\begin{DoxyCompactList}\small\item\em Sets input at 1 that coincides with 1 on the picture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_multiplexor_aa6d73bfebf640401b42562534694cd02}\label{class_multiplexor_aa6d73bfebf640401b42562534694cd02}} 
+std\+::string \mbox{\hyperlink{class_multiplexor_aa6d73bfebf640401b42562534694cd02}{mux}} ()
+\begin{DoxyCompactList}\small\item\em calls mux and returns the result chosed \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_multiplexor_aaf700f773d80deaa3af4cb8aec0f9b41}{set\+Flow}} (int \mbox{\hyperlink{class_multiplexor_aa38f2d5057c2c76b799fa66645662b55}{flow}})
+\item 
+\mbox{\Hypertarget{class_multiplexor_aa2483f83fbb3c17b0ffcff36893f4314}\label{class_multiplexor_aa2483f83fbb3c17b0ffcff36893f4314}} 
+int \mbox{\hyperlink{class_multiplexor_aa2483f83fbb3c17b0ffcff36893f4314}{get\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Returns signal for testing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_multiplexor_ae7f24f6e3b1e141c22de77520b55ff36}\label{class_multiplexor_ae7f24f6e3b1e141c22de77520b55ff36}} 
+std\+::string {\bfseries first\+Input}
+\item 
+\mbox{\Hypertarget{class_multiplexor_aedb0534a1f3a41bd09136175a80d76b7}\label{class_multiplexor_aedb0534a1f3a41bd09136175a80d76b7}} 
+std\+::string {\bfseries second\+Input}
+\item 
+\mbox{\Hypertarget{class_multiplexor_aa38f2d5057c2c76b799fa66645662b55}\label{class_multiplexor_aa38f2d5057c2c76b799fa66645662b55}} 
+int \mbox{\hyperlink{class_multiplexor_aa38f2d5057c2c76b799fa66645662b55}{flow}}
+\begin{DoxyCompactList}\small\item\em 0 or 1, based on value in the picture of the processor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_multiplexor}{Multiplexor}} Class Basel Arafat, Nicholas Biffis,Vincent Camp \& Will Saada Computer Orginization CS 301 Spring 2018 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_multiplexor_aaf700f773d80deaa3af4cb8aec0f9b41}\label{class_multiplexor_aaf700f773d80deaa3af4cb8aec0f9b41}} 
+\index{Multiplexor@{Multiplexor}!set\+Flow@{set\+Flow}}
+\index{set\+Flow@{set\+Flow}!Multiplexor@{Multiplexor}}
+\subsubsection{\texorpdfstring{set\+Flow()}{setFlow()}}
+{\footnotesize\ttfamily void Multiplexor\+::set\+Flow (\begin{DoxyParamCaption}\item[{int}]{flow }\end{DoxyParamCaption})}
+
+will be used by the Control Unit, which sends true or false based on whether or not the mux is needed. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Multiplexor.\+h\item 
+Multiplexor.\+cpp\end{DoxyCompactItemize}

@@ -1,4 +1,6 @@
-
+///Multiplexor Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __MULTIPLEXOR_H__
 #define __MULTIPLEXOR_H__
 
@@ -9,7 +11,7 @@ class Multiplexor
 	protected:
     std::string firstInput;
     std::string secondInput;
-    //0 or 1, based on value in the picture of the processor.
+    ///0 or 1, based on value in the picture of the processor.
     int flow;
 
     public:

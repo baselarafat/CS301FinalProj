@@ -1,0 +1,112 @@
+\hypertarget{class_register_file}{}\section{Register\+File Class Reference}
+\label{class_register_file}\index{Register\+File@{Register\+File}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_register_file_a9513989ee395d14943de66f99ec8014a}{Register\+File}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_register_file_a9085db6aaabf8e55819d8bbd73f521b4}{Register\+File}} (string register\+File)
+\item 
+Register \mbox{\hyperlink{class_register_file_a54d87ad82368cfa1dfb8b3f01a3d2e5a}{get\+Num}} (string reg)
+\item 
+std\+::string \mbox{\hyperlink{class_register_file_a5554dd7d1b78c4a59b23036e9aa66136}{read\+Reg}} (string reg)
+\item 
+std\+::string \mbox{\hyperlink{class_register_file_a4e4802bee78d7c7173c829764babca9c}{write\+Reg}} (string reg, string value)
+\item 
+void \mbox{\hyperlink{class_register_file_ac72ef70e7bdee7b5ac7afbfdcd6d8ab1}{print\+Contents}} ()
+\begin{DoxyCompactList}\small\item\em Prints contents of the register file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_register_file_a9513989ee395d14943de66f99ec8014a}\label{class_register_file_a9513989ee395d14943de66f99ec8014a}} 
+\index{Register\+File@{Register\+File}!Register\+File@{Register\+File}}
+\index{Register\+File@{Register\+File}!Register\+File@{Register\+File}}
+\subsubsection{\texorpdfstring{Register\+File()}{RegisterFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Register\+File\+::\+Register\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+Register Table for access \mbox{\Hypertarget{class_register_file_a9085db6aaabf8e55819d8bbd73f521b4}\label{class_register_file_a9085db6aaabf8e55819d8bbd73f521b4}} 
+\index{Register\+File@{Register\+File}!Register\+File@{Register\+File}}
+\index{Register\+File@{Register\+File}!Register\+File@{Register\+File}}
+\subsubsection{\texorpdfstring{Register\+File()}{RegisterFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Register\+File\+::\+Register\+File (\begin{DoxyParamCaption}\item[{string}]{register\+File }\end{DoxyParamCaption})}
+
+Checks to make sure file is opened correctly, and establishes the delimiter 
+\begin{DoxyParams}{Parameters}
+{\em register\+File} & file given to be evaluated for syntacitc correctness \\
+\hline
+\end{DoxyParams}
+Makes sure the file is opened correctly
+
+Loop should run until eof().
+
+creates string and saves each line to input
+
+puts instruction in
+
+increments number of instructions 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_register_file_a54d87ad82368cfa1dfb8b3f01a3d2e5a}\label{class_register_file_a54d87ad82368cfa1dfb8b3f01a3d2e5a}} 
+\index{Register\+File@{Register\+File}!get\+Num@{get\+Num}}
+\index{get\+Num@{get\+Num}!Register\+File@{Register\+File}}
+\subsubsection{\texorpdfstring{get\+Num()}{getNum()}}
+{\footnotesize\ttfamily Register Register\+File\+::get\+Num (\begin{DoxyParamCaption}\item[{string}]{reg }\end{DoxyParamCaption})}
+
+Given a string representing a M\+I\+PS register operand, returns the number associated with that register. If string is not a valid register, returns Num\+Registers. 
+\begin{DoxyParams}{Parameters}
+{\em reg} & register to get set number equivalent of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Num\+Registers\mbox{[}i\mbox{]}.number if the register corresponded with a number and 32 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_register_file_ac72ef70e7bdee7b5ac7afbfdcd6d8ab1}\label{class_register_file_ac72ef70e7bdee7b5ac7afbfdcd6d8ab1}} 
+\index{Register\+File@{Register\+File}!print\+Contents@{print\+Contents}}
+\index{print\+Contents@{print\+Contents}!Register\+File@{Register\+File}}
+\subsubsection{\texorpdfstring{print\+Contents()}{printContents()}}
+{\footnotesize\ttfamily void Register\+File\+::print\+Contents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints contents of the register file. 
+
+Prints contents of register file. \mbox{\Hypertarget{class_register_file_a5554dd7d1b78c4a59b23036e9aa66136}\label{class_register_file_a5554dd7d1b78c4a59b23036e9aa66136}} 
+\index{Register\+File@{Register\+File}!read\+Reg@{read\+Reg}}
+\index{read\+Reg@{read\+Reg}!Register\+File@{Register\+File}}
+\subsubsection{\texorpdfstring{read\+Reg()}{readReg()}}
+{\footnotesize\ttfamily std\+::string Register\+File\+::read\+Reg (\begin{DoxyParamCaption}\item[{string}]{reg }\end{DoxyParamCaption})}
+
+Given a string representing a M\+I\+PS register operand, returns the value associated with said register. If the string is not a valid register, returns the number of registers 
+\begin{DoxyParams}{Parameters}
+{\em reg} & register to be read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+my\+Register\mbox{[}reg\mbox{]} the value stored at the given register 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_register_file_a4e4802bee78d7c7173c829764babca9c}\label{class_register_file_a4e4802bee78d7c7173c829764babca9c}} 
+\index{Register\+File@{Register\+File}!write\+Reg@{write\+Reg}}
+\index{write\+Reg@{write\+Reg}!Register\+File@{Register\+File}}
+\subsubsection{\texorpdfstring{write\+Reg()}{writeReg()}}
+{\footnotesize\ttfamily std\+::string Register\+File\+::write\+Reg (\begin{DoxyParamCaption}\item[{string}]{reg,  }\item[{string}]{val }\end{DoxyParamCaption})}
+
+Given a string representing a M\+I\+PS register operand and a specified value, stores the value within said register. 
+\begin{DoxyParams}{Parameters}
+{\em reg} & register to be written to \\
+\hline
+{\em value} & value to be stored within the specified address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+temp\mbox{[}reg\mbox{]} the value originally stored in the specified address 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Register\+File.\+h\item 
+Register\+File.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,67 @@
+\hypertarget{class_configuration_parser}{}\section{Configuration\+Parser Class Reference}
+\label{class_configuration_parser}\index{Configuration\+Parser@{Configuration\+Parser}}
+
+
+{\ttfamily \#include $<$Configuration\+Parser.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_configuration_parser_a136edf01958c71e82a4336b1271217a0}\label{class_configuration_parser_a136edf01958c71e82a4336b1271217a0}} 
+{\bfseries Configuration\+Parser} (std\+::string s)
+\item 
+void \mbox{\hyperlink{class_configuration_parser_ae1adbe510f3aa99d3f9c757a423f9a05}{Parseit}} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_ade42435f4f9ec1a0fc9d3150dc122171}\label{class_configuration_parser_ade42435f4f9ec1a0fc9d3150dc122171}} 
+std\+::string {\bfseries get\+Configurationfile} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_ad1bd1b084e84709b41bda51b9608f4bc}\label{class_configuration_parser_ad1bd1b084e84709b41bda51b9608f4bc}} 
+std\+::string {\bfseries getprogram\+Input\+File} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_a49c65169b8f8627eb43f1a5d1a5d8423}\label{class_configuration_parser_a49c65169b8f8627eb43f1a5d1a5d8423}} 
+std\+::string {\bfseries getdata\+Memory\+File} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_a9fcc4b6bb1e5460d8b76bacf3ef214cd}\label{class_configuration_parser_a9fcc4b6bb1e5460d8b76bacf3ef214cd}} 
+std\+::string {\bfseries getregister\+File} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_adcbc95b9ab67426605f6dca5ba247622}\label{class_configuration_parser_adcbc95b9ab67426605f6dca5ba247622}} 
+std\+::string {\bfseries getoutput\+Mode} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_a6b0393667c3f4fd34eb1645b11da65cc}\label{class_configuration_parser_a6b0393667c3f4fd34eb1645b11da65cc}} 
+std\+::string {\bfseries getoutput\+File} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_a95c47941501ecfa2f43162f6944f417c}\label{class_configuration_parser_a95c47941501ecfa2f43162f6944f417c}} 
+bool {\bfseries getdebug\+Mode} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_a02cc27ca0e27d39153f9d8a67480f2cc}\label{class_configuration_parser_a02cc27ca0e27d39153f9d8a67480f2cc}} 
+bool {\bfseries getprint\+Memory\+Contents} ()
+\item 
+\mbox{\Hypertarget{class_configuration_parser_ac0b67ef67ad3987c3f24e36ded441a7c}\label{class_configuration_parser_ac0b67ef67ad3987c3f24e36ded441a7c}} 
+bool {\bfseries getwrite\+To\+File} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Configuration\+File Parsr Class Basel Arafat, Nicholas Biffis,Vincent Camp \& Will Saada Computer Orginization CS 301 Spring 2018 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_configuration_parser_ae1adbe510f3aa99d3f9c757a423f9a05}\label{class_configuration_parser_ae1adbe510f3aa99d3f9c757a423f9a05}} 
+\index{Configuration\+Parser@{Configuration\+Parser}!Parseit@{Parseit}}
+\index{Parseit@{Parseit}!Configuration\+Parser@{Configuration\+Parser}}
+\subsubsection{\texorpdfstring{Parseit()}{Parseit()}}
+{\footnotesize\ttfamily void Configuration\+Parser\+::\+Parseit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+opens file then make sure it was successful
+
+loop to run once for each config
+
+loops through string until it finds equals sets pointer to j ~\newline
+~\newline
+ gets the part of the input after the equals sign
+
+this block of code adds the values from the config file to the appropriate variables. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Configuration\+Parser.\+h\item 
+Configuration\+Parser.\+cpp\end{DoxyCompactItemize}

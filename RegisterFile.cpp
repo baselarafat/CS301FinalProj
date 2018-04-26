@@ -4,6 +4,7 @@ RegisterFile::RegisterFile()
 {
   int i = 0;
 
+  /// Register Table for access
   myRegisters[i].name = "$0";  myRegisters[i].number = i; i++;
   myRegisters[i].name = "$1";  myRegisters[i].number = i; i++;
   myRegisters[i].name = "$2";  myRegisters[i].number = i; i++;
@@ -82,12 +83,12 @@ RegisterFile::RegisterFile()
   myRegisters[i].name = "$ra";  myRegisters[i].number = 31; i++;
 }
 RegisterFile::~RegisterFile(){}
+
+/// Checks to make sure file is opened correctly, and establishes the delimiter
+/// @param  registerFile  file given to be evaluated for syntacitc correctness
 RegisterFile::RegisterFile(string registerFile)
 {
-
-  int currentReg = 0;
-
-  //
+  /// Makes sure the file is opened correctly
   ifstream infile3;
   infile3.open(registerFile);
     if (!infile3.is_open()) {
@@ -95,27 +96,29 @@ RegisterFile::RegisterFile(string registerFile)
         exit(1); 
     }
   
-  // Loop should run until eof().
+  /// Loop should run until eof().
   while(infile3.good())
   {
-      //creates string and saves each line to input
+      ///creates string and saves each line to input
       string input;
       infile3 >> input;
       int delimiter =input.find(":");
 
       string reg1 = input.substr(0,delimiter);
-      //puts instruction in
+      ///puts instruction in
       string reg2 = input.substr(delimiter + 1, input.length()-1);
       myRegister[reg1]=reg2;
-      //increments number of instructions
+      ///increments number of instructions
   }
 
   infile3.close();
 }
 
+/// Given a string representing a MIPS register operand, returns the number associated
+/// with that register.  If string is not a valid register, returns NumRegisters.
+/// @param  reg   register to get set number equivalent of
+/// @return NumRegisters[i].number if the register corresponded with a number and 32 otherwise
 Register RegisterFile::getNum(string reg)
-  // Given a string representing a MIPS register operand, returns the number associated
-  // with that register.  If string is not a valid register, returns NumRegisters.
 {
   for(int i = 0; i < 2*NumRegisters; i++){
     if(myRegisters[i].name == reg){
@@ -126,19 +129,20 @@ Register RegisterFile::getNum(string reg)
   return NumRegisters;
 }
 
- /*Given a string representing a MIPS register operand, returns the value associated
-with said register. If the string is not a valid register, returns the number of registers
-*/
+///Given a string representing a MIPS register operand, returns the value associated
+///with said register. If the string is not a valid register, returns the number of registers
+/// @param reg  register to be read from
+/// @return myRegister[reg] the value stored at the given register
 std::string RegisterFile::readReg(string reg)
 {
   return myRegister[reg];
     }
-/*Given a string representing a MIPS register operand and a specified value, stores the value within
-said register.
 
-//This should be modified so that it will not modify the values of the registers,but it needs to copy them 
-then the values could be changed 
-*/
+///Given a string representing a MIPS register operand and a specified value, stores the value within
+///said register.
+/// @param reg  register to be written to
+/// @param value  value to be stored within the specified address
+/// @return temp[reg] the value originally stored in the specified address
 std::string RegisterFile::writeReg(string reg, string val)
 {
 
@@ -147,16 +151,9 @@ std::string RegisterFile::writeReg(string reg, string val)
   return temp[reg];
 
 
-  // for(int i = 0; i < 2*NumRegisters; i++){
-  //   if(myRegisters[i].name == reg){
-  //     myRegisters[i].value = val;
-  //   return myRegisters[i].value;
-  //   }
-  // }
-  // return "";
-
 }
 
+///Prints contents of register file
 void     RegisterFile::printContents()
 {
     for(int i = 0; i <= 31; i++)

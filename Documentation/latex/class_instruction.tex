@@ -1,0 +1,116 @@
+\hypertarget{class_instruction}{}\section{Instruction Class Reference}
+\label{class_instruction}\index{Instruction@{Instruction}}
+
+
+{\ttfamily \#include $<$Instruction.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_instruction_acf9058307d344be3005b10ba1b642ef0}{Instruction}} (Opcode op, Register rs, Register rt, Register rd, int imm)
+\item 
+void \mbox{\hyperlink{class_instruction_ab7bd4ac378e25f67296e30ab421602f8}{set\+Values}} (Opcode op, Register rs, Register rt, Register rd, int imm)
+\item 
+\mbox{\Hypertarget{class_instruction_af934b7598fcb3db6e4493cce118c4eb8}\label{class_instruction_af934b7598fcb3db6e4493cce118c4eb8}} 
+Opcode \mbox{\hyperlink{class_instruction_af934b7598fcb3db6e4493cce118c4eb8}{get\+Opcode}} ()
+\begin{DoxyCompactList}\small\item\em Returns the various fields for the \mbox{\hyperlink{class_instruction}{Instruction}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_instruction_a1e9448534e3c29339794e59434921375}\label{class_instruction_a1e9448534e3c29339794e59434921375}} 
+Register {\bfseries get\+RS} ()
+\item 
+\mbox{\Hypertarget{class_instruction_a093410083994dc233c21719b31a05aa2}\label{class_instruction_a093410083994dc233c21719b31a05aa2}} 
+Register {\bfseries get\+RD} ()
+\item 
+\mbox{\Hypertarget{class_instruction_a4e03550d8976160fd678cee3a9a26881}\label{class_instruction_a4e03550d8976160fd678cee3a9a26881}} 
+Register {\bfseries get\+RT} ()
+\item 
+\mbox{\Hypertarget{class_instruction_a01bb4a1f66f15b1921ba5c9e18320115}\label{class_instruction_a01bb4a1f66f15b1921ba5c9e18320115}} 
+int {\bfseries get\+Immediate} ()
+\item 
+string \mbox{\hyperlink{class_instruction_a3deaa9fb80e0e3e5fbc6b32efaea2f98}{get\+String}} ()
+\item 
+void \mbox{\hyperlink{class_instruction_ab10e98d595622a19f2ed0c94098692a2}{set\+Encoding}} (string s)
+\item 
+string \mbox{\hyperlink{class_instruction_a478d5c0c11c0e72b53c73643447e15c3}{get\+Encoding}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_instruction}{Instruction}} Class Basel Arafat, Nicholas Biffis,Vincent Camp \& Will Saada Computer Orginization CS 301 Spring 2018 This class provides an internal representation for a M\+I\+PS assembly instruction. Any of the fields can be queried. Additionally, the class stores a 32 bit binary encoding of the M\+I\+PS instruction. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_instruction_acf9058307d344be3005b10ba1b642ef0}\label{class_instruction_acf9058307d344be3005b10ba1b642ef0}} 
+\index{Instruction@{Instruction}!Instruction@{Instruction}}
+\index{Instruction@{Instruction}!Instruction@{Instruction}}
+\subsubsection{\texorpdfstring{Instruction()}{Instruction()}}
+{\footnotesize\ttfamily Instruction\+::\+Instruction (\begin{DoxyParamCaption}\item[{Opcode}]{op,  }\item[{Register}]{rs,  }\item[{Register}]{rt,  }\item[{Register}]{rd,  }\item[{int}]{imm }\end{DoxyParamCaption})}
+
+You can specify all the fields to initialize the \mbox{\hyperlink{class_instruction}{Instruction}} 
+\begin{DoxyParams}{Parameters}
+{\em op} & current instruction opcode \\
+\hline
+{\em rs} & current instruction register source \\
+\hline
+{\em rt} & current instruction register source 2 \\
+\hline
+{\em rd} & current instruction register destination \\
+\hline
+{\em imm} & current instruction immediate value \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_instruction_a478d5c0c11c0e72b53c73643447e15c3}\label{class_instruction_a478d5c0c11c0e72b53c73643447e15c3}} 
+\index{Instruction@{Instruction}!get\+Encoding@{get\+Encoding}}
+\index{get\+Encoding@{get\+Encoding}!Instruction@{Instruction}}
+\subsubsection{\texorpdfstring{get\+Encoding()}{getEncoding()}}
+{\footnotesize\ttfamily string Instruction\+::get\+Encoding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns string representing the 32 binary encoding of M\+I\+PS instruction \begin{DoxyReturn}{Returns}
+my\+Encoding string representing the 32 binary encoding of M\+I\+PS instruction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_instruction_a3deaa9fb80e0e3e5fbc6b32efaea2f98}\label{class_instruction_a3deaa9fb80e0e3e5fbc6b32efaea2f98}} 
+\index{Instruction@{Instruction}!get\+String@{get\+String}}
+\index{get\+String@{get\+String}!Instruction@{Instruction}}
+\subsubsection{\texorpdfstring{get\+String()}{getString()}}
+{\footnotesize\ttfamily string Instruction\+::get\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns a string which represents all of the fields \begin{DoxyReturn}{Returns}
+s.\+str() a string representing all of the fields 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_instruction_ab10e98d595622a19f2ed0c94098692a2}\label{class_instruction_ab10e98d595622a19f2ed0c94098692a2}} 
+\index{Instruction@{Instruction}!set\+Encoding@{set\+Encoding}}
+\index{set\+Encoding@{set\+Encoding}!Instruction@{Instruction}}
+\subsubsection{\texorpdfstring{set\+Encoding()}{setEncoding()}}
+{\footnotesize\ttfamily void Instruction\+::set\+Encoding (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Stores the 32 bit binary encoding of M\+I\+PS instruction passed in 
+\begin{DoxyParams}{Parameters}
+{\em s} & M\+I\+PS instruction \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_instruction_ab7bd4ac378e25f67296e30ab421602f8}\label{class_instruction_ab7bd4ac378e25f67296e30ab421602f8}} 
+\index{Instruction@{Instruction}!set\+Values@{set\+Values}}
+\index{set\+Values@{set\+Values}!Instruction@{Instruction}}
+\subsubsection{\texorpdfstring{set\+Values()}{setValues()}}
+{\footnotesize\ttfamily void Instruction\+::set\+Values (\begin{DoxyParamCaption}\item[{Opcode}]{op,  }\item[{Register}]{rs,  }\item[{Register}]{rt,  }\item[{Register}]{rd,  }\item[{int}]{imm }\end{DoxyParamCaption})}
+
+Allows you to specify all the fields of the \mbox{\hyperlink{class_instruction}{Instruction}} 
+\begin{DoxyParams}{Parameters}
+{\em op} & current instruction opcode \\
+\hline
+{\em rs} & current instruction register source \\
+\hline
+{\em rt} & current instruction register source 2 \\
+\hline
+{\em rd} & current instruction register destination \\
+\hline
+{\em imm} & current instruction immediate value \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Instruction.\+h\item 
+Instruction.\+cpp\end{DoxyCompactItemize}

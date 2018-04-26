@@ -1,3 +1,6 @@
+///Opcode Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __OPCODE_H__
 #define __OPCODE_H__
 
@@ -7,7 +10,7 @@
 #include <string>
 using namespace std;
 
-// Listing of all supported MIPS instructions
+/// Listing of all supported MIPS instructions
 enum Opcode {
   ADD, 
   ADDI, 
@@ -20,7 +23,7 @@ enum Opcode {
   UNDEFINED
 };
 
-// Different types of MIPS encodings
+/// Different types of MIPS encodings
 enum InstType{
   RTYPE,
   ITYPE,
@@ -36,33 +39,33 @@ class OpcodeTable {
  public:
   OpcodeTable();
 
-  // Given a valid MIPS assembly mnemonic, returns an Opcode which represents a 
-  // template for that instruction.
+  /// Given a valid MIPS assembly mnemonic, returns an Opcode which represents a 
+  /// template for that instruction.
   Opcode getOpcode(string str);
 
-  // Given an Opcode, returns number of expected operands.
+  /// Given an Opcode, returns number of expected operands.
   int numOperands(Opcode o);
 
-  // Given an Opcode, returns the position of RS/RT/RD/IMM field.  If field is not
-  // appropriate for this Opcode, returns -1.
+  /// Given an Opcode, returns the position of RS/RT/RD/IMM field.  If field is not
+  /// appropriate for this Opcode, returns -1.
   int RSposition(Opcode o);
   int RTposition(Opcode o);
   int RDposition(Opcode o);
   int IMMposition(Opcode o);
 
-  // Given an Opcode, returns true if instruction expects a label in the instruction.
-  // See "J".
+  /// Given an Opcode, returns true if instruction expects a label in the instruction.
+  /// See "J".
   bool isIMMLabel(Opcode o);
 
-  // Given an Opcode, returns instruction type.
+  /// Given an Opcode, returns instruction type.
   InstType getInstType(Opcode o);
 
-  // Given an Opcode, returns a string representing the binary encoding of the opcode
-  // field.
+  /// Given an Opcode, returns a string representing the binary encoding of the opcode
+  /// field.
   string getOpcodeField(Opcode o);
 
-  // Given an Opcode, returns a string representing the binary encoding of the function
-  // field.
+  /// Given an Opcode, returns a string representing the binary encoding of the function
+  /// field.
   string getFunctField(Opcode o);
   
   string name(Opcode o);

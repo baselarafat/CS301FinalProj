@@ -1,0 +1,122 @@
+.TH "ControlUnit" 3 "Thu Apr 26 2018" "CS 301 FinalProj" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ControlUnit
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetValues\fP (std::string opcode)"
+.br
+.ti -1c
+.RI "void \fBsetToZero\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetRegDest\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetJump\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetBranch\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetMemRead\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetmemToReg\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetMemWrite\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetAluSrc\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetRegWrite\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetAluOp0\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetAluOp1\fP ()"
+.br
+.ti -1c
+.RI "void \fBprintControl\fP ()"
+.br
+.RI "Method that prints out the contents of the Control\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBregDest\fP"
+.br
+.ti -1c
+.RI "bool \fBjump\fP"
+.br
+.ti -1c
+.RI "bool \fBbranch\fP"
+.br
+.ti -1c
+.RI "bool \fBmemRead\fP"
+.br
+.ti -1c
+.RI "bool \fBmemToReg\fP"
+.br
+.ti -1c
+.RI "bool \fBaluOp0\fP"
+.br
+.ti -1c
+.RI "bool \fBaluOp1\fP"
+.br
+.ti -1c
+.RI "bool \fBmemWrite\fP"
+.br
+.ti -1c
+.RI "bool \fBaluSrc\fP"
+.br
+.ti -1c
+.RI "bool \fBregWrite\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "int ControlUnit::getMemWrite ()"
+std::string ControlUnit::getAluOp() { return aluOp; } 
+.SS "int ControlUnit::getRegDest ()"
+The following accessors return 1 if the control is set to true and 0 if false\&. 
+.SS "void ControlUnit::setToZero ()"
+Method that sets all values to 0, must be done prior to each instruction 
+.SS "void ControlUnit::setValues (std::string opcode)"
+Jump instruction
+.PP
+R-Type
+.PP
+I-Type Addi 
+.br
+
+.br
+
+.br
+
+.br
+
+.br
+ I think? this means add
+.PP
+LW
+.PP
+SW
+.PP
+BEQ
+.PP
+Represents 01 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CS 301 FinalProj from the source code\&.

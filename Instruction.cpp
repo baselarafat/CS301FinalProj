@@ -8,14 +8,25 @@ Instruction::Instruction()
   myRS = myRT = myRD = NumRegisters;
 }
 
+/// You can specify all the fields to initialize the Instruction
+/// @param  op  current instruction opcode
+/// @param  rs  current instruction register source
+/// @param  rt  current instruction register source 2
+/// @param  rd  current instruction register destination
+/// @param  imm   current instruction immediate value
 Instruction::Instruction(Opcode op, Register rs, Register rt, Register rd, int imm)
-// You can specify all the fields to initialize the Instruction
+
 {
   setValues(op, rs, rt, rd, imm);
 }
 
+/// Allows you to specify all the fields of the Instruction
+/// @param  op  current instruction opcode
+/// @param  rs  current instruction register source
+/// @param  rt  current instruction register source 2
+/// @param  rd  current instruction register destination
+/// @param  imm   current instruction immediate value
 void Instruction::setValues(Opcode op, Register rs, Register rt, Register rd, int imm)
-// You can specify all the fields to initialize the Instruction
 {
 
   myOpcode = op;
@@ -35,13 +46,11 @@ void Instruction::setValues(Opcode op, Register rs, Register rt, Register rd, in
     myRD = NumRegisters;
 
   myImmediate = imm;
-
-  //  if(!( (imm & 0xFFFF0000) << 1))  // make sure it has nothing in upper 16 bits
-  //    myImmediate = imm;  
-
 }
-string Instruction::getString()
-// Returns a string which represents all of the fields 
+
+ /// Returns a string which represents all of the fields
+ /// @return s.str()   a string representing all of the fields
+string Instruction::getString() 
 {
   stringstream s ;
   s << "OP: \t" << myOpcode << "\t" << "RD: " << myRD << "\t" << 
