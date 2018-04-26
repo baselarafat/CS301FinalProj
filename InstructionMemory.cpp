@@ -97,11 +97,12 @@ void InstructionMemory::printContents()
   // Initializes iterator and iterates through myInstructionMapping, printing contents
     typedef map<string, Instruction>::iterator mapIterator;
     for (mapIterator iter = instructions.begin(); iter != instructions.end(); iter++) {
-       
-        string hexifiedfirst  = Converter::hexify(iter->first);
+        int len = iter->first.length();
+        string first =iter->first.substr(1,len);
+        string hexifiedfirst  = Converter::hexify(first);
 
-        string s = Converter::binaryToHex(iter->second.getEncoding());
-        string shexified = Converter::hexify(s);
+        string second = Converter::binaryToHex(iter->second.getEncoding());
+        string shexified = Converter::hexify(second);
         cout << hexifiedfirst << ":" <<shexified<<endl;
     }
 }
