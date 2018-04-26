@@ -6,7 +6,7 @@
 
 
 
-//Used to shift the offset field to the left by two, making it a word offset
+///Used to shift the offset field to the left by two, making it a word offset
 
 class ShiftLeftTwo
 {
@@ -14,7 +14,7 @@ public:
 	ShiftLeftTwo(){}
 	~ShiftLeftTwo(){}
 
-	// shifts the offset field to the left by two bits, making it a word offset
+	/// shifts the offset field to the left by two bits, making it a word offset
 	static std::string Shift(std::string offsetField)
 	{
 		std::bitset<32> shiftedOffSet(offsetField);

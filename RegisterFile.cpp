@@ -4,7 +4,7 @@ RegisterFile::RegisterFile()
 {
   int i = 0;
 
-  // Register Table for access
+  /// Register Table for access
   myRegisters[i].name = "$0";  myRegisters[i].number = i; i++;
   myRegisters[i].name = "$1";  myRegisters[i].number = i; i++;
   myRegisters[i].name = "$2";  myRegisters[i].number = i; i++;
@@ -88,7 +88,7 @@ RegisterFile::RegisterFile(string registerFile)
 
   
 
-  // Makes sure the file is opened correctly
+  /// Makes sure the file is opened correctly
   ifstream infile3;
   infile3.open(registerFile);
     if (!infile3.is_open()) {
@@ -96,27 +96,27 @@ RegisterFile::RegisterFile(string registerFile)
         exit(1); 
     }
   
-  // Loop should run until eof().
+  /// Loop should run until eof().
   while(infile3.good())
   {
-      //creates string and saves each line to input
+      ///creates string and saves each line to input
       string input;
       infile3 >> input;
       int delimiter =input.find(":");
 
       string reg1 = input.substr(0,delimiter);
-      //puts instruction in
+      ///puts instruction in
       string reg2 = input.substr(delimiter + 1, input.length()-1);
       myRegister[reg1]=reg2;
-      //increments number of instructions
+      ///increments number of instructions
   }
 
   infile3.close();
 }
 
 Register RegisterFile::getNum(string reg)
-  // Given a string representing a MIPS register operand, returns the number associated
-  // with that register.  If string is not a valid register, returns NumRegisters.
+  /// Given a string representing a MIPS register operand, returns the number associated
+  /// with that register.  If string is not a valid register, returns NumRegisters.
 {
   for(int i = 0; i < 2*NumRegisters; i++){
     if(myRegisters[i].name == reg){
@@ -137,7 +137,7 @@ std::string RegisterFile::readReg(string reg)
 /*Given a string representing a MIPS register operand and a specified value, stores the value within
 said register.
 
-//This should be modified so that it will not modify the values of the registers,but it needs to copy them 
+///This should be modified so that it will not modify the values of the registers,but it needs to copy them 
 then the values could be changed 
 */
 std::string RegisterFile::writeReg(string reg, string val)
@@ -148,13 +148,13 @@ std::string RegisterFile::writeReg(string reg, string val)
   return temp[reg];
 
 
-  // for(int i = 0; i < 2*NumRegisters; i++){
-  //   if(myRegisters[i].name == reg){
-  //     myRegisters[i].value = val;
-  //   return myRegisters[i].value;
-  //   }
-  // }
-  // return "";
+  /// for(int i = 0; i < 2*NumRegisters; i++){
+  ///   if(myRegisters[i].name == reg){
+  ///     myRegisters[i].value = val;
+  ///   return myRegisters[i].value;
+  ///   }
+  /// }
+  /// return "";
 
 }
 
