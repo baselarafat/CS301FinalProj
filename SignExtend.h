@@ -1,3 +1,6 @@
+///SignExtend Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __SIGNEXTEND_H__
 #define __SIGNEXTEND_H__
 

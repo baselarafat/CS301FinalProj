@@ -1,10 +1,4 @@
-///
-///  ProgramCounter.cpp
-///  
-///
-///  Created by Will Saada on 3/15/18.
-///
-///
+
 #ifndef __PROGRAM_COUNTER_CPP__
 #define __PROGRAM_COUNTER_CPP__
 

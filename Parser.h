@@ -1,3 +1,6 @@
+///Main Parser Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __PARSER_H__
 #define __PARSER_H__
 

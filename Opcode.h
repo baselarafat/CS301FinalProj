@@ -1,3 +1,6 @@
+///Opcode Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __OPCODE_H__
 #define __OPCODE_H__
 

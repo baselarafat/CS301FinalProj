@@ -1,3 +1,6 @@
+///ALU Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __ALU_H__
 #define __ALU_H__
 

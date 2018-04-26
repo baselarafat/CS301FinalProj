@@ -1,0 +1,44 @@
+\hypertarget{class_parser}{}\section{Parser Class Reference}
+\label{class_parser}\index{Parser@{Parser}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_parser_acb20af7ff328c6430ff609b424fd7ee0}{Parser}} (string filename)
+\item 
+bool \mbox{\hyperlink{class_parser_a355fb2bd3a8f68c635f89a1ca8762475}{is\+Format\+Correct}} ()
+\item 
+\mbox{\Hypertarget{class_parser_a7b7cb9ad56b48399873675fdcdb28d8f}\label{class_parser_a7b7cb9ad56b48399873675fdcdb28d8f}} 
+\mbox{\hyperlink{class_instruction}{Instruction}} \mbox{\hyperlink{class_parser_a7b7cb9ad56b48399873675fdcdb28d8f}{get\+Next\+Instruction}} ()
+\begin{DoxyCompactList}\small\item\em Iterator that returns the next \mbox{\hyperlink{class_instruction}{Instruction}} in the list of Instructions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_parser_aa6e942e5f8ec17806c97bbecef9f6df9}\label{class_parser_aa6e942e5f8ec17806c97bbecef9f6df9}} 
+static string {\bfseries cvt\+Int2\+Bin} (int number, size\+\_\+t length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_parser_acb20af7ff328c6430ff609b424fd7ee0}\label{class_parser_acb20af7ff328c6430ff609b424fd7ee0}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\subsubsection{\texorpdfstring{Parser()}{Parser()}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+Specify a text file containing M\+I\+PS assembly instructions. Function checks syntactic correctness of file and creates a list of Instructions. No opcode but operands
+
+invalid opcode specified 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_parser_a355fb2bd3a8f68c635f89a1ca8762475}\label{class_parser_a355fb2bd3a8f68c635f89a1ca8762475}} 
+\index{Parser@{Parser}!is\+Format\+Correct@{is\+Format\+Correct}}
+\index{is\+Format\+Correct@{is\+Format\+Correct}!Parser@{Parser}}
+\subsubsection{\texorpdfstring{is\+Format\+Correct()}{isFormatCorrect()}}
+{\footnotesize\ttfamily bool Parser\+::is\+Format\+Correct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if the file specified was syntactically correct. Otherwise, returns false. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Parser.\+h\item 
+Parser.\+cpp\end{DoxyCompactItemize}

@@ -1,3 +1,6 @@
+///Instruction Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __INSTRUCTION_H__
 #define __INSTRUCTION_H__
 
@@ -5,10 +8,10 @@
 #include "RegisterFile.h"
 #include <sstream>
 
-/* This class provides an internal representation for a MIPS assembly instruction.
- * Any of the fields can be queried.  Additionally, the class stores a 32 bit binary
- * encoding of the MIPS instruction.
- */
+ /// This class provides an internal representation for a MIPS assembly instruction.
+ ///  Any of the fields can be queried.  Additionally, the class stores a 32 bit binary
+ /// encoding of the MIPS instruction.
+ 
 
 
 class Instruction{

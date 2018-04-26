@@ -1,3 +1,6 @@
+///RegisterFile Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __REGISTERFILE_H__
 #define __REGISTERFILE_H__
 

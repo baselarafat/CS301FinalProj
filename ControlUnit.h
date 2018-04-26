@@ -1,10 +1,12 @@
-/*
-The Control Unit class stores a variables for each of the 
-control fields in out simple mips processor.  The set values function 
-is called given an opcode to initialize the values for each new 
-instruction.  After each instruction the set to zero method resets the control 
-object such that all fiels are false.
-*/
+///Control Unit Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
+/// The Control Unit class stores a variables for each of the 
+/// control fields in out simple mips processor.  The set values function 
+/// is called given an opcode to initialize the values for each new 
+/// instruction.  After each instruction the set to zero method resets the control 
+/// object such that all fiels are false.
+///
 #ifndef __ControlUnit_H__
 #define __ControlUnit_H__
 

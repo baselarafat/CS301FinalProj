@@ -1,3 +1,6 @@
+///Stimulation Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __SHIFTLEFTTWO_H__
 #define __SHIFTLEFTTWO_H__
 

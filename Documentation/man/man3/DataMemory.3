@@ -1,0 +1,69 @@
+.TH "DataMemory" 3 "Thu Apr 26 2018" "CS 301 FinalProj" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DataMemory
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDataMemory\fP ()"
+.br
+.RI "Default constructor\&. "
+.ti -1c
+.RI "\fBDataMemory\fP (std::string filename)"
+.br
+.ti -1c
+.RI "std::string \fBgetdata\fP (std::string address)"
+.br
+.ti -1c
+.RI "void \fBdmemPrint\fP ()"
+.br
+.RI "Prints the data memory to console\&. "
+.ti -1c
+.RI "void \fBdmemPrintFinal\fP (string memOutputFile)"
+.br
+.ti -1c
+.RI "std::string \fBwriteMem\fP (string address, string val)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "DataMemory::DataMemory (std::string filename)"
+Makes sure the file given is opened correctly and identifies the delimiter 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfilename\fP file that will be checked for syntactic correctness 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void DataMemory::dmemPrintFinal (string memOutputFile)"
+Prints the data memory to the Output file @ param memOutputFile file that data memory will be written to 
+.SS "std::string DataMemory::getdata (std::string address)"
+Given an Address, returns the data associated with that address @ param theAddress specified address to gather data from @ return mem[theAddress] the data associated with the specified address in the data memory 
+.SS "std::string DataMemory::writeMem (string address, string val)"
+Given an address and a value, will write the value within the specified data memory address 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaddress\fP address to be written to 
+.br
+\fIval\fP value to be stored into the specified address 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+temp the value originally stored within the specified address 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CS 301 FinalProj from the source code\&.

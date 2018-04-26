@@ -1,4 +1,6 @@
-
+///Multiplexor Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __MULTIPLEXOR_H__
 #define __MULTIPLEXOR_H__
 

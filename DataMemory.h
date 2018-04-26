@@ -1,3 +1,6 @@
+///DataMemory Class 
+///Basel Arafat, Nicholas Biffis,Vincent Camp & Will Saada
+///Computer Orginization CS 301 Spring 2018
 #ifndef __DATAMEMORY_H__
 #define __DATAMEMORY_H__
 //Get an address then release out data from memory that corresponds to that instruction

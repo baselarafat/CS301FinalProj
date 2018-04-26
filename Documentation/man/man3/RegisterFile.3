@@ -1,0 +1,54 @@
+.TH "RegisterFile" 3 "Thu Apr 26 2018" "CS 301 FinalProj" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RegisterFile
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRegisterFile\fP ()"
+.br
+.ti -1c
+.RI "\fBRegisterFile\fP (string regsiterFile)"
+.br
+.ti -1c
+.RI "Register \fBgetNum\fP (string reg)"
+.br
+.ti -1c
+.RI "std::string \fBreadReg\fP (string reg)"
+.br
+.ti -1c
+.RI "std::string \fBwriteReg\fP (string reg, string value)"
+.br
+.ti -1c
+.RI "void \fBprintContents\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RegisterFile::RegisterFile ()"
+Register Table for access 
+.SS "RegisterFile::RegisterFile (string regsiterFile)"
+Makes sure the file is opened correctly
+.PP
+Loop should run until eof()\&.
+.PP
+creates string and saves each line to input
+.PP
+puts instruction in
+.PP
+increments number of instructions 
+.SH "Member Function Documentation"
+.PP 
+.SS "Register RegisterFile::getNum (string reg)"
+Given a string representing a MIPS register operand, returns the number associated with that register\&. If string is not a valid register, returns NumRegisters\&. 
+.SS "std::string RegisterFile::writeReg (string reg, string value)"
+for(int i = 0; i < 2*NumRegisters; i++){ if(myRegisters[i]\&.name == reg){ myRegisters[i]\&.value = val; return myRegisters[i]\&.value; } } return ''; 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CS 301 FinalProj from the source code\&.

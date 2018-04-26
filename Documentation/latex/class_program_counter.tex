@@ -1,0 +1,52 @@
+\hypertarget{class_program_counter}{}\section{Program\+Counter Class Reference}
+\label{class_program_counter}\index{Program\+Counter@{Program\+Counter}}
+
+
+This h creates the guidlines for the program counter.  
+
+
+
+
+{\ttfamily \#include $<$Program\+Counter.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_program_counter_a63c70e470925203e4c15c861a7afca3a}\label{class_program_counter_a63c70e470925203e4c15c861a7afca3a}} 
+\mbox{\hyperlink{class_program_counter_a63c70e470925203e4c15c861a7afca3a}{Program\+Counter}} ()
+\begin{DoxyCompactList}\small\item\em This creates the program counter object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_program_counter_a80ea9c67bfdae62206491d69048ef36c}\label{class_program_counter_a80ea9c67bfdae62206491d69048ef36c}} 
+{\bfseries Program\+Counter} (std\+::string address)
+\item 
+std\+::string \mbox{\hyperlink{class_program_counter_aaf3484382a00597d8548f5af9b56b881}{get\+Current\+Address}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_program_counter_ac2587f6e388a7176d4e2dde5231924e0}{move\+Address\+To}} (std\+::string new\+Address)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This h creates the guidlines for the program counter. 
+
+forward declarations needed can go below 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_program_counter_aaf3484382a00597d8548f5af9b56b881}\label{class_program_counter_aaf3484382a00597d8548f5af9b56b881}} 
+\index{Program\+Counter@{Program\+Counter}!get\+Current\+Address@{get\+Current\+Address}}
+\index{get\+Current\+Address@{get\+Current\+Address}!Program\+Counter@{Program\+Counter}}
+\subsubsection{\texorpdfstring{get\+Current\+Address()}{getCurrentAddress()}}
+{\footnotesize\ttfamily std\+::string Program\+Counter\+::get\+Current\+Address (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+get\+Current\+Address will return the current address of the program counter as a string \mbox{\Hypertarget{class_program_counter_ac2587f6e388a7176d4e2dde5231924e0}\label{class_program_counter_ac2587f6e388a7176d4e2dde5231924e0}} 
+\index{Program\+Counter@{Program\+Counter}!move\+Address\+To@{move\+Address\+To}}
+\index{move\+Address\+To@{move\+Address\+To}!Program\+Counter@{Program\+Counter}}
+\subsubsection{\texorpdfstring{move\+Address\+To()}{moveAddressTo()}}
+{\footnotesize\ttfamily std\+::string Program\+Counter\+::move\+Address\+To (\begin{DoxyParamCaption}\item[{std\+::string}]{new\+Address }\end{DoxyParamCaption})}
+
+move\+Address\+To will move the address in the PC to a given point, will will be used for j type and branch instructions. This method will be called by control??
+
+move\+Address\+To will move the address in the PC to a given point, will will be used for j type and branch instructions 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Program\+Counter.\+h\item 
+Program\+Counter.\+cpp\end{DoxyCompactItemize}

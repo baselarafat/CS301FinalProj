@@ -1,0 +1,58 @@
+.TH "Instruction" 3 "Thu Apr 26 2018" "CS 301 FinalProj" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Instruction
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBInstruction\fP (Opcode op, Register rs, Register rt, Register rd, int imm)"
+.br
+.RI "You can specify all the fields to initialize the \fBInstruction\fP\&. "
+.ti -1c
+.RI "void \fBsetValues\fP (Opcode op, Register rs, Register rt, Register rd, int imm)"
+.br
+.RI "Allows you to specify all the fields of the \fBInstruction\fP\&. "
+.ti -1c
+.RI "Opcode \fBgetOpcode\fP ()"
+.br
+.RI "Returns the various fields for the \fBInstruction\fP\&. "
+.ti -1c
+.RI "Register \fBgetRS\fP ()"
+.br
+.ti -1c
+.RI "Register \fBgetRD\fP ()"
+.br
+.ti -1c
+.RI "Register \fBgetRT\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetImmediate\fP ()"
+.br
+.ti -1c
+.RI "string \fBgetString\fP ()"
+.br
+.RI "Returns a string which represents all of the fields\&. "
+.ti -1c
+.RI "void \fBsetEncoding\fP (string s)"
+.br
+.RI "Stores the 32 bit binary encoding of MIPS instruction passed in\&. "
+.ti -1c
+.RI "string \fBgetEncoding\fP ()"
+.br
+.RI "Returns string representing the 32 binary encoding of MIPS instruction\&. "
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "void Instruction::setValues (Opcode op, Register rs, Register rt, Register rd, int imm)"
+
+.PP
+Allows you to specify all the fields of the \fBInstruction\fP\&. You can specify all the fields to initialize the \fBInstruction\fP\&. if(!( (imm & 0xFFFF0000) << 1)) /// make sure it has nothing in upper 16 bits myImmediate = imm; 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CS 301 FinalProj from the source code\&.
