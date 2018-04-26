@@ -42,11 +42,13 @@ ifstream infile;
 
 DataMemory::~DataMemory() {}
 
+      // Given an Address, returns the data associated with that address
 std::string DataMemory::getdata(std::string   theAddress){
 	
  		return mem[theAddress];
 }
 
+      // Prints the data memory to console
 void DataMemory::dmemPrint()
 {
 
@@ -59,6 +61,7 @@ void DataMemory::dmemPrint()
   }
 }
 
+      // Prints the data memory to the Output file
 void DataMemory::dmemPrintFinal(string memOutputFile)
 {
   ofstream outputFile;
@@ -73,6 +76,7 @@ void DataMemory::dmemPrintFinal(string memOutputFile)
   outputFile.close();
 }
  
+      // Given an address and a value, will write the value within the specified data memory address
  std::string DataMemory::writeMem(string address, string val)
 {
   string temp = mem[address];

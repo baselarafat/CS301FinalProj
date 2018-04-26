@@ -25,11 +25,9 @@ void ALU::performOperation() {
 		result = lessThan(input_1, input_2);
 	}
 
-
-	// TODO : calculate address function for sw/lw?
-
 }
 
+	// operation to add two binary inputs
 string ALU::add(string input1, string input2) {
 	
 	double input1_dec = binaryToDecimal(input1);
@@ -42,6 +40,7 @@ string ALU::add(string input1, string input2) {
 	return sum_bin;
 }
 
+	// Operation to subtract one binary input from another
 string ALU::subtract(string input1, string input2) {
 
 	double input1_dec = binaryToDecimal(input1);
@@ -54,6 +53,7 @@ string ALU::subtract(string input1, string input2) {
 	return diff_bin;
 }
 
+	// Operation to check for equality of two binary inputs
 string ALU::compare(string input1, string input2) {
 	double input1_dec = binaryToDecimal(input1);
 	double input2_dec = binaryToDecimal(input2);
@@ -65,6 +65,8 @@ string ALU::compare(string input1, string input2) {
 	}
 	return "not_equal";
 }
+
+	// Operation to one binary input is smaller than another
 string ALU::lessThan(string input1, string input2) {
 	double input1_dec = binaryToDecimal(input1);
 	double input2_dec = binaryToDecimal(input2);
@@ -80,7 +82,7 @@ string ALU::lessThan(string input1, string input2) {
 	}
 }
 
-
+	// Converts binary input to decimal value
 double ALU::binaryToDecimal(string input) {
 
 	double decimal = 0.0;
@@ -98,6 +100,7 @@ double ALU::binaryToDecimal(string input) {
 	return decimal;
 }
 
+	// Converts decimal input to binary value
 string ALU::decimalToBinary(double value) { 
 	bitset<32> bits = value;
 	return bits.to_string();
