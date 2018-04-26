@@ -65,6 +65,7 @@ InstructionMemory::InstructionMemory(string filename) {
 
 InstructionMemory::~InstructionMemory() {}
 
+  // Given an address, will get the instruction associated with the specified address
 Instruction InstructionMemory::getInstruction(std::string theAddress){
 	// std::string Instruction = thearray[10][1];
 	// for(int i=0;i<100;i++){
@@ -79,6 +80,7 @@ Instruction InstructionMemory::getInstruction(std::string theAddress){
   
 }
 
+  // Checks to make sure that a valid instruction is given
 bool InstructionMemory::isValidInstruction(std::string theAddress)
 {
    std::map<string, Instruction>::const_iterator itr = instructions.find(theAddress);

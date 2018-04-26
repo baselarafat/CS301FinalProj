@@ -4,6 +4,7 @@ RegisterFile::RegisterFile()
 {
   int i = 0;
 
+  // Register Table for access
   myRegisters[i].name = "$0";  myRegisters[i].number = i; i++;
   myRegisters[i].name = "$1";  myRegisters[i].number = i; i++;
   myRegisters[i].name = "$2";  myRegisters[i].number = i; i++;
@@ -87,7 +88,7 @@ RegisterFile::RegisterFile(string registerFile)
 
   int currentReg = 0;
 
-  //
+  // Makes sure the file is opened correctly
   ifstream infile3;
   infile3.open(registerFile);
     if (!infile3.is_open()) {

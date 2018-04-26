@@ -157,6 +157,7 @@ void Parser::getTokens(string line,
   return;
 }
 
+  // Checks to see if a given number is in hex
  int Parser::isNumberhex(std::string s ){
    int len = s.length();
   if(len>2){
@@ -169,6 +170,8 @@ void Parser::getTokens(string line,
 }
 return -1;
 }
+
+  // Checks to see if a given number is a string
  bool Parser::isNumberString(string s)
   // Returns true if s represents a valid decimal integer
 {
@@ -213,11 +216,11 @@ int Parser::cvtNumString2Number(string s)
   return x;
 }
 
-
+ // Given an Opcode, a string representing the operands, and the number of operands, 
+ // breaks operands apart and stores fields into Instruction. 
 bool Parser::getOperands(Instruction &i, Opcode o, 
     string *operand, int operand_count)
-  // Given an Opcode, a string representing the operands, and the number of operands, 
-  // breaks operands apart and stores fields into Instruction.
+  
 {
 
   if(operand_count != opcodes.numOperands(o)){
@@ -281,6 +284,8 @@ bool Parser::getOperands(Instruction &i, Opcode o,
   i.setValues(o, rs, rt, rd, imm);
   return true;
 }
+
+  // Converts a given integer to a binary string
 string Parser::cvtInt2BinString(int i, int bits)
 {
   // cout << "pre-substring: " << std::bitset<26>(i).to_string() << endl;
