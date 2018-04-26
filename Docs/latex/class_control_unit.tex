@@ -1,0 +1,125 @@
+\hypertarget{class_control_unit}{}\section{Control\+Unit Class Reference}
+\label{class_control_unit}\index{Control\+Unit@{Control\+Unit}}
+
+
+{\ttfamily \#include $<$Control\+Unit.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_control_unit_ac8da21614dd49149be858ad36ceb1cb6}{set\+Values}} (std\+::string opcode)
+\item 
+void \mbox{\hyperlink{class_control_unit_acc570fb783844eb7c25fc0df6163270c}{set\+To\+Zero}} ()
+\item 
+int \mbox{\hyperlink{class_control_unit_aeddfdfe24c6ec8c46394949c1a50adc7}{get\+Reg\+Dest}} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a6d8d4d2874c72607e34ed8781ff2d64a}\label{class_control_unit_a6d8d4d2874c72607e34ed8781ff2d64a}} 
+int {\bfseries get\+Jump} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a6b3585a68a1f3a8fc7e700063cf4f449}\label{class_control_unit_a6b3585a68a1f3a8fc7e700063cf4f449}} 
+int {\bfseries get\+Branch} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a11ba2693b002766ca5652e972d69f01a}\label{class_control_unit_a11ba2693b002766ca5652e972d69f01a}} 
+int {\bfseries get\+Mem\+Read} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a49650b7b8f354da8f04f8f9533931322}\label{class_control_unit_a49650b7b8f354da8f04f8f9533931322}} 
+int {\bfseries getmem\+To\+Reg} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a7fc9545b8dd4a871e1f64b78cf914773}\label{class_control_unit_a7fc9545b8dd4a871e1f64b78cf914773}} 
+int {\bfseries get\+Mem\+Write} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_aa08e98486f69fc1ebc87509fb8eebb9f}\label{class_control_unit_aa08e98486f69fc1ebc87509fb8eebb9f}} 
+int {\bfseries get\+Alu\+Src} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a36411dc5a7ac1e55db4d8dfa47f91e6b}\label{class_control_unit_a36411dc5a7ac1e55db4d8dfa47f91e6b}} 
+int {\bfseries get\+Reg\+Write} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a5f88deaa3119aa38812edd8cf1d75b70}\label{class_control_unit_a5f88deaa3119aa38812edd8cf1d75b70}} 
+int {\bfseries get\+Alu\+Op0} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_abeb8981fe2c90430b6aca8fa14ae9cab}\label{class_control_unit_abeb8981fe2c90430b6aca8fa14ae9cab}} 
+int {\bfseries get\+Alu\+Op1} ()
+\item 
+\mbox{\Hypertarget{class_control_unit_a103986a57f14e0b13da4e5785d8bb034}\label{class_control_unit_a103986a57f14e0b13da4e5785d8bb034}} 
+void \mbox{\hyperlink{class_control_unit_a103986a57f14e0b13da4e5785d8bb034}{print\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Method that prints out the contents of the Control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_control_unit_a1a358866ea9b1cdf2eb9991aa53dcac4}\label{class_control_unit_a1a358866ea9b1cdf2eb9991aa53dcac4}} 
+bool {\bfseries reg\+Dest}
+\item 
+\mbox{\Hypertarget{class_control_unit_a6c1a54a1add2956c4b7a8530fff15694}\label{class_control_unit_a6c1a54a1add2956c4b7a8530fff15694}} 
+bool {\bfseries jump}
+\item 
+\mbox{\Hypertarget{class_control_unit_a762297f2d108f6460568d70cda61a48a}\label{class_control_unit_a762297f2d108f6460568d70cda61a48a}} 
+bool {\bfseries branch}
+\item 
+\mbox{\Hypertarget{class_control_unit_a7ed126ebae561f9be40115eb8af2ea96}\label{class_control_unit_a7ed126ebae561f9be40115eb8af2ea96}} 
+bool {\bfseries mem\+Read}
+\item 
+\mbox{\Hypertarget{class_control_unit_aa6af09909a643347c22da2cb4ecbb296}\label{class_control_unit_aa6af09909a643347c22da2cb4ecbb296}} 
+bool {\bfseries mem\+To\+Reg}
+\item 
+\mbox{\Hypertarget{class_control_unit_a315e08378f8dd09eb6a79591f786e868}\label{class_control_unit_a315e08378f8dd09eb6a79591f786e868}} 
+bool {\bfseries alu\+Op0}
+\item 
+\mbox{\Hypertarget{class_control_unit_a9cba72addede51df99643d7ced8cf4f5}\label{class_control_unit_a9cba72addede51df99643d7ced8cf4f5}} 
+bool {\bfseries alu\+Op1}
+\item 
+\mbox{\Hypertarget{class_control_unit_aa0fb2a86fa2aec280a54fb5b16764228}\label{class_control_unit_aa0fb2a86fa2aec280a54fb5b16764228}} 
+bool {\bfseries mem\+Write}
+\item 
+\mbox{\Hypertarget{class_control_unit_a83ad7dabedcb59e95819eb586504c65a}\label{class_control_unit_a83ad7dabedcb59e95819eb586504c65a}} 
+bool {\bfseries alu\+Src}
+\item 
+\mbox{\Hypertarget{class_control_unit_afabd2fdec59ff539540aca5549203d89}\label{class_control_unit_afabd2fdec59ff539540aca5549203d89}} 
+bool {\bfseries reg\+Write}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Control Unit Class Basel Arafat, Nicholas Biffis,Vincent Camp \& Will Saada Computer Orginization CS 301 Spring 2018 The Control Unit class stores a variables for each of the control fields in out simple mips processor. The set values function is called given an opcode to initialize the values for each new instruction. After each instruction the set to zero method resets the control object such that all fiels are false. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_control_unit_aeddfdfe24c6ec8c46394949c1a50adc7}\label{class_control_unit_aeddfdfe24c6ec8c46394949c1a50adc7}} 
+\index{Control\+Unit@{Control\+Unit}!get\+Reg\+Dest@{get\+Reg\+Dest}}
+\index{get\+Reg\+Dest@{get\+Reg\+Dest}!Control\+Unit@{Control\+Unit}}
+\subsubsection{\texorpdfstring{get\+Reg\+Dest()}{getRegDest()}}
+{\footnotesize\ttfamily int Control\+Unit\+::get\+Reg\+Dest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The following accessors return 1 if the control is set to true and 0 if false. \mbox{\Hypertarget{class_control_unit_acc570fb783844eb7c25fc0df6163270c}\label{class_control_unit_acc570fb783844eb7c25fc0df6163270c}} 
+\index{Control\+Unit@{Control\+Unit}!set\+To\+Zero@{set\+To\+Zero}}
+\index{set\+To\+Zero@{set\+To\+Zero}!Control\+Unit@{Control\+Unit}}
+\subsubsection{\texorpdfstring{set\+To\+Zero()}{setToZero()}}
+{\footnotesize\ttfamily void Control\+Unit\+::set\+To\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method that sets all values to 0, must be done prior to each instruction \mbox{\Hypertarget{class_control_unit_ac8da21614dd49149be858ad36ceb1cb6}\label{class_control_unit_ac8da21614dd49149be858ad36ceb1cb6}} 
+\index{Control\+Unit@{Control\+Unit}!set\+Values@{set\+Values}}
+\index{set\+Values@{set\+Values}!Control\+Unit@{Control\+Unit}}
+\subsubsection{\texorpdfstring{set\+Values()}{setValues()}}
+{\footnotesize\ttfamily void Control\+Unit\+::set\+Values (\begin{DoxyParamCaption}\item[{std\+::string}]{opcode }\end{DoxyParamCaption})}
+
+Jump instruction
+
+R-\/\+Type
+
+I-\/\+Type Addi ~\newline
+~\newline
+~\newline
+~\newline
+~\newline
+ I think? this means add
+
+LW
+
+SW
+
+B\+EQ
+
+Represents 01 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Control\+Unit.\+h\item 
+Control\+Unit.\+cpp\end{DoxyCompactItemize}
