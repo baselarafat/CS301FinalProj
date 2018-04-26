@@ -47,34 +47,14 @@ InstructionMemory::InstructionMemory(string filename) {
     
     delete parser;
 
-
-     
-  
-      // std::cout<<address<<std::endl;
-      // infile2 >> input;
-    
-     // std::cout<<input<<std::endl;
-      //puts address in
-      // instructions[numOfInstrucs][0] = address;
-     
-      //puts instruction in
-     // instructions[numOfInstrucs][1] = input;
-      //increments number of instructions
-      // numOfInstrucs++;
-     
-
 }
 
 InstructionMemory::~InstructionMemory() {}
 
   // Given an address, will get the instruction associated with the specified address
+  // @param theAddress  Address given to accessand get the associated Instruction
+  // @return Instruction associated with given address
 Instruction InstructionMemory::getInstruction(std::string theAddress){
-	// std::string Instruction = thearray[10][1];
-	// for(int i=0;i<100;i++){
-	// 	Instruction = thearray[i][1];
-	// 	if(thearray[i][0]==theAddress)
-	// 		Instruction = thearray[i][1];
-	// }
   if(!isValidInstruction(theAddress)){
     cerr << "The instruction address doesn't exist  " <<theAddress<< endl;
         exit(1);}
