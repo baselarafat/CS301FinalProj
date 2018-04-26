@@ -159,8 +159,21 @@ void     RegisterFile::printContents()
     for(int i = 0; i <= 31; i++)
     {
         string temp = to_string(i);
+        
         std::cout << i << ":" << myRegister[temp] << endl;
     }
+  }
+    void     RegisterFile::PrintFinal(std::string regOutputFile)
+{
+  ofstream outputFile;
+  outputFile.open(regOutputFile);
+    for(int i = 0; i <= 31; i++)
+    {
+        string temp = to_string(i);
+        
+        outputFile << i << ":" << myRegister[temp] << endl;
+    }
+    outputFile.close();
       
 }
 

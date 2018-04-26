@@ -458,9 +458,11 @@ void Stimulation::run ()
   out.open(outputFile);
   out<<"The output has been printed to outdata.memory, outregister.memory, outinstruction.memory"<<endl;
   out.close();
-   cout<<"The Instructionmemory has been written to the outinstruction.memory"<<endl;
+  cout<<"The registermemory has been written to outregister.memory"<<endl;
+  regFile->PrintFinal("outregister.memory");
+   cout<<"The Instructionmemory has been written to outinstruction.memory"<<endl;
     im->imemPrintFinal("outinstruction.memory");
-    cout<<"The Datamemory has been written to the outdata.memory"<<endl;
+    cout<<"The Datamemory has been written to outdata.memory"<<endl;
       dm->dmemPrintFinal("outdata.memory");
       
   }

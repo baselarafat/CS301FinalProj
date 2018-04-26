@@ -1,0 +1,213 @@
+\hypertarget{class_opcode_table}{}\section{Opcode\+Table Class Reference}
+\label{class_opcode_table}\index{Opcode\+Table@{Opcode\+Table}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_opcode_table_acb286fdd22f1781abfb0d820b1f345aa}{Opcode\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Initializes all the fields for every instruction in Opcode enum. \end{DoxyCompactList}\item 
+Opcode \mbox{\hyperlink{class_opcode_table_a0710950ceccf23e2e13d34ff51b332ce}{get\+Opcode}} (string str)
+\item 
+int \mbox{\hyperlink{class_opcode_table_af92b88d033ed5f2ba8cdf732ec3a0265}{num\+Operands}} (Opcode o)
+\item 
+int \mbox{\hyperlink{class_opcode_table_a6a2b017eeb7cfbc1bf614f52293c5ad4}{R\+Sposition}} (Opcode o)
+\item 
+int \mbox{\hyperlink{class_opcode_table_a408f6a63857a4443a66685de636b87fd}{R\+Tposition}} (Opcode o)
+\item 
+int \mbox{\hyperlink{class_opcode_table_ada77e4c8328f3a2730fc0974899da28f}{R\+Dposition}} (Opcode o)
+\item 
+int \mbox{\hyperlink{class_opcode_table_a588c7ea7780c6186ea685b632b231d33}{I\+M\+Mposition}} (Opcode o)
+\item 
+bool \mbox{\hyperlink{class_opcode_table_a5ef810fba22c54758dd69b09e8bfae8c}{is\+I\+M\+M\+Label}} (Opcode o)
+\item 
+Inst\+Type \mbox{\hyperlink{class_opcode_table_a6674e2b4716bddcaf2514a54bf63a5e4}{get\+Inst\+Type}} (Opcode o)
+\item 
+string \mbox{\hyperlink{class_opcode_table_af89738c82bb2406fa8eadf1639a86218}{get\+Opcode\+Field}} (Opcode o)
+\item 
+string \mbox{\hyperlink{class_opcode_table_ad535fbf9bee4c19a165c94b235daed00}{get\+Funct\+Field}} (Opcode o)
+\item 
+string \mbox{\hyperlink{class_opcode_table_a4021673f3dcfc1ef29fa4d7777838c96}{name}} (Opcode o)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_opcode_table_acb286fdd22f1781abfb0d820b1f345aa}\label{class_opcode_table_acb286fdd22f1781abfb0d820b1f345aa}} 
+\index{Opcode\+Table@{Opcode\+Table}!Opcode\+Table@{Opcode\+Table}}
+\index{Opcode\+Table@{Opcode\+Table}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{Opcode\+Table()}{OpcodeTable()}}
+{\footnotesize\ttfamily Opcode\+Table\+::\+Opcode\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes all the fields for every instruction in Opcode enum. 
+
+my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.name = \char`\"{}undefined\char`\"{}; my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.num\+Ops = -\/1; my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.rd\+Pos = -\/1; my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.rs\+Pos = -\/1; my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.rt\+Pos = -\/1; my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.imm\+Pos = -\/1; my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.op\+\_\+field = \char`\"{}\char`\"{}; my\+Array\mbox{[}U\+N\+D\+E\+F\+I\+N\+ED\mbox{]}.funct\+\_\+field = \char`\"{}\char`\"{}; 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_opcode_table_ad535fbf9bee4c19a165c94b235daed00}\label{class_opcode_table_ad535fbf9bee4c19a165c94b235daed00}} 
+\index{Opcode\+Table@{Opcode\+Table}!get\+Funct\+Field@{get\+Funct\+Field}}
+\index{get\+Funct\+Field@{get\+Funct\+Field}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{get\+Funct\+Field()}{getFunctField()}}
+{\footnotesize\ttfamily string Opcode\+Table\+::get\+Funct\+Field (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns a string representing the binary encoding of the function field. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string representing the binary encoding of the funct field 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_a6674e2b4716bddcaf2514a54bf63a5e4}\label{class_opcode_table_a6674e2b4716bddcaf2514a54bf63a5e4}} 
+\index{Opcode\+Table@{Opcode\+Table}!get\+Inst\+Type@{get\+Inst\+Type}}
+\index{get\+Inst\+Type@{get\+Inst\+Type}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{get\+Inst\+Type()}{getInstType()}}
+{\footnotesize\ttfamily Inst\+Type Opcode\+Table\+::get\+Inst\+Type (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns instruction type. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the type of instruction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_a0710950ceccf23e2e13d34ff51b332ce}\label{class_opcode_table_a0710950ceccf23e2e13d34ff51b332ce}} 
+\index{Opcode\+Table@{Opcode\+Table}!get\+Opcode@{get\+Opcode}}
+\index{get\+Opcode@{get\+Opcode}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{get\+Opcode()}{getOpcode()}}
+{\footnotesize\ttfamily Opcode Opcode\+Table\+::get\+Opcode (\begin{DoxyParamCaption}\item[{string}]{str }\end{DoxyParamCaption})}
+
+Given a valid M\+I\+PS assembly mnemonic, returns an Opcode which represents a template for that instruction. 
+\begin{DoxyParams}{Parameters}
+{\em str} & M\+I\+PS assembly mnemonic \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+opcode for the specified mnemonic 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_af89738c82bb2406fa8eadf1639a86218}\label{class_opcode_table_af89738c82bb2406fa8eadf1639a86218}} 
+\index{Opcode\+Table@{Opcode\+Table}!get\+Opcode\+Field@{get\+Opcode\+Field}}
+\index{get\+Opcode\+Field@{get\+Opcode\+Field}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{get\+Opcode\+Field()}{getOpcodeField()}}
+{\footnotesize\ttfamily string Opcode\+Table\+::get\+Opcode\+Field (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns a string representing the binary encoding of the opcode field. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string representing the binary encoding of the opcode 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_a588c7ea7780c6186ea685b632b231d33}\label{class_opcode_table_a588c7ea7780c6186ea685b632b231d33}} 
+\index{Opcode\+Table@{Opcode\+Table}!I\+M\+Mposition@{I\+M\+Mposition}}
+\index{I\+M\+Mposition@{I\+M\+Mposition}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{I\+M\+Mposition()}{IMMposition()}}
+{\footnotesize\ttfamily int Opcode\+Table\+::\+I\+M\+Mposition (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns the position of I\+MM field. If field is not appropriate for this Opcode, returns -\/1. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the position of the I\+MM field 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_a5ef810fba22c54758dd69b09e8bfae8c}\label{class_opcode_table_a5ef810fba22c54758dd69b09e8bfae8c}} 
+\index{Opcode\+Table@{Opcode\+Table}!is\+I\+M\+M\+Label@{is\+I\+M\+M\+Label}}
+\index{is\+I\+M\+M\+Label@{is\+I\+M\+M\+Label}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{is\+I\+M\+M\+Label()}{isIMMLabel()}}
+{\footnotesize\ttfamily bool Opcode\+Table\+::is\+I\+M\+M\+Label (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns true if instruction expects a label in the instruction. See \char`\"{}\+J\char`\"{}. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false as to whether the instruction expects label 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_a4021673f3dcfc1ef29fa4d7777838c96}\label{class_opcode_table_a4021673f3dcfc1ef29fa4d7777838c96}} 
+\index{Opcode\+Table@{Opcode\+Table}!name@{name}}
+\index{name@{name}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily string Opcode\+Table\+::name (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an opcode return the name of the instruction associated with the opcode 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+name of instruction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_af92b88d033ed5f2ba8cdf732ec3a0265}\label{class_opcode_table_af92b88d033ed5f2ba8cdf732ec3a0265}} 
+\index{Opcode\+Table@{Opcode\+Table}!num\+Operands@{num\+Operands}}
+\index{num\+Operands@{num\+Operands}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{num\+Operands()}{numOperands()}}
+{\footnotesize\ttfamily int Opcode\+Table\+::num\+Operands (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns number of expected operands. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & for current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of operands for the specified opcode 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_ada77e4c8328f3a2730fc0974899da28f}\label{class_opcode_table_ada77e4c8328f3a2730fc0974899da28f}} 
+\index{Opcode\+Table@{Opcode\+Table}!R\+Dposition@{R\+Dposition}}
+\index{R\+Dposition@{R\+Dposition}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{R\+Dposition()}{RDposition()}}
+{\footnotesize\ttfamily int Opcode\+Table\+::\+R\+Dposition (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns the position of RD field. If field is not appropriate for this Opcode, returns -\/1. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the position of the RD field 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_a6a2b017eeb7cfbc1bf614f52293c5ad4}\label{class_opcode_table_a6a2b017eeb7cfbc1bf614f52293c5ad4}} 
+\index{Opcode\+Table@{Opcode\+Table}!R\+Sposition@{R\+Sposition}}
+\index{R\+Sposition@{R\+Sposition}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{R\+Sposition()}{RSposition()}}
+{\footnotesize\ttfamily int Opcode\+Table\+::\+R\+Sposition (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns the position of RS field. If field is not appropriate for this Opcode, returns -\/1. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the position of the R\+S/\+R\+T/\+R\+D/\+I\+MM fields respectively
+\end{DoxyReturn}
+Given an Opcode, returns the position of RS field. If field is not appropriate for this Opcode, returns -\/1. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the position of the RS field 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_opcode_table_a408f6a63857a4443a66685de636b87fd}\label{class_opcode_table_a408f6a63857a4443a66685de636b87fd}} 
+\index{Opcode\+Table@{Opcode\+Table}!R\+Tposition@{R\+Tposition}}
+\index{R\+Tposition@{R\+Tposition}!Opcode\+Table@{Opcode\+Table}}
+\subsubsection{\texorpdfstring{R\+Tposition()}{RTposition()}}
+{\footnotesize\ttfamily int Opcode\+Table\+::\+R\+Tposition (\begin{DoxyParamCaption}\item[{Opcode}]{o }\end{DoxyParamCaption})}
+
+Given an Opcode, returns the position of RT field. If field is not appropriate for this Opcode, returns -\/1. 
+\begin{DoxyParams}{Parameters}
+{\em opcode} & of the current instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the position of the RS field 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Opcode.\+h\item 
+Opcode.\+cpp\end{DoxyCompactItemize}

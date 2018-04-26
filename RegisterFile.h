@@ -11,6 +11,7 @@
 #include <sstream>
 #include <stdlib.h>
 
+
 using namespace std;
 
 /// Listing of all supported MIPS instructions
@@ -58,6 +59,7 @@ std::string		writeReg(string reg, string value);
 
 ///Prints contents of the register file
 void 			printContents();
+ void     		PrintFinal(std::string regOutputFile);
 
 
 private:
